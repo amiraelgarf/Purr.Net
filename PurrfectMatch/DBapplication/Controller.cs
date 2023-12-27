@@ -635,6 +635,93 @@ namespace DBapplication
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
+        public DataTable SelectSchedule( int vetID)
+        {
+            string query = "SELECT A.[Date], A.[Time], P.Name, U.FirstName " +
+                "FROM [dbo].[Appointment] A " +
+                "INNER JOIN [dbo].[Pet] P ON A.PetID = P.PetID " + 
+                "INNER JOIN [dbo].[User] U ON A.CustomerID = U.UserID "+
+                "WHERE A.VetID =" + vetID + ";";
+
+            return dbMan.ExecuteReader(query);
+        }
+        public int GetVetID(string username)
+        {
+            string query = "SELECT VetID FROM Vet WHERE Username='" + username + "';";
+            return Convert.ToInt32(dbMan.ExecuteScalar(query));
+        }
+
+        public DataTable AvgRatings(int vetID)
+        {
+            string query = "SELECT AVG(CAST(Score AS DECIMAL(10, 2))) AS AverageRatings " +
+                            "FROM[dbo].[VetRating] " +
+                             "WHERE VetID =" + vetID +
+                             "GROUP BY VetID ;";
+            return dbMan.ExecuteReader(query);
+        }
+
+        public DataTable insertverylow(int customerID, string pers)
+        {
+            string query = "UPDATE Customer " +
+                        "SET " + pers + "= 15 " +
+                        "WHERE CustomerID = " + customerID + ";";
+            return dbMan.ExecuteReader(query);
+        }
+
+        public DataTable insertlow(int customerID, string pers)
+        {
+            string query = "UPDATE Customer " +
+                        "SET " + pers + "= 35 " +
+                        "WHERE CustomerID = " + customerID + ";";
+            return dbMan.ExecuteReader(query);
+        }
+
+        public DataTable insertmedium(int customerID, string pers)
+        {
+            string query = "UPDATE Customer " +
+                        "SET" + pers + " = 50 " +
+                        "WHERE CustomerID = " + customerID + ";";
+            return dbMan.ExecuteReader(query);
+        }
+
+        public DataTable inserthigh(int customerID, string pers)
+        {
+            string query = "UPDATE Customer " +
+                        "SET " + pers + " = 75 " +
+                        "WHERE CustomerID = " + customerID + ";";
+            return dbMan.ExecuteReader(query);
+        }
+
+        public DataTable insertveryhigh(int customerID, string pers)
+        {
+            string query = "UPDATE Customer " +
+                        "SET " + pers + " = 90 " +
+                        "WHERE CustomerID = " + customerID + ";";
+            return dbMan.ExecuteReader(query);
+        }
+
+        public Dictionary<string, double> GetAdoptionPercentageByType()
+        {
+            string query = "SELECT TypeName, " +
+                           "(COUNT(Pet.PetID) * 100.0 / " +
+                           "(SELECT COUNT(*) FROM Pet WHERE CenterID IS NULL)) AS AdoptionPercentage " +
+                           "FROM Pet " +
+                           "INNER JOIN Type ON Pet.TypeID = Type.TypeID " +
+                           "WHERE CenterID IS NULL " +
+                           "GROUP BY TypeName;";
+
+            DataTable result = dbMan.ExecuteReader(query);
+
+            // Convert the DataTable into a dictionary for easier access
+            Dictionary<string, double> adoptionPercentages = new Dictionary<string, double>();
+            foreach (DataRow row in result.Rows)
+            {
+                adoptionPercentages[row["TypeName"].ToString()] = Convert.ToDouble(row["AdoptionPercentage"]);
+            }
+
+            return adoptionPercentages;
+        }
+
         public int GetTypeID(string typeName)
         {
             string q = "SELECT TypeID FROM Type WHERE TypeName = '" + typeName + "'";
