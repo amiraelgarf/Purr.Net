@@ -20,7 +20,7 @@ namespace DBapplication
             dbMan = new DBManager();
         }
 
-      
+
         public void TerminateConnection()
         {
             dbMan.CloseConnection();
@@ -316,7 +316,7 @@ namespace DBapplication
         //}
 
 
-        
+
 
 
         public DataTable GetAverageAppointmentsPerMonth()
@@ -354,6 +354,71 @@ namespace DBapplication
             }
         }
 
+
+
+        public List<string> GetLeastSellingItemsLastMonth(int numItems)
+        {
+            string query = "SELECT ProductID, SUM(Quantity) AS TotalQuantity FROM Purchase " +
+                "WHERE PurchaseDate >= DATEADD(month, -1, GETDATE()) " +
+                "GROUP BY ProductID";
+            DataTable lastMonthData = dbMan.ExecuteReader(query);
+
+            var leastSellingItems = FindLeastSellingItems(lastMonthData, numItems);
+
+            return leastSellingItems;
+        }
+
+
+        private List<string> FindLeastSellingItems(DataTable data, int numItems)
+        {
+            var leastSellingItems = data.AsEnumerable()
+                .OrderBy(row => row.Field<int>("TotalQuantity"))
+                .Take(numItems)
+                .Select(row => GetProductNameById(row.Field<int>("ProductID")))
+                .ToList();
+
+            return leastSellingItems;
+        }
+
+        private string GetProductNameById(int productId)
+        {
+            
+            string query = $"SELECT [Name] FROM Product WHERE ProductID = {productId}";
+            DataTable productData = dbMan.ExecuteReader(query);
+            return productData?.Rows[0]?.Field<string>("Name");
+        }
+
+        public string GetBestSellingItemLastMonth()
+        {
+            string query = "SELECT ProductID, SUM(Quantity) AS TotalQuantity FROM Purchase " +
+                "WHERE PurchaseDate >= DATEADD(month, -1, GETDATE()) " +
+                "GROUP BY ProductID";
+            DataTable lastMonthData = dbMan.ExecuteReader(query);
+
+            string bestSellingItem = FindBestSellingItem(lastMonthData);
+
+            return bestSellingItem;
+        }
+        private string FindBestSellingItem(DataTable data)
+        {
+            string bestSellingItem = data.AsEnumerable()
+                .OrderByDescending(row => row.Field<int>("TotalQuantity"))
+                .Select(row => GetProductNameById(row.Field<int>("ProductID")))
+                .FirstOrDefault();
+
+            return bestSellingItem;
+        }
+
+        public int GetProductQuantity(string productName)
+        {
+            // Fetch product quantity from the Purchase table
+            DataTable productData = dbMan.ExecuteReader($"SELECT SUM(Quantity) AS TotalQuantity FROM Purchase " +
+                                                            $"WHERE ProductID IN (SELECT ProductID FROM Product WHERE [Name] = '{productName}') " +
+                                                            $"AND PurchaseDate >= DATEADD(month, -1, GETDATE()) " +
+                                                            $"GROUP BY ProductID");
+
+            return productData?.Rows[0]?.Field<int>("TotalQuantity") ?? 0;
+        }
 
         ///AmiraEnd
 
@@ -943,12 +1008,12 @@ namespace DBapplication
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-        public DataTable SelectSchedule( int vetID)
+        public DataTable SelectSchedule(int vetID)
         {
             string query = "SELECT A.[Date], A.[Time], P.Name, U.FirstName " +
                 "FROM [dbo].[Appointment] A " +
-                "INNER JOIN [dbo].[Pet] P ON A.PetID = P.PetID " + 
-                "INNER JOIN [dbo].[User] U ON A.CustomerID = U.UserID "+
+                "INNER JOIN [dbo].[Pet] P ON A.PetID = P.PetID " +
+                "INNER JOIN [dbo].[User] U ON A.CustomerID = U.UserID " +
                 "WHERE A.VetID =" + vetID + ";";
 
             return dbMan.ExecuteReader(query);
@@ -1129,11 +1194,11 @@ namespace DBapplication
 
         }
 
-        
 
-       
 
-       
+
+
+
 
     }
 

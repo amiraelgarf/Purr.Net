@@ -94,6 +94,12 @@
     <Compile Include="LogIn.Designer.cs">
       <DependentUpon>LogIn.cs</DependentUpon>
     </Compile>
+    <Compile Include="ManagerStatistics.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ManagerStatistics.Designer.cs">
+      <DependentUpon>ManagerStatistics.cs</DependentUpon>
+    </Compile>
     <Compile Include="MyPetsList.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -199,6 +205,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="LogIn.resx">
       <DependentUpon>LogIn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ManagerStatistics.resx">
+      <DependentUpon>ManagerStatistics.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MyPetsList.resx">
       <DependentUpon>MyPetsList.cs</DependentUpon>
