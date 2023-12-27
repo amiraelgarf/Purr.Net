@@ -1,0 +1,298 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{DC8232D5-B804-4766-8840-C88C50EAD01E}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DBapplication</RootNamespace>
+    <AssemblyName>DBapplication</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AddPetManager.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddPetManager.Designer.cs">
+      <DependentUpon>AddPetManager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Admin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Admin.Designer.cs">
+      <DependentUpon>Admin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AdminAddDeleteCenter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdminAddDeleteCenter.Designer.cs">
+      <DependentUpon>AdminAddDeleteCenter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ChangePassowrd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChangePassowrd.Designer.cs">
+      <DependentUpon>ChangePassowrd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controller.cs" />
+    <Compile Include="Customer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Customer.Designer.cs">
+      <DependentUpon>Customer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DBManager.cs" />
+    <Compile Include="LogIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LogIn.Designer.cs">
+      <DependentUpon>LogIn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MyPetsList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MyPetsList.Designer.cs">
+      <DependentUpon>MyPetsList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PetsViewManager.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PetsViewManager.Designer.cs">
+      <DependentUpon>PetsViewManager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vets.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vets.Designer.cs">
+      <DependentUpon>Vets.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Products.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Products.Designer.cs">
+      <DependentUpon>Products.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Pets.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Pets.Designer.cs">
+      <DependentUpon>Pets.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="RegisterRemoveManager.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RegisterRemoveManager.Designer.cs">
+      <DependentUpon>RegisterRemoveManager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RegisterRemoveVet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RegisterRemoveVet.Designer.cs">
+      <DependentUpon>RegisterRemoveVet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StartForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StartForm.Designer.cs">
+      <DependentUpon>StartForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MyPet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MyPet.Designer.cs">
+      <DependentUpon>MyPet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewAndEditPetManager.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ViewAndEditPetManager.Designer.cs">
+      <DependentUpon>ViewAndEditPetManager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewProduct.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ViewProduct.Designer.cs">
+      <DependentUpon>ViewProduct.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewPet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ViewPet.Designer.cs">
+      <DependentUpon>ViewPet.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Admin.resx">
+      <DependentUpon>Admin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdminAddDeleteCenter.resx">
+      <DependentUpon>AdminAddDeleteCenter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ChangePassowrd.resx">
+      <DependentUpon>ChangePassowrd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Customer.resx">
+      <DependentUpon>Customer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LogIn.resx">
+      <DependentUpon>LogIn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyPetsList.resx">
+      <DependentUpon>MyPetsList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vets.resx">
+      <DependentUpon>Vets.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Products.resx">
+      <DependentUpon>Products.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pets.resx">
+      <DependentUpon>Pets.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RegisterRemoveManager.resx">
+      <DependentUpon>RegisterRemoveManager.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RegisterRemoveVet.resx">
+      <DependentUpon>RegisterRemoveVet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StartForm.resx">
+      <DependentUpon>StartForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyPet.resx">
+      <DependentUpon>MyPet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ViewProduct.resx">
+      <DependentUpon>ViewProduct.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ViewPet.resx">
+      <DependentUpon>ViewPet.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="app.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\arrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Filter.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\hamtaro 2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-cart-90_3 1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Nala.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NavBar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Nola.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Paw_3 1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\play.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\play_left.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\searchbar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Select.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Select_med.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Select_S.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\close.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\WhatsApp Image 2023-11-26 at 23.10 1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\button.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\back_2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Mediamodifier-Design-Template.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
