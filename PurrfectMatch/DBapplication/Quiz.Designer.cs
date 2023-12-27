@@ -139,7 +139,7 @@
             this.groupBox1.Controls.Add(this.verylowq1);
             this.groupBox1.Controls.Add(this.mediumq1);
             this.groupBox1.Controls.Add(this.lowq1);
-            this.groupBox1.Location = new System.Drawing.Point(0, 98);
+            this.groupBox1.Location = new System.Drawing.Point(0, 107);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(788, 55);
             this.groupBox1.TabIndex = 6;
@@ -149,7 +149,7 @@
             // 
             this.energyq.AutoSize = true;
             this.energyq.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.energyq.Location = new System.Drawing.Point(117, 70);
+            this.energyq.Location = new System.Drawing.Point(117, 79);
             this.energyq.Name = "energyq";
             this.energyq.Size = new System.Drawing.Size(558, 25);
             this.energyq.TabIndex = 5;
@@ -345,11 +345,12 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(295, 413);
+            this.label4.Location = new System.Drawing.Point(10, 413);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(206, 25);
+            this.label4.Size = new System.Drawing.Size(773, 25);
             this.label4.TabIndex = 12;
-            this.label4.Text = "question about identity";
+            this.label4.Text = "How often do you worry about whether you make a good impression on people you mee" +
+    "t";
             // 
             // groupBox4
             // 
@@ -428,11 +429,11 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(295, 527);
+            this.label5.Location = new System.Drawing.Point(117, 527);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(200, 25);
+            this.label5.Size = new System.Drawing.Size(575, 25);
             this.label5.TabIndex = 14;
-            this.label5.Text = "question about tactics";
+            this.label5.Text = "how often do you end up doing things at the last possible moment";
             // 
             // groupBox5
             // 

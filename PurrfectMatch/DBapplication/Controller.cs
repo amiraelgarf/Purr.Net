@@ -731,8 +731,6 @@ namespace DBapplication
                            "GROUP BY TypeName;";
 
             DataTable result = dbMan.ExecuteReader(query);
-
-            // Convert the DataTable into a dictionary for easier access
             Dictionary<string, double> adoptionPercentages = new Dictionary<string, double>();
             foreach (DataRow row in result.Rows)
             {
@@ -1191,6 +1189,13 @@ namespace DBapplication
                 + " WHERE VetID = " + VetID + "AND Datee = '"+datee+"';";
           return dbMan.ExecuteNonQuery(query);
 
+        }
+
+        public int InsertAvailableDate(int vetid, string date)
+        {
+            string query = "INSERT INTO [VetSchedule] (VetID, Datee)" +
+                            "Values (" + vetid + ",'" + date + "');";
+            return dbMan.ExecuteNonQuery(query);
         }
 
     }
