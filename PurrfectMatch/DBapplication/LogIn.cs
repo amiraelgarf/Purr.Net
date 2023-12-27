@@ -57,5 +57,13 @@ namespace DBapplication
                 this.Close();
             }
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            StartForm a = new StartForm();
+            this.Hide();
+            a.ShowDialog();
+            this.Close();
+        }
     }
 }

@@ -15,7 +15,7 @@ namespace DBapplication
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new ManagerStatistics("bob_johnson"));
+            Application.Run(new StartForm());
         }
     }
 }

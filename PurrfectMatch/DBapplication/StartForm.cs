@@ -24,5 +24,13 @@ namespace DBapplication
             a.ShowDialog();
             this.Close();
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            SignUp a = new SignUp();
+            this.Hide();
+            a.ShowDialog();
+            this.Close();
+        }
     }
 }

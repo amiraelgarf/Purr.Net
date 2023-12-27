@@ -294,6 +294,13 @@ namespace DBapplication
             return dbMan.ExecuteNonQuery(query);
         }
 
+        public int InsertCustromer(int ID, string Username)
+        {
+            string query = "INSERT INTO Customer (CustomerID, Username)" +
+                            "Values (" + ID + ",'" + Username + "');";
+            return dbMan.ExecuteNonQuery(query);
+        }
+
         public int InsertVet(int vetID, int centerID, string speciality, string schedule, string username)
         {
 
