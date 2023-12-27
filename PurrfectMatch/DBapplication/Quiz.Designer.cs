@@ -527,6 +527,7 @@
             this.Controls.Add(this.groupBox1);
             this.Name = "Quiz";
             this.Text = "Quiz";
+            this.Load += new System.EventHandler(this.Quiz_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);

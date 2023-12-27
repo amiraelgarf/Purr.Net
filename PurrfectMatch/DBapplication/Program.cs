@@ -15,7 +15,7 @@ namespace DBapplication
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Quiz("m7md03"));
+            Application.Run(new Vet("jane_smith"));
         }
     }
 }

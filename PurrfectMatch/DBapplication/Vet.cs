@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 
 namespace DBapplication
@@ -24,12 +25,25 @@ namespace DBapplication
             InitializeComponent();
             controllerObj = new Controller();
             vetID = controllerObj.GetVetID(username);
+            DataTable dt1 = controllerObj.SelectAvailableDates(vetID);
+            comboBox1.DisplayMember = "Datee";
+            comboBox1.ValueMember = "Datee";
+            comboBox1.DataSource = dt1;
 
         }
 
         private void editdaysandtime_Click(object sender, EventArgs e)
         {
-
+            
+            int r = controllerObj.DeleteAvailableDate(vetID, Convert.ToString(comboBox1.SelectedValue));
+            if (r == 0)
+            {
+                MessageBox.Show("failed to delete");
+            }
+            else
+            {
+                MessageBox.Show("deleted successfully");
+            }
         }
 
         private void viewappsched_Click(object sender, EventArgs e)

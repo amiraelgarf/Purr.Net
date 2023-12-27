@@ -32,16 +32,18 @@
             this.viewappsched = new System.Windows.Forms.Button();
             this.viewratings = new System.Windows.Forms.Button();
             this.ViewApp_ViewRatings = new System.Windows.Forms.DataGridView();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.ViewApp_ViewRatings)).BeginInit();
             this.SuspendLayout();
             // 
             // editdaysandtime
             // 
-            this.editdaysandtime.Location = new System.Drawing.Point(226, 367);
+            this.editdaysandtime.Location = new System.Drawing.Point(364, 354);
             this.editdaysandtime.Name = "editdaysandtime";
-            this.editdaysandtime.Size = new System.Drawing.Size(347, 24);
+            this.editdaysandtime.Size = new System.Drawing.Size(183, 24);
             this.editdaysandtime.TabIndex = 0;
-            this.editdaysandtime.Text = "Edit available days and time ";
+            this.editdaysandtime.Text = "Delete available date";
             this.editdaysandtime.UseVisualStyleBackColor = true;
             this.editdaysandtime.Click += new System.EventHandler(this.editdaysandtime_Click);
             // 
@@ -75,11 +77,30 @@
             this.ViewApp_ViewRatings.Size = new System.Drawing.Size(560, 166);
             this.ViewApp_ViewRatings.TabIndex = 3;
             // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(70, 354);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(240, 24);
+            this.comboBox1.TabIndex = 4;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(579, 354);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(183, 24);
+            this.button1.TabIndex = 5;
+            this.button1.Text = "Insert available date";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
             // Vet
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.ViewApp_ViewRatings);
             this.Controls.Add(this.viewratings);
             this.Controls.Add(this.viewappsched);
@@ -97,5 +118,7 @@
         private System.Windows.Forms.Button viewappsched;
         private System.Windows.Forms.Button viewratings;
         private System.Windows.Forms.DataGridView ViewApp_ViewRatings;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Button button1;
     }
 }

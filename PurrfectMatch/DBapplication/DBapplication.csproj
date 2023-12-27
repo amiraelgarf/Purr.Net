@@ -100,6 +100,12 @@
     <Compile Include="MyPetsList.Designer.cs">
       <DependentUpon>MyPetsList.cs</DependentUpon>
     </Compile>
+    <Compile Include="ViewResult.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ViewResult.Designer.cs">
+      <DependentUpon>ViewResult.cs</DependentUpon>
+    </Compile>
     <Compile Include="PetsViewManager.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -202,6 +208,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MyPetsList.resx">
       <DependentUpon>MyPetsList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Quiz.resx">
+      <DependentUpon>Quiz.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vet.resx">
+      <DependentUpon>Vet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ViewResult.resx">
+      <DependentUpon>ViewResult.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Vets.resx">
       <DependentUpon>Vets.cs</DependentUpon>

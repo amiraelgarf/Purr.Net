@@ -9,6 +9,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 using System.Collections;
 using System.Drawing;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace DBapplication
 {
@@ -628,6 +629,25 @@ namespace DBapplication
             return dbMan.ExecuteNonQuery(q);
         }
 
+        public int[] PetBestForIDs(string x)
+        {
+            string q = "SELECT PetID FROM Pet WHERE BestFor = '" + x + "';";
+
+
+            DataTable test = dbMan.ExecuteReader(q);
+
+            int[] intArr = test.AsEnumerable().Select(row => row.Field<int>("PetID")).ToArray();
+            return intArr;
+        }
+
+        public int PetBestForNumber(string x)
+        {
+            string q = "SELECT Count(*) FROM Pet WHERE BestFor = '" + x + "';";
+
+
+            int y = Convert.ToInt16(dbMan.ExecuteScalar(q));
+            return y;
+        }
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         //TAWFIK DONE///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -679,7 +699,7 @@ namespace DBapplication
         public DataTable insertmedium(int customerID, string pers)
         {
             string query = "UPDATE Customer " +
-                        "SET" + pers + " = 50 " +
+                        "SET " + pers + "= 50 " +
                         "WHERE CustomerID = " + customerID + ";";
             return dbMan.ExecuteReader(query);
         }
@@ -1036,7 +1056,145 @@ namespace DBapplication
             return dbMan.ExecuteNonQuery(query);
         }
 
+        public int getcustomerenergy(int custid)
+        {
+            string query = "SELECT Energy FROM Customer "
+                    + "WHERE CustomerID= " + custid + ";";
+
+           return Convert.ToInt32(dbMan.ExecuteScalar(query));
+        }
+
+        public int getcustomermind(int custid)
+        {
+            string query = "SELECT Mind FROM Customer "
+                    + "WHERE CustomerID= " + custid + ";";
+
+            return Convert.ToInt32(dbMan.ExecuteScalar(query));
+        }
+
+        public int getcustomernature(int custid)
+        {
+            string query = "SELECT Nature FROM Customer "
+                    + "WHERE CustomerID= " + custid + ";";
+
+            return Convert.ToInt32(dbMan.ExecuteScalar(query));
+        }
+
+        public int getcustomeridentity(int custid)
+        {
+            string query = "SELECT Identityy FROM Customer "
+                    + "WHERE CustomerID= " + custid + ";";
+
+            return Convert.ToInt32(dbMan.ExecuteScalar(query));
+        }
+
+        public string returnPersonality(int custid)
+        {
+            int e = getcustomerenergy(custid);
+            int m = getcustomermind(custid);
+            int n = getcustomernature(custid);
+            int i = getcustomeridentity(custid);
+            if (e> 50 && n > 50 && m > 50 && i > 50) //1
+            {
+                return "ENFP";
+            }
+            else if (e> 50 && m> 50 && n > 50 && i <= 50) //2
+            {
+                return "ENFJ";
+             }
+            else if (e> 50 && m> 50 && n <= 50 && i> 50) //3
+            {
+                return "ENTP";
+            }
+            else if (e > 50 && m > 50 && n <= 50 && i <= 50) //4
+            {
+                return "ENTJ";
+            }
+            else if (e > 50 && m <= 50 && n > 50 && i > 50) // 5
+            {
+                return "ESFP";
+            }
+            else if (e > 50 && m <= 50 && n > 50 && i <= 50) //6
+            {
+                return "ESFJ";
+            }
+            else if (e > 50 && m <= 50 && n <= 50 && i > 50) //7
+            {
+                return "ESTP";
+            }
+            else if (e > 50 && m <= 50 && n <= 50 && i <= 50) //8
+            {
+                return "ESTJ";
+            }
+            else if (e <= 50 && n > 50 && m > 50 && i > 50) //9
+            {
+                return "INFP";
+            }
+            else if (e <= 50 && m > 50 && n > 50 && i <= 50) //10
+            {
+                return "INFJ";
+            }
+            else if (e <= 50 && m > 50 && n <= 50 && i > 50) //11
+            {
+                return "INTP";
+            }
+            else if (e <= 50 && m > 50 && n <= 50 && i <= 50) //12
+            {
+                return "INTJ";
+            }
+            else if (e <= 50 && m <= 50 && n > 50 && i > 50) // 13
+            {
+                return "ISFP";
+            }
+            else if (e <= 50 && m <= 50 && n > 50 && i <= 50) //14
+            {
+                return "ISFJ";
+            }
+            else if (e <= 50 && m <= 50 && n <= 50 && i > 50) //15
+            {
+                return "ISTP";
+            }
+            else if (e <= 50 && m <= 50 && n <= 50 && i <= 50) //16
+            {
+                return "ISTJ";
+            }
+            else
+            {
+                return "INFJ";
+            }
+        }
+
+        public int getyourpurrfectmatch( string pers)
+        {
+            string query = "SELECT PetID FROM Pet WHERE BestFor =" + pers + ";";
+            return dbMan.ExecuteNonQuery(query);
+        }
+
+        public int FliterPetByBestFor(string x)
+        {
+            string q = "SELECT Count(*) FROM Pet WHERE BestFor LIKE '" + x + "%' AND CenterID IS NOT NULL;";
+
+            int y = Convert.ToInt16(dbMan.ExecuteScalar(q));
+            return y;
+        }
+
+
+        public DataTable SelectAvailableDates(int vetID)
+        {
+            string query = "SELECT Datee FROM VetSchedule WHERE VetID= " + vetID +  ";";
+            return dbMan.ExecuteReader(query);
+        }
+
+        public int DeleteAvailableDate(int VetID, string datee)
+        {
+            string query = "DELETE FROM [VetSchedule]"
+                + " WHERE VetID = " + VetID + "AND Datee = '"+datee+"';";
+          return dbMan.ExecuteNonQuery(query);
+
+        }
+
     }
+    
 
 
 
