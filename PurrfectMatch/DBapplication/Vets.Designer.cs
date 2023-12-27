@@ -40,9 +40,7 @@ namespace DBapplication
             this.speciality_filter = new System.Windows.Forms.Label();
             this.center_filter = new System.Windows.Forms.Label();
             this.search_text = new System.Windows.Forms.TextBox();
-            this.rating_filter = new System.Windows.Forms.Label();
             this.center_list = new System.Windows.Forms.CheckedListBox();
-            this.age_list = new System.Windows.Forms.CheckedListBox();
             this.speciality_list = new System.Windows.Forms.CheckedListBox();
             this.appointments_nav_selected = new System.Windows.Forms.Label();
             this.products_nav_selected = new System.Windows.Forms.Label();
@@ -80,6 +78,7 @@ namespace DBapplication
             this.filter = new System.Windows.Forms.PictureBox();
             this.nola = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.center_icon = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.close)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.previous)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.next)).BeginInit();
@@ -104,6 +103,7 @@ namespace DBapplication
             ((System.ComponentModel.ISupportInitialize)(this.filter)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nola)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.center_icon)).BeginInit();
             this.SuspendLayout();
             // 
             // PurrfectMatch
@@ -203,7 +203,7 @@ namespace DBapplication
             this.speciality_filter.Size = new System.Drawing.Size(98, 25);
             this.speciality_filter.TabIndex = 24;
             this.speciality_filter.Text = "Speciality";
-            this.speciality_filter.Click += new System.EventHandler(this.types_filter_Click);
+            this.speciality_filter.Click += new System.EventHandler(this.speciality_filter_Click);
             // 
             // center_filter
             // 
@@ -215,7 +215,7 @@ namespace DBapplication
             this.center_filter.Size = new System.Drawing.Size(72, 25);
             this.center_filter.TabIndex = 25;
             this.center_filter.Text = "Center";
-            this.center_filter.Click += new System.EventHandler(this.gender_filter_Click);
+            this.center_filter.Click += new System.EventHandler(this.center_filter_Click);
             // 
             // search_text
             // 
@@ -231,18 +231,6 @@ namespace DBapplication
             this.search_text.Click += new System.EventHandler(this.search_text_Click);
             this.search_text.TextChanged += new System.EventHandler(this.search_text_TextChanged);
             // 
-            // rating_filter
-            // 
-            this.rating_filter.AutoSize = true;
-            this.rating_filter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(246)))), ((int)(((byte)(239)))));
-            this.rating_filter.Font = new System.Drawing.Font("Abhaya Libre SemiBold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rating_filter.Location = new System.Drawing.Point(43, 266);
-            this.rating_filter.Name = "rating_filter";
-            this.rating_filter.Size = new System.Drawing.Size(70, 25);
-            this.rating_filter.TabIndex = 29;
-            this.rating_filter.Text = "Rating";
-            this.rating_filter.Click += new System.EventHandler(this.age_filter_Click);
-            // 
             // center_list
             // 
             this.center_list.AllowDrop = true;
@@ -252,40 +240,14 @@ namespace DBapplication
             this.center_list.Font = new System.Drawing.Font("Abhaya Libre", 14F);
             this.center_list.ForeColor = System.Drawing.Color.Black;
             this.center_list.FormattingEnabled = true;
-            this.center_list.Items.AddRange(new object[] {
-            "Female",
-            "Male"});
             this.center_list.Location = new System.Drawing.Point(48, 259);
             this.center_list.Name = "center_list";
-            this.center_list.Size = new System.Drawing.Size(168, 50);
+            this.center_list.Size = new System.Drawing.Size(168, 250);
             this.center_list.Sorted = true;
             this.center_list.TabIndex = 30;
             this.center_list.Tag = "";
             this.center_list.Visible = false;
             this.center_list.SelectedIndexChanged += new System.EventHandler(this.gender_list_SelectedIndexChanged);
-            // 
-            // age_list
-            // 
-            this.age_list.AllowDrop = true;
-            this.age_list.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(246)))), ((int)(((byte)(239)))));
-            this.age_list.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.age_list.CheckOnClick = true;
-            this.age_list.Font = new System.Drawing.Font("Abhaya Libre", 14F);
-            this.age_list.ForeColor = System.Drawing.Color.Black;
-            this.age_list.FormattingEnabled = true;
-            this.age_list.Items.AddRange(new object[] {
-            "★",
-            "★★",
-            "★★★",
-            "★★★★",
-            "★★★★★"});
-            this.age_list.Location = new System.Drawing.Point(46, 294);
-            this.age_list.Name = "age_list";
-            this.age_list.Size = new System.Drawing.Size(168, 125);
-            this.age_list.TabIndex = 31;
-            this.age_list.Tag = "";
-            this.age_list.Visible = false;
-            this.age_list.SelectedIndexChanged += new System.EventHandler(this.age_list_SelectedIndexChanged);
             // 
             // speciality_list
             // 
@@ -315,8 +277,6 @@ namespace DBapplication
             this.appointments_nav_selected.Size = new System.Drawing.Size(137, 25);
             this.appointments_nav_selected.TabIndex = 38;
             this.appointments_nav_selected.Text = "Appointments";
-            this.appointments_nav_selected.Visible = false;
-            this.appointments_nav_selected.MouseLeave += new System.EventHandler(this.appointments_select_MouseLeave);
             // 
             // products_nav_selected
             // 
@@ -582,8 +542,6 @@ namespace DBapplication
             this.appointments_select.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.appointments_select.TabIndex = 33;
             this.appointments_select.TabStop = false;
-            this.appointments_select.Visible = false;
-            this.appointments_select.MouseLeave += new System.EventHandler(this.appointments_select_MouseLeave);
             // 
             // products_select
             // 
@@ -723,12 +681,26 @@ namespace DBapplication
             this.pictureBox1.TabIndex = 41;
             this.pictureBox1.TabStop = false;
             // 
+            // center_icon
+            // 
+            this.center_icon.Image = global::DBapplication.Properties.Resources.Mediamodifier_Design_Template;
+            this.center_icon.Location = new System.Drawing.Point(810, 57);
+            this.center_icon.Name = "center_icon";
+            this.center_icon.Size = new System.Drawing.Size(50, 50);
+            this.center_icon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.center_icon.TabIndex = 76;
+            this.center_icon.TabStop = false;
+            this.center_icon.Click += new System.EventHandler(this.center_icon_Click);
+            this.center_icon.MouseLeave += new System.EventHandler(this.center_icon_MouseLeave);
+            this.center_icon.MouseHover += new System.EventHandler(this.center_icon_MouseHover);
+            // 
             // Vets
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(205)))), ((int)(((byte)(237)))));
             this.ClientSize = new System.Drawing.Size(1008, 534);
+            this.Controls.Add(this.center_icon);
             this.Controls.Add(this.close);
             this.Controls.Add(this.slot8_label);
             this.Controls.Add(this.slot7_label);
@@ -756,7 +728,6 @@ namespace DBapplication
             this.Controls.Add(this.quiz_nav_selected);
             this.Controls.Add(this.quiz_select);
             this.Controls.Add(this.profile_select);
-            this.Controls.Add(this.rating_filter);
             this.Controls.Add(this.search_text);
             this.Controls.Add(this.searchbar);
             this.Controls.Add(this.searchicon);
@@ -773,7 +744,6 @@ namespace DBapplication
             this.Controls.Add(this.NavBar);
             this.Controls.Add(this.PurrfectMatch);
             this.Controls.Add(this.hamtamro);
-            this.Controls.Add(this.age_list);
             this.Controls.Add(this.center_list);
             this.Controls.Add(this.speciality_list);
             this.Controls.Add(this.filter);
@@ -781,7 +751,6 @@ namespace DBapplication
             this.Name = "Vets";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Vets";
-            this.Click += new System.EventHandler(this.Pets_Click);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.DraggableForm_MouseDown);
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.DraggableForm_MouseMove);
             this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.DraggableForm_MouseUp);
@@ -809,6 +778,7 @@ namespace DBapplication
             ((System.ComponentModel.ISupportInitialize)(this.filter)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nola)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.center_icon)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -833,9 +803,7 @@ namespace DBapplication
         private System.Windows.Forms.TextBox search_text;
         private System.Windows.Forms.PictureBox searchicon;
         private System.Windows.Forms.PictureBox searchbar;
-        private System.Windows.Forms.Label rating_filter;
         private System.Windows.Forms.CheckedListBox center_list;
-        private System.Windows.Forms.CheckedListBox age_list;
         private System.Windows.Forms.CheckedListBox speciality_list;
         private System.Windows.Forms.Label appointments_nav_selected;
         private System.Windows.Forms.PictureBox appointments_select;
@@ -866,5 +834,6 @@ namespace DBapplication
         private System.Windows.Forms.Label slot6_label;
         private System.Windows.Forms.Label slot5_label;
         private PictureBox close;
+        private PictureBox center_icon;
     }
 }

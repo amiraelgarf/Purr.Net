@@ -8,50 +8,35 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace DBapplication
 {
-    public partial class MyPet : Form
+    public partial class ViewVet : Form
     {
         Controller controllerObj;
-        private bool isDroppedUp = false;
 
         private bool isDragging;
         private Point offset;
         private const int radius = 20;
-        DataTable Pet, centers;
+        DataTable Vet;
         string username;
-        int PetID;
-        string petname;
-        public MyPet(string user, int id)
+        int VetID;
+        public ViewVet(string user, int id)
         {
             username = user;
-            PetID = id;
+            VetID = id;
             InitializeComponent();
             controllerObj = new Controller();
 
-            centers = controllerObj.SelectAllCenters();
-            centers_list.ValueMember = "CenterID";
-            centers_list.DisplayMember = "CenterName";
-            centers_list.DataSource = centers;
-
-            Pet = controllerObj.SelectPet(PetID);
-            name_text.Text = Pet.Rows[0]["Name"].ToString();
-            petname=name_text.Text;
-            int typeid = Convert.ToInt32(Pet.Rows[0]["TypeID"]);
-            type_label.Text += controllerObj.getType(typeid);
-            breed_label.Text += Pet.Rows[0]["Breed"].ToString();
-            int age = Convert.ToInt32(Pet.Rows[0]["AgeInMonths"]);
-            if (age > 12)
-            {
-                age_label.Text += ((age / 12) + " Years");
-            }
-            else
-            {
-                age_label.Text += (age  + " Months");
-            }
-            gender_label.Text += Pet.Rows[0]["Gender"].ToString();
+            Vet = controllerObj.GetVetData(VetID);
+            vet_name_label.Text += Vet.Rows[0]["LastName"].ToString();
+            fullname_label.Text += Vet.Rows[0]["FirstName"].ToString() + " " + Vet.Rows[0]["LastName"].ToString();
+            speciality_label.Text += Vet.Rows[0]["Speciality"].ToString();
+            center_label.Text += Vet.Rows[0]["Center"].ToString();
+            buildingnum_label.Text += Vet.Rows[0]["BuildingNum"].ToString();
+            streetnum_label.Text += Vet.Rows[0]["StreetNum"].ToString();
+            city_label.Text += Vet.Rows[0]["City"].ToString();
+            schedule_label.Text += Vet.Rows[0]["Schedule"].ToString();
         }
 
 
@@ -170,107 +155,30 @@ namespace DBapplication
 
         private void goback_button_Click(object sender, EventArgs e)
         {
-            if (petname == name_text.Text)
-            {
-                MyPetsList p = new MyPetsList(username);
-                this.Hide();
-                p.ShowDialog();
-                this.Close();
-            }
-            else
-            {
-                int x = controllerObj.UpdatePetName(PetID, name_text.Text);
-                if (x == 1)
-                {
-                    MessageBox.Show("Pet Name Updated Successfully");
-                    MyPetsList p = new MyPetsList(username);
-                    this.Hide();
-                    p.ShowDialog();
-                    this.Close();
-                }
-                else
-                {
-                    MessageBox.Show("Pet Name was not Updated");
-                }
-            }
+            Vets p = new Vets(username);
+            this.Hide();
+            p.ShowDialog();
+            this.Close();
         }
 
-        private void disown_button_Click(object sender, EventArgs e)
+
+        private void PurrfectMatch_Click(object sender, EventArgs e)
         {
-            int z = controllerObj.RemoveOwnership(PetID);
-            int y = controllerObj.UpdatePetCenter(PetID, Convert.ToInt32(centers_list.SelectedValue));
-
-            if (petname == name_text.Text)
-            {
-                if (z == 1)
-                {
-                    MessageBox.Show("Pet Disowned Successfully ");
-                    MyPetsList p = new MyPetsList(username);
-                    this.Hide();
-                    p.ShowDialog();
-                    this.Close();
-                }
-                else
-                {
-                    MessageBox.Show("Pet was not Disowned");
-                }
-            }
-            else
-            {
-                int x = controllerObj.UpdatePetName(PetID, petname);
-                if (x == 1)
-                {
-                    MessageBox.Show("Pet Name Updated Successfully");
-                    if (z == 1)
-                    {
-                        MessageBox.Show("Pet Disowned Successfully ");
-                        MyPetsList p = new MyPetsList(username);
-                        this.Hide();
-                        p.ShowDialog();
-                        this.Close();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Pet was not Disowned");
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("Pet Name was not Updated");
-                }
-            }
-
-            
-            
-        }
-
-        private void pets_select_MouseLeave(object sender, EventArgs e)
-        {
-            pets_nav_selected.Visible = false;
-            pets_select.Visible = false;
-        }
-
-        private void products_select_Click(object sender, EventArgs e)
-        {
-            Products c = new Products(username);
+            Customer c = new Customer(username);
             this.Hide();
             c.ShowDialog();
             this.Close();
         }
 
-        private void pets_nav_selected_Click(object sender, EventArgs e)
+        private void mypet_Click(object sender, EventArgs e)
         {
-            Pets c = new Pets(username);
+            MyPetsList p = new MyPetsList(username);
             this.Hide();
-            c.ShowDialog();
+            p.ShowDialog();
             this.Close();
         }
 
-        private void pets_nav_MouseHover(object sender, EventArgs e)
-        {
-            pets_nav_selected.Visible = true;
-            pets_select.Visible = true;
-        }
+
 
         private void center_icon_MouseHover(object sender, EventArgs e)
         {
@@ -284,25 +192,31 @@ namespace DBapplication
 
         private void center_icon_Click(object sender, EventArgs e)
         {
-            /*Centers c = new Centers(username);
+            Centers c = new Centers(username);
             this.Hide();
             c.ShowDialog();
-            this.Close();*/
-        }
-
-        private void appointments_nav_selected_Click(object sender, EventArgs e)
-        {
-            Vets v = new Vets(username);
-            this.Hide();
-            v.ShowDialog();
             this.Close();
         }
 
-        private void PurrfectMatch_Click(object sender, EventArgs e)
+
+
+        private void pets_nav_selected_MouseLeave(object sender, EventArgs e)
         {
-            Customer c = new Customer(username);
+            pets_nav_selected.Visible = false;
+            pets_select.Visible = false;
+        }
+
+        private void pets_nav_MouseHover(object sender, EventArgs e)
+        {
+            pets_nav_selected.Visible = true;
+            pets_select.Visible = true;
+        }
+
+        private void pets_nav_selected_Click(object sender, EventArgs e)
+        {
+            Pets p = new Pets(username);
             this.Hide();
-            c.ShowDialog();
+            p.ShowDialog();
             this.Close();
         }
     }

@@ -281,7 +281,7 @@ namespace DBapplication
                 {
                     slot_labels[y].Text = names[i + (8 * page)];
                     slot_labels[y].Visible = true;
-                    slots[y].Image = global::DBapplication.Properties.Resources.Nola;
+                    slots[y].Image = global::DBapplication.Properties.Resources.Toy_Mouse;
                     slots[y].Visible = true;
                     y++;
                 }
@@ -453,7 +453,7 @@ namespace DBapplication
                 {
                     slot_labels[y].Text = names[i + (8 * page)];
                     slot_labels[y].Visible = true;
-                    slots[y].Image = global::DBapplication.Properties.Resources.Nola;
+                    slots[y].Image = global::DBapplication.Properties.Resources.Toy_Mouse;
                     slots[y].Visible = true;
                     y++;
                 }
@@ -581,6 +581,14 @@ namespace DBapplication
             this.Hide();
             c.ShowDialog();
             this.Close();*/
+        }
+
+        private void appointments_select_Click(object sender, EventArgs e)
+        {
+            Vets v = new Vets(username);
+            this.Hide();
+            v.ShowDialog();
+            this.Close();
         }
     }
 }

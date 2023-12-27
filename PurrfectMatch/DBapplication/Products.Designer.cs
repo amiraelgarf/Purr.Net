@@ -54,6 +54,7 @@ namespace DBapplication
             this.slot7_label = new System.Windows.Forms.Label();
             this.slot6_label = new System.Windows.Forms.Label();
             this.slot5_label = new System.Windows.Forms.Label();
+            this.center_icon = new System.Windows.Forms.PictureBox();
             this.close = new System.Windows.Forms.PictureBox();
             this.previous = new System.Windows.Forms.PictureBox();
             this.next = new System.Windows.Forms.PictureBox();
@@ -78,7 +79,7 @@ namespace DBapplication
             this.filter = new System.Windows.Forms.PictureBox();
             this.nola = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.center_icon = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.center_icon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.close)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.previous)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.next)).BeginInit();
@@ -103,7 +104,6 @@ namespace DBapplication
             ((System.ComponentModel.ISupportInitialize)(this.filter)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nola)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.center_icon)).BeginInit();
             this.SuspendLayout();
             // 
             // PurrfectMatch
@@ -285,6 +285,7 @@ namespace DBapplication
             this.appointments_nav_selected.TabIndex = 38;
             this.appointments_nav_selected.Text = "Appointments";
             this.appointments_nav_selected.Visible = false;
+            this.appointments_nav_selected.Click += new System.EventHandler(this.appointments_select_Click);
             this.appointments_nav_selected.MouseLeave += new System.EventHandler(this.appointments_select_MouseLeave);
             // 
             // products_nav_selected
@@ -424,6 +425,19 @@ namespace DBapplication
             this.slot5_label.Visible = false;
             this.slot5_label.Click += new System.EventHandler(this.slot5_label_Click);
             // 
+            // center_icon
+            // 
+            this.center_icon.Image = global::DBapplication.Properties.Resources.Mediamodifier_Design_Template;
+            this.center_icon.Location = new System.Drawing.Point(810, 57);
+            this.center_icon.Name = "center_icon";
+            this.center_icon.Size = new System.Drawing.Size(50, 50);
+            this.center_icon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.center_icon.TabIndex = 59;
+            this.center_icon.TabStop = false;
+            this.center_icon.Click += new System.EventHandler(this.center_icon_Click);
+            this.center_icon.MouseLeave += new System.EventHandler(this.center_icon_MouseLeave);
+            this.center_icon.MouseHover += new System.EventHandler(this.center_icon_MouseHover);
+            // 
             // close
             // 
             this.close.Image = global::DBapplication.Properties.Resources.close;
@@ -550,6 +564,7 @@ namespace DBapplication
             this.appointments_select.TabIndex = 33;
             this.appointments_select.TabStop = false;
             this.appointments_select.Visible = false;
+            this.appointments_select.Click += new System.EventHandler(this.appointments_select_Click);
             this.appointments_select.MouseLeave += new System.EventHandler(this.appointments_select_MouseLeave);
             // 
             // products_select
@@ -688,19 +703,6 @@ namespace DBapplication
             this.pictureBox1.TabIndex = 41;
             this.pictureBox1.TabStop = false;
             // 
-            // center_icon
-            // 
-            this.center_icon.Image = global::DBapplication.Properties.Resources.Mediamodifier_Design_Template;
-            this.center_icon.Location = new System.Drawing.Point(810, 57);
-            this.center_icon.Name = "center_icon";
-            this.center_icon.Size = new System.Drawing.Size(50, 50);
-            this.center_icon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.center_icon.TabIndex = 59;
-            this.center_icon.TabStop = false;
-            this.center_icon.Click += new System.EventHandler(this.center_icon_Click);
-            this.center_icon.MouseLeave += new System.EventHandler(this.center_icon_MouseLeave);
-            this.center_icon.MouseHover += new System.EventHandler(this.center_icon_MouseHover);
-            // 
             // Products
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -762,6 +764,7 @@ namespace DBapplication
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.DraggableForm_MouseDown);
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.DraggableForm_MouseMove);
             this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.DraggableForm_MouseUp);
+            ((System.ComponentModel.ISupportInitialize)(this.center_icon)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.close)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.previous)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.next)).EndInit();
@@ -786,7 +789,6 @@ namespace DBapplication
             ((System.ComponentModel.ISupportInitialize)(this.filter)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nola)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.center_icon)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -253,5 +253,13 @@ namespace DBapplication
             c.ShowDialog();
             this.Close();*/
         }
+
+        private void appointments_select_Click(object sender, EventArgs e)
+        {
+            Vets v = new Vets(username);
+            this.Hide();
+            v.ShowDialog();
+            this.Close();
+        }
     }
 }

@@ -2,7 +2,7 @@
 
 namespace DBapplication
 {
-    partial class MyPet
+    partial class ViewVet
     {
         /// <summary>
         /// Required designer variable.
@@ -47,33 +47,39 @@ namespace DBapplication
             this.products_select = new System.Windows.Forms.PictureBox();
             this.quiz_select = new System.Windows.Forms.PictureBox();
             this.profile_select = new System.Windows.Forms.PictureBox();
+            this.mypet = new System.Windows.Forms.PictureBox();
             this.pets_select = new System.Windows.Forms.PictureBox();
             this.NavBar = new System.Windows.Forms.PictureBox();
             this.hamtamro = new System.Windows.Forms.PictureBox();
             this.pet_image = new System.Windows.Forms.PictureBox();
-            this.type_label = new System.Windows.Forms.Label();
-            this.breed_label = new System.Windows.Forms.Label();
-            this.age_label = new System.Windows.Forms.Label();
-            this.gender_label = new System.Windows.Forms.Label();
+            this.vet_name_label = new System.Windows.Forms.Label();
+            this.fullname_label = new System.Windows.Forms.Label();
+            this.speciality_label = new System.Windows.Forms.Label();
+            this.center_label = new System.Windows.Forms.Label();
+            this.city_label = new System.Windows.Forms.Label();
+            this.schedule_label = new System.Windows.Forms.Label();
+            this.set_appointment_button = new System.Windows.Forms.PictureBox();
             this.goback_button = new System.Windows.Forms.PictureBox();
+            this.adopt_label = new System.Windows.Forms.Label();
             this.goback_label = new System.Windows.Forms.Label();
-            this.disown_button = new System.Windows.Forms.PictureBox();
-            this.disown_label = new System.Windows.Forms.Label();
-            this.centers_list = new System.Windows.Forms.ComboBox();
-            this.name_text = new System.Windows.Forms.TextBox();
             this.center_icon = new System.Windows.Forms.PictureBox();
+            this.buildingnum_label = new System.Windows.Forms.Label();
+            this.streetnum_label = new System.Windows.Forms.Label();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.day_label = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.background)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.close)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.appointments_select)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.products_select)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.quiz_select)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.profile_select)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mypet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pets_select)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NavBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.hamtamro)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pet_image)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.set_appointment_button)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.goback_button)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.disown_button)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.center_icon)).BeginInit();
             this.SuspendLayout();
             // 
@@ -162,7 +168,7 @@ namespace DBapplication
             this.pets_nav_selected.Text = "Pets";
             this.pets_nav_selected.Visible = false;
             this.pets_nav_selected.Click += new System.EventHandler(this.pets_nav_selected_Click);
-            this.pets_nav_selected.MouseLeave += new System.EventHandler(this.pets_select_MouseLeave);
+            this.pets_nav_selected.MouseLeave += new System.EventHandler(this.pets_nav_selected_MouseLeave);
             // 
             // appointments_nav_selected
             // 
@@ -175,9 +181,6 @@ namespace DBapplication
             this.appointments_nav_selected.Size = new System.Drawing.Size(137, 25);
             this.appointments_nav_selected.TabIndex = 38;
             this.appointments_nav_selected.Text = "Appointments";
-            this.appointments_nav_selected.Visible = false;
-            this.appointments_nav_selected.Click += new System.EventHandler(this.appointments_nav_selected_Click);
-            this.appointments_nav_selected.MouseLeave += new System.EventHandler(this.appointments_select_MouseLeave);
             // 
             // products_nav_selected
             // 
@@ -191,7 +194,6 @@ namespace DBapplication
             this.products_nav_selected.TabIndex = 36;
             this.products_nav_selected.Text = "Products";
             this.products_nav_selected.Visible = false;
-            this.products_nav_selected.Click += new System.EventHandler(this.products_select_Click);
             this.products_nav_selected.MouseLeave += new System.EventHandler(this.products_select_MouseLeave);
             // 
             // profile_nav_selected
@@ -253,9 +255,6 @@ namespace DBapplication
             this.appointments_select.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.appointments_select.TabIndex = 33;
             this.appointments_select.TabStop = false;
-            this.appointments_select.Visible = false;
-            this.appointments_select.Click += new System.EventHandler(this.appointments_nav_selected_Click);
-            this.appointments_select.MouseLeave += new System.EventHandler(this.appointments_select_MouseLeave);
             // 
             // products_select
             // 
@@ -268,7 +267,6 @@ namespace DBapplication
             this.products_select.TabIndex = 35;
             this.products_select.TabStop = false;
             this.products_select.Visible = false;
-            this.products_select.Click += new System.EventHandler(this.products_select_Click);
             this.products_select.MouseLeave += new System.EventHandler(this.products_select_MouseLeave);
             // 
             // quiz_select
@@ -297,6 +295,19 @@ namespace DBapplication
             this.profile_select.Visible = false;
             this.profile_select.MouseLeave += new System.EventHandler(this.profile_nav_selected_MouseLeave);
             // 
+            // mypet
+            // 
+            this.mypet.Image = global::DBapplication.Properties.Resources.Paw_3_1;
+            this.mypet.Location = new System.Drawing.Point(902, 57);
+            this.mypet.Name = "mypet";
+            this.mypet.Size = new System.Drawing.Size(52, 50);
+            this.mypet.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.mypet.TabIndex = 21;
+            this.mypet.TabStop = false;
+            this.mypet.Click += new System.EventHandler(this.mypet_Click);
+            this.mypet.MouseLeave += new System.EventHandler(this.mypet_MouseLeave);
+            this.mypet.MouseHover += new System.EventHandler(this.mypet_MouseHover);
+            // 
             // pets_select
             // 
             this.pets_select.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(246)))), ((int)(((byte)(239)))));
@@ -309,7 +320,7 @@ namespace DBapplication
             this.pets_select.TabStop = false;
             this.pets_select.Visible = false;
             this.pets_select.Click += new System.EventHandler(this.pets_nav_selected_Click);
-            this.pets_select.MouseLeave += new System.EventHandler(this.pets_select_MouseLeave);
+            this.pets_select.MouseLeave += new System.EventHandler(this.pets_nav_selected_MouseLeave);
             // 
             // NavBar
             // 
@@ -342,55 +353,88 @@ namespace DBapplication
             this.pet_image.TabIndex = 60;
             this.pet_image.TabStop = false;
             // 
-            // type_label
+            // vet_name_label
             // 
-            this.type_label.AutoSize = true;
-            this.type_label.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(246)))), ((int)(((byte)(239)))));
-            this.type_label.Font = new System.Drawing.Font("Abhaya Libre Medium", 18F);
-            this.type_label.Location = new System.Drawing.Point(370, 190);
-            this.type_label.Name = "type_label";
-            this.type_label.Size = new System.Drawing.Size(75, 28);
-            this.type_label.TabIndex = 62;
-            this.type_label.Text = "Type:  ";
+            this.vet_name_label.AutoSize = true;
+            this.vet_name_label.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(246)))), ((int)(((byte)(239)))));
+            this.vet_name_label.Font = new System.Drawing.Font("Abhaya Libre", 30F, System.Drawing.FontStyle.Bold);
+            this.vet_name_label.Location = new System.Drawing.Point(367, 146);
+            this.vet_name_label.Name = "vet_name_label";
+            this.vet_name_label.Size = new System.Drawing.Size(78, 48);
+            this.vet_name_label.TabIndex = 61;
+            this.vet_name_label.Text = "Dr. ";
             // 
-            // breed_label
+            // fullname_label
             // 
-            this.breed_label.AutoSize = true;
-            this.breed_label.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(246)))), ((int)(((byte)(239)))));
-            this.breed_label.Font = new System.Drawing.Font("Abhaya Libre Medium", 18F);
-            this.breed_label.Location = new System.Drawing.Point(370, 218);
-            this.breed_label.Name = "breed_label";
-            this.breed_label.Size = new System.Drawing.Size(85, 28);
-            this.breed_label.TabIndex = 63;
-            this.breed_label.Text = "Breed:  ";
+            this.fullname_label.AutoSize = true;
+            this.fullname_label.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(246)))), ((int)(((byte)(239)))));
+            this.fullname_label.Font = new System.Drawing.Font("Abhaya Libre Medium", 18F);
+            this.fullname_label.Location = new System.Drawing.Point(370, 190);
+            this.fullname_label.Name = "fullname_label";
+            this.fullname_label.Size = new System.Drawing.Size(128, 28);
+            this.fullname_label.TabIndex = 62;
+            this.fullname_label.Text = "Full Name:  ";
             // 
-            // age_label
+            // speciality_label
             // 
-            this.age_label.AutoSize = true;
-            this.age_label.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(246)))), ((int)(((byte)(239)))));
-            this.age_label.Font = new System.Drawing.Font("Abhaya Libre Medium", 18F);
-            this.age_label.Location = new System.Drawing.Point(370, 246);
-            this.age_label.Name = "age_label";
-            this.age_label.Size = new System.Drawing.Size(64, 28);
-            this.age_label.TabIndex = 64;
-            this.age_label.Text = "Age:  ";
+            this.speciality_label.AutoSize = true;
+            this.speciality_label.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(246)))), ((int)(((byte)(239)))));
+            this.speciality_label.Font = new System.Drawing.Font("Abhaya Libre Medium", 18F);
+            this.speciality_label.Location = new System.Drawing.Point(370, 218);
+            this.speciality_label.Name = "speciality_label";
+            this.speciality_label.Size = new System.Drawing.Size(125, 28);
+            this.speciality_label.TabIndex = 63;
+            this.speciality_label.Text = "Speciality:  ";
             // 
-            // gender_label
+            // center_label
             // 
-            this.gender_label.AutoSize = true;
-            this.gender_label.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(246)))), ((int)(((byte)(239)))));
-            this.gender_label.Font = new System.Drawing.Font("Abhaya Libre Medium", 18F);
-            this.gender_label.Location = new System.Drawing.Point(370, 274);
-            this.gender_label.Name = "gender_label";
-            this.gender_label.Size = new System.Drawing.Size(100, 28);
-            this.gender_label.TabIndex = 65;
-            this.gender_label.Text = "Gender:  ";
+            this.center_label.AutoSize = true;
+            this.center_label.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(246)))), ((int)(((byte)(239)))));
+            this.center_label.Font = new System.Drawing.Font("Abhaya Libre Medium", 18F);
+            this.center_label.Location = new System.Drawing.Point(370, 246);
+            this.center_label.Name = "center_label";
+            this.center_label.Size = new System.Drawing.Size(94, 28);
+            this.center_label.TabIndex = 66;
+            this.center_label.Text = "Center:  ";
+            // 
+            // city_label
+            // 
+            this.city_label.AutoSize = true;
+            this.city_label.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(246)))), ((int)(((byte)(239)))));
+            this.city_label.Font = new System.Drawing.Font("Abhaya Libre Medium", 18F);
+            this.city_label.Location = new System.Drawing.Point(370, 330);
+            this.city_label.Name = "city_label";
+            this.city_label.Size = new System.Drawing.Size(68, 28);
+            this.city_label.TabIndex = 67;
+            this.city_label.Text = "City:  ";
+            // 
+            // schedule_label
+            // 
+            this.schedule_label.AutoSize = true;
+            this.schedule_label.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(246)))), ((int)(((byte)(239)))));
+            this.schedule_label.Font = new System.Drawing.Font("Abhaya Libre Medium", 18F);
+            this.schedule_label.Location = new System.Drawing.Point(370, 358);
+            this.schedule_label.Name = "schedule_label";
+            this.schedule_label.Size = new System.Drawing.Size(118, 28);
+            this.schedule_label.TabIndex = 68;
+            this.schedule_label.Text = "Schedule:  ";
+            // 
+            // set_appointment_button
+            // 
+            this.set_appointment_button.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(246)))), ((int)(((byte)(239)))));
+            this.set_appointment_button.Image = global::DBapplication.Properties.Resources.button;
+            this.set_appointment_button.Location = new System.Drawing.Point(555, 472);
+            this.set_appointment_button.Name = "set_appointment_button";
+            this.set_appointment_button.Size = new System.Drawing.Size(182, 28);
+            this.set_appointment_button.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.set_appointment_button.TabIndex = 70;
+            this.set_appointment_button.TabStop = false;
             // 
             // goback_button
             // 
             this.goback_button.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(246)))), ((int)(((byte)(239)))));
             this.goback_button.Image = global::DBapplication.Properties.Resources.button;
-            this.goback_button.Location = new System.Drawing.Point(723, 473);
+            this.goback_button.Location = new System.Drawing.Point(781, 472);
             this.goback_button.Name = "goback_button";
             this.goback_button.Size = new System.Drawing.Size(108, 28);
             this.goback_button.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -398,68 +442,30 @@ namespace DBapplication
             this.goback_button.TabStop = false;
             this.goback_button.Click += new System.EventHandler(this.goback_button_Click);
             // 
+            // adopt_label
+            // 
+            this.adopt_label.AutoSize = true;
+            this.adopt_label.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(118)))), ((int)(((byte)(129)))));
+            this.adopt_label.Font = new System.Drawing.Font("Abhaya Libre SemiBold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.adopt_label.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(246)))), ((int)(((byte)(239)))));
+            this.adopt_label.Location = new System.Drawing.Point(566, 474);
+            this.adopt_label.Name = "adopt_label";
+            this.adopt_label.Size = new System.Drawing.Size(161, 25);
+            this.adopt_label.TabIndex = 73;
+            this.adopt_label.Text = "Set Appointment";
+            // 
             // goback_label
             // 
             this.goback_label.AutoSize = true;
             this.goback_label.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(118)))), ((int)(((byte)(129)))));
             this.goback_label.Font = new System.Drawing.Font("Abhaya Libre SemiBold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.goback_label.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(246)))), ((int)(((byte)(239)))));
-            this.goback_label.Location = new System.Drawing.Point(736, 475);
+            this.goback_label.Location = new System.Drawing.Point(794, 474);
             this.goback_label.Name = "goback_label";
             this.goback_label.Size = new System.Drawing.Size(82, 25);
             this.goback_label.TabIndex = 74;
             this.goback_label.Text = "Go Back";
             this.goback_label.Click += new System.EventHandler(this.goback_button_Click);
-            // 
-            // disown_button
-            // 
-            this.disown_button.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(246)))), ((int)(((byte)(239)))));
-            this.disown_button.Image = global::DBapplication.Properties.Resources.button;
-            this.disown_button.Location = new System.Drawing.Point(648, 156);
-            this.disown_button.Name = "disown_button";
-            this.disown_button.Size = new System.Drawing.Size(108, 28);
-            this.disown_button.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.disown_button.TabIndex = 70;
-            this.disown_button.TabStop = false;
-            this.disown_button.Click += new System.EventHandler(this.disown_button_Click);
-            // 
-            // disown_label
-            // 
-            this.disown_label.AutoSize = true;
-            this.disown_label.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(118)))), ((int)(((byte)(129)))));
-            this.disown_label.Font = new System.Drawing.Font("Abhaya Libre SemiBold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.disown_label.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(246)))), ((int)(((byte)(239)))));
-            this.disown_label.Location = new System.Drawing.Point(664, 158);
-            this.disown_label.Name = "disown_label";
-            this.disown_label.Size = new System.Drawing.Size(77, 25);
-            this.disown_label.TabIndex = 73;
-            this.disown_label.Text = "Disown";
-            this.disown_label.Click += new System.EventHandler(this.disown_button_Click);
-            // 
-            // centers_list
-            // 
-            this.centers_list.BackColor = System.Drawing.Color.White;
-            this.centers_list.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.centers_list.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.centers_list.Font = new System.Drawing.Font("Abhaya Libre SemiBold", 13F, System.Drawing.FontStyle.Bold);
-            this.centers_list.FormattingEnabled = true;
-            this.centers_list.Location = new System.Drawing.Point(776, 156);
-            this.centers_list.Name = "centers_list";
-            this.centers_list.Size = new System.Drawing.Size(147, 28);
-            this.centers_list.TabIndex = 75;
-            this.centers_list.MouseDown += new System.Windows.Forms.MouseEventHandler(this.DraggableForm_MouseDown);
-            this.centers_list.MouseMove += new System.Windows.Forms.MouseEventHandler(this.DraggableForm_MouseMove);
-            this.centers_list.MouseUp += new System.Windows.Forms.MouseEventHandler(this.DraggableForm_MouseUp);
-            // 
-            // name_text
-            // 
-            this.name_text.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(246)))), ((int)(((byte)(239)))));
-            this.name_text.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.name_text.Font = new System.Drawing.Font("Abhaya Libre", 30F, System.Drawing.FontStyle.Bold);
-            this.name_text.Location = new System.Drawing.Point(367, 146);
-            this.name_text.Name = "name_text";
-            this.name_text.Size = new System.Drawing.Size(258, 48);
-            this.name_text.TabIndex = 76;
             // 
             // center_icon
             // 
@@ -468,29 +474,77 @@ namespace DBapplication
             this.center_icon.Name = "center_icon";
             this.center_icon.Size = new System.Drawing.Size(50, 50);
             this.center_icon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.center_icon.TabIndex = 77;
+            this.center_icon.TabIndex = 75;
             this.center_icon.TabStop = false;
             this.center_icon.Click += new System.EventHandler(this.center_icon_Click);
             this.center_icon.MouseLeave += new System.EventHandler(this.center_icon_MouseLeave);
             this.center_icon.MouseHover += new System.EventHandler(this.center_icon_MouseHover);
             // 
-            // MyPet
+            // buildingnum_label
+            // 
+            this.buildingnum_label.AutoSize = true;
+            this.buildingnum_label.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(246)))), ((int)(((byte)(239)))));
+            this.buildingnum_label.Font = new System.Drawing.Font("Abhaya Libre Medium", 18F);
+            this.buildingnum_label.Location = new System.Drawing.Point(370, 274);
+            this.buildingnum_label.Name = "buildingnum_label";
+            this.buildingnum_label.Size = new System.Drawing.Size(198, 28);
+            this.buildingnum_label.TabIndex = 65;
+            this.buildingnum_label.Text = "Building Number:  ";
+            // 
+            // streetnum_label
+            // 
+            this.streetnum_label.AutoSize = true;
+            this.streetnum_label.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(246)))), ((int)(((byte)(239)))));
+            this.streetnum_label.Font = new System.Drawing.Font("Abhaya Libre Medium", 18F);
+            this.streetnum_label.Location = new System.Drawing.Point(370, 302);
+            this.streetnum_label.Name = "streetnum_label";
+            this.streetnum_label.Size = new System.Drawing.Size(173, 28);
+            this.streetnum_label.TabIndex = 64;
+            this.streetnum_label.Text = "Street Number:  ";
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.Font = new System.Drawing.Font("Abhaya Libre Medium", 13F);
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(375, 472);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(157, 28);
+            this.comboBox1.TabIndex = 76;
+            // 
+            // day_label
+            // 
+            this.day_label.AutoSize = true;
+            this.day_label.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(246)))), ((int)(((byte)(239)))));
+            this.day_label.Font = new System.Drawing.Font("Abhaya Libre Medium", 15F);
+            this.day_label.Location = new System.Drawing.Point(371, 445);
+            this.day_label.Name = "day_label";
+            this.day_label.Size = new System.Drawing.Size(49, 24);
+            this.day_label.TabIndex = 77;
+            this.day_label.Text = "Day: ";
+            // 
+            // ViewVet
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(205)))), ((int)(((byte)(237)))));
             this.ClientSize = new System.Drawing.Size(1008, 534);
+            this.Controls.Add(this.day_label);
+            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.center_icon);
-            this.Controls.Add(this.centers_list);
             this.Controls.Add(this.goback_label);
-            this.Controls.Add(this.disown_label);
+            this.Controls.Add(this.adopt_label);
             this.Controls.Add(this.goback_button);
-            this.Controls.Add(this.disown_button);
-            this.Controls.Add(this.gender_label);
-            this.Controls.Add(this.age_label);
-            this.Controls.Add(this.breed_label);
-            this.Controls.Add(this.type_label);
+            this.Controls.Add(this.set_appointment_button);
+            this.Controls.Add(this.schedule_label);
+            this.Controls.Add(this.city_label);
+            this.Controls.Add(this.center_label);
+            this.Controls.Add(this.buildingnum_label);
+            this.Controls.Add(this.streetnum_label);
+            this.Controls.Add(this.speciality_label);
+            this.Controls.Add(this.fullname_label);
+            this.Controls.Add(this.vet_name_label);
             this.Controls.Add(this.pet_image);
+            this.Controls.Add(this.background);
             this.Controls.Add(this.close);
             this.Controls.Add(this.appointments_nav_selected);
             this.Controls.Add(this.appointments_select);
@@ -500,6 +554,7 @@ namespace DBapplication
             this.Controls.Add(this.quiz_nav_selected);
             this.Controls.Add(this.quiz_select);
             this.Controls.Add(this.profile_select);
+            this.Controls.Add(this.mypet);
             this.Controls.Add(this.pets_nav_selected);
             this.Controls.Add(this.pets_select);
             this.Controls.Add(this.profile_nav);
@@ -510,24 +565,26 @@ namespace DBapplication
             this.Controls.Add(this.NavBar);
             this.Controls.Add(this.PurrfectMatch);
             this.Controls.Add(this.hamtamro);
-            this.Controls.Add(this.name_text);
-            this.Controls.Add(this.background);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "MyPet";
+            this.Name = "ViewVet";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "MyPet";
+            this.Text = "ViewVet";
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.DraggableForm_MouseDown);
+            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.DraggableForm_MouseMove);
+            this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.DraggableForm_MouseUp);
             ((System.ComponentModel.ISupportInitialize)(this.background)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.close)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.appointments_select)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.products_select)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.quiz_select)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.profile_select)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mypet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pets_select)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.NavBar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.hamtamro)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pet_image)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.set_appointment_button)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.goback_button)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.disown_button)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.center_icon)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -557,16 +614,20 @@ namespace DBapplication
         private PictureBox close;
         private PictureBox background;
         private PictureBox pet_image;
-        private Label type_label;
-        private Label breed_label;
-        private Label age_label;
-        private Label gender_label;
+        private Label vet_name_label;
+        private Label fullname_label;
+        private Label speciality_label;
+        private Label center_label;
+        private Label city_label;
+        private Label schedule_label;
+        private PictureBox set_appointment_button;
         private PictureBox goback_button;
+        private Label adopt_label;
         private Label goback_label;
-        private PictureBox disown_button;
-        private Label disown_label;
-        private ComboBox centers_list;
-        private TextBox name_text;
         private PictureBox center_icon;
+        private Label buildingnum_label;
+        private Label streetnum_label;
+        private ComboBox comboBox1;
+        private Label day_label;
     }
 }

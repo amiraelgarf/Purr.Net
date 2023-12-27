@@ -6,30 +6,36 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace DBapplication
 {
-    public partial class Customer : Form
+    public partial class ViewCenter : Form
     {
         Controller controllerObj;
 
         private bool isDragging;
         private Point offset;
         private const int radius = 20;
+        DataTable Center;
         string username;
-
-        public Customer(string user)
+        int CenterID;
+        public ViewCenter(string user, int id)
         {
             username = user;
+            CenterID = id;
             InitializeComponent();
             controllerObj = new Controller();
-            string Name = controllerObj.FirstName(user);
-            Name = Name + " " + controllerObj.LastName(user);
-            name_label.Text = Name;
+
+            Center = controllerObj.SelectCenter(CenterID);
+            center_name_label.Text = Center.Rows[0]["CenterName"].ToString();
+            buildingnum_label.Text += Center.Rows[0]["BuildingNum"].ToString();
+            streetnum_label.Text += Center.Rows[0]["StreetNum"].ToString();
+            city_label.Text += Center.Rows[0]["City"].ToString();
+            pets_label.Text += controllerObj.GetCenterPetsCount(CenterID);
         }
+
 
 
         protected override void OnPaint(PaintEventArgs e)
@@ -77,24 +83,17 @@ namespace DBapplication
 
 
 
-        private void pets_nav_Hover(object sender, EventArgs e)
+
+        private void mypet_MouseHover(object sender, EventArgs e)
         {
-            pets_nav_selected.Visible = true;
-            pets_select.Visible = true;
+            mypet.BorderStyle = BorderStyle.FixedSingle;
         }
 
-        private void Customer_Load(object sender, EventArgs e)
+        private void mypet_MouseLeave(object sender, EventArgs e)
         {
-            this.mypet.Image = global::DBapplication.Properties.Resources.Paw_3_1;
+            mypet.BorderStyle = BorderStyle.None;
         }
 
-
-
-        private void pets_select_MouseLeave(object sender, EventArgs e)
-        {
-            pets_nav_selected.Visible = false;
-            pets_select.Visible = false;
-        }
 
         private void products_nav_MouseHover(object sender, EventArgs e)
         {
@@ -144,28 +143,27 @@ namespace DBapplication
             profile_select.Visible = false;
         }
 
-        private void pets_nav_selected_Click(object sender, EventArgs e)
+
+
+        private void close_Click(object sender, EventArgs e)
         {
-            Pets p = new Pets(username);
+            this.Close();
+        }
+
+        private void goback_button_Click(object sender, EventArgs e)
+        {
+            Centers p = new Centers(username);
             this.Hide();
             p.ShowDialog();
             this.Close();
         }
 
-        private void mypet_MouseHover(object sender, EventArgs e)
+
+        private void PurrfectMatch_Click(object sender, EventArgs e)
         {
-            mypet.BorderStyle = BorderStyle.FixedSingle;
-        }
-
-        private void mypet_MouseLeave(object sender, EventArgs e)
-        {
-            mypet.BorderStyle = BorderStyle.None;
-        }
-
-
-
-        private void close_Click(object sender, EventArgs e)
-        {
+            Customer c = new Customer(username);
+            this.Hide();
+            c.ShowDialog();
             this.Close();
         }
 
@@ -177,23 +175,6 @@ namespace DBapplication
             this.Close();
         }
 
-        private void products_nav_Click(object sender, EventArgs e)
-        {
-            Products p = new Products(username);
-            this.Hide();
-            p.ShowDialog();
-            this.Close();
-        }
-
-        private void center_icon_MouseHover(object sender, EventArgs e)
-        {
-            center_icon.BorderStyle = BorderStyle.FixedSingle;
-        }
-
-        private void center_icon_MouseLeave(object sender, EventArgs e)
-        {
-            center_icon.BorderStyle = BorderStyle.None;
-        }
 
         private void center_icon_Click(object sender, EventArgs e)
         {
@@ -203,12 +184,28 @@ namespace DBapplication
             this.Close();
         }
 
-        private void appointments_nav_selected_Click(object sender, EventArgs e)
+
+
+        private void pets_nav_selected_MouseLeave(object sender, EventArgs e)
         {
-            Vets v = new Vets(username);
+            pets_nav_selected.Visible = false;
+            pets_select.Visible = false;
+        }
+
+        private void pets_nav_MouseHover(object sender, EventArgs e)
+        {
+            pets_nav_selected.Visible = true;
+            pets_select.Visible = true;
+        }
+
+        private void pets_nav_selected_Click(object sender, EventArgs e)
+        {
+            Pets p = new Pets(username);
             this.Hide();
-            v.ShowDialog();
+            p.ShowDialog();
             this.Close();
         }
+
+
     }
 }
