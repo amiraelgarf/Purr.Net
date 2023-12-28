@@ -53,6 +53,10 @@ namespace DBapplication
             else if(AccountType=="Manager"|| AccountType == "manager")
             {
                 //load manager form
+                PetsViewManager p = new PetsViewManager(username.Text);
+                this.Hide();
+                p.ShowDialog();
+                this.Close();
             }
             else if(AccountType=="Admin"|| AccountType == "admin")
             {
