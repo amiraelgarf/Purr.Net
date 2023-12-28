@@ -272,6 +272,14 @@ namespace DBapplication
             return (id + 1);
         }
 
+        public int UserCount()
+        {
+            string query = "SELECT COUNT(*) FROM [User];";
+
+            int id = Convert.ToInt32(dbMan.ExecuteScalar(query));
+            return id ;
+        }
+
 
         public string GetManagerUsername(int ID)
         {
@@ -665,7 +673,10 @@ namespace DBapplication
         {
             string query = "SELECT TypeName FROM Type;";
             DataTable test = dbMan.ExecuteReader(query);
-
+            if (test == null)
+            {
+                return null;
+            }
             var stringArr = test.AsEnumerable().Select(row => row.Field<string>("TypeName")).ToArray();
             return stringArr;
         }

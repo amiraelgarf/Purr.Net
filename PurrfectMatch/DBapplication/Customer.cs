@@ -218,5 +218,13 @@ namespace DBapplication
             p.ShowDialog();
             this.Close();
         }
+
+        private void quiz_select_Click(object sender, EventArgs e)
+        {
+            Quiz q = new Quiz(username);
+            this.Hide();
+            q.ShowDialog();
+            this.Close();
+        }
     }
 }

@@ -180,6 +180,7 @@ namespace DBapplication
             this.quiz_nav_selected.TabIndex = 17;
             this.quiz_nav_selected.Text = "Quiz";
             this.quiz_nav_selected.Visible = false;
+            this.quiz_nav_selected.Click += new System.EventHandler(this.quiz_select_Click);
             this.quiz_nav_selected.MouseLeave += new System.EventHandler(this.quiz_select_MouseLeave);
             // 
             // products_nav_selected
@@ -324,6 +325,7 @@ namespace DBapplication
             this.quiz_select.TabIndex = 13;
             this.quiz_select.TabStop = false;
             this.quiz_select.Visible = false;
+            this.quiz_select.Click += new System.EventHandler(this.quiz_select_Click);
             this.quiz_select.MouseLeave += new System.EventHandler(this.quiz_select_MouseLeave);
             // 
             // profile_select
