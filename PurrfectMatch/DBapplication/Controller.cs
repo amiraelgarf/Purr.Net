@@ -522,6 +522,13 @@ namespace DBapplication
             return Convert.ToString(dbMan.ExecuteScalar(q));
         }
 
+        public DataTable VetSchedule(int id)
+        {
+            string q = "SELECT Date FROM VetSchedule WHERE VetID = " + id + ";";
+
+            return dbMan.ExecuteReader(q);
+        }
+
         public string ProductName(int id)
         {
             string q = "SELECT Name FROM Product WHERE ProductID = " + id + ";";
@@ -594,6 +601,12 @@ namespace DBapplication
         }
 
 
+        public int SetAppointment(int user, int vetid, DateTime d, int center, int petid)
+        {
+            string q = "INSERT INTO Appointment(Date, VetID, PetID, CustomerID, CenterID) VALUES ('" + d.ToString("yyyy-MM-dd") + "', " + vetid + ", " + petid + ", " + user + ", " + center + ");";
+            return dbMan.ExecuteNonQuery(q);
+        }
+
         public DataTable SelectProduct(int x)
         {
             string query = "SELECT * FROM Product WHERE ProductID = " + x + ";";
@@ -629,7 +642,11 @@ namespace DBapplication
             string q = "SELECT Stock FROM Product WHERE ProductID = '" + id + "';";
             return Convert.ToInt32(dbMan.ExecuteScalar(q));
         }
-
+        public int GetVetCenter(int id)
+        {
+            string q = "SELECT CenterID FROM Vet WHERE VetID = '" + id + "';";
+            return Convert.ToInt32(dbMan.ExecuteScalar(q));
+        }
         public int Purchase(string username, int ProductID, int quantity)
         {
             string p = "UPDATE Product SET Stock = " + (GetStock(ProductID) - quantity) + " WHERE ProductID = " + ProductID + ";";
@@ -1340,7 +1357,7 @@ namespace DBapplication
         }
         public int DeleteAuth(string name)
         {
-            string q = "DELETE FROM Authentication WHERE Username = " + name + ";";
+            string q = "DELETE FROM Authentication WHERE Username = '" + name + "';";
             return dbMan.ExecuteNonQuery(q);
         }
 

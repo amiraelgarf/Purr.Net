@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace DBapplication
 {
@@ -18,15 +19,29 @@ namespace DBapplication
         private bool isDragging;
         private Point offset;
         private const int radius = 20;
-        DataTable Vet;
+        DataTable Vet, Days;
+        DateTime[] d;
         string username;
         int VetID;
+        int[] v;
         public ViewVet(string user, int id)
         {
             username = user;
             VetID = id;
             InitializeComponent();
             controllerObj = new Controller();
+            Days = controllerObj.VetSchedule(id);
+            d = Days.AsEnumerable().Select(row => row.Field<DateTime>("Date")).ToArray();
+            day_list.DisplayMember = "Date";
+            day_list.DataSource = Days;
+            string[] names = new string[controllerObj.MyPetsCount(user)];
+            int[] x = controllerObj.MyPetsID(user);
+            v = x;
+            for (int i = 0; i < names.Length; i++)
+            {
+                names[i] = controllerObj.PetName(x[i]);
+            }
+            pet_list.Items.AddRange(names);
 
             Vet = controllerObj.GetVetData(VetID);
             vet_name_label.Text += Vet.Rows[0]["LastName"].ToString();
@@ -236,6 +251,19 @@ namespace DBapplication
             this.Close();
         }
 
+        private void adopt_label_Click(object sender, EventArgs e)
+        {
+            int x = controllerObj.SetAppointment(controllerObj.GetCustomerID(username), VetID, d[pet_list.SelectedIndex], controllerObj.GetVetCenter(VetID), v[pet_list.SelectedIndex]);
+            if (x == 1)
+            {
+                MessageBox.Show("Appointment Set Successfully");
+            }
+            else
+            {
+                MessageBox.Show("Appointment was not Set");
+            }
+        }
+
         private void products_select_Click(object sender, EventArgs e)
         {
             Pets p = new Pets(username);
@@ -243,5 +271,7 @@ namespace DBapplication
             p.ShowDialog();
             this.Close();
         }
+
+
     }
 }

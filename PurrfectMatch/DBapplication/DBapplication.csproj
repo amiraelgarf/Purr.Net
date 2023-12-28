@@ -130,14 +130,12 @@
     <Compile Include="PetsViewManager.Designer.cs">
       <DependentUpon>PetsViewManager.cs</DependentUpon>
     </Compile>
-
     <Compile Include="ProductsViewManager.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ProductsViewManager.Designer.cs">
       <DependentUpon>ProductsViewManager.cs</DependentUpon>
-      </Compile>
-
+    </Compile>
     <Compile Include="Quiz.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -155,7 +153,6 @@
     </Compile>
     <Compile Include="Vet.Designer.cs">
       <DependentUpon>Vet.cs</DependentUpon>
-
     </Compile>
     <Compile Include="Centers.cs">
       <SubType>Form</SubType>
@@ -218,7 +215,6 @@
     <Compile Include="ViewAndEditPetManager.Designer.cs">
       <DependentUpon>ViewAndEditPetManager.cs</DependentUpon>
     </Compile>
-
     <Compile Include="ViewCenter.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -236,14 +232,12 @@
     </Compile>
     <Compile Include="ViewVet.Designer.cs">
       <DependentUpon>ViewVet.cs</DependentUpon>
-      </Compile>
-
+    </Compile>
     <Compile Include="ViewAndEditProductManager.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ViewAndEditProductManager.Designer.cs">
       <DependentUpon>ViewAndEditProductManager.cs</DependentUpon>
-
     </Compile>
     <Compile Include="ViewProduct.cs">
       <SubType>Form</SubType>
@@ -284,15 +278,12 @@
     <EmbeddedResource Include="MyPetsList.resx">
       <DependentUpon>MyPetsList.cs</DependentUpon>
     </EmbeddedResource>
-
     <EmbeddedResource Include="Centers.resx">
       <DependentUpon>Centers.cs</DependentUpon>
-      </EmbeddedResource>
-
+    </EmbeddedResource>
     <EmbeddedResource Include="ProductsViewManager.resx">
       <DependentUpon>ProductsViewManager.cs</DependentUpon>
     </EmbeddedResource>
-
     <EmbeddedResource Include="SignUp.resx">
       <DependentUpon>SignUp.cs</DependentUpon>
     </EmbeddedResource>
@@ -301,6 +292,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Vet.resx">
       <DependentUpon>Vet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ViewAndEditPetManager.resx">
+      <DependentUpon>ViewAndEditPetManager.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ViewResult.resx">
       <DependentUpon>ViewResult.cs</DependentUpon>
@@ -331,7 +325,6 @@
     <EmbeddedResource Include="MyPet.resx">
       <DependentUpon>MyPet.cs</DependentUpon>
     </EmbeddedResource>
-
     <EmbeddedResource Include="ViewCenter.resx">
       <DependentUpon>ViewCenter.cs</DependentUpon>
     </EmbeddedResource>
@@ -340,11 +333,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ViewVet.resx">
       <DependentUpon>ViewVet.cs</DependentUpon>
-      </EmbeddedResource>
-
+    </EmbeddedResource>
     <EmbeddedResource Include="ViewAndEditProductManager.resx">
       <DependentUpon>ViewAndEditProductManager.cs</DependentUpon>
-
     </EmbeddedResource>
     <EmbeddedResource Include="ViewProduct.resx">
       <DependentUpon>ViewProduct.cs</DependentUpon>

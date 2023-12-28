@@ -65,8 +65,10 @@ namespace DBapplication
             this.center_icon = new System.Windows.Forms.PictureBox();
             this.buildingnum_label = new System.Windows.Forms.Label();
             this.streetnum_label = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.day_list = new System.Windows.Forms.ComboBox();
             this.day_label = new System.Windows.Forms.Label();
+            this.pet_label = new System.Windows.Forms.Label();
+            this.pet_list = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.background)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.close)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.appointments_select)).BeginInit();
@@ -429,12 +431,13 @@ namespace DBapplication
             // 
             this.set_appointment_button.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(246)))), ((int)(((byte)(239)))));
             this.set_appointment_button.Image = global::DBapplication.Properties.Resources.button;
-            this.set_appointment_button.Location = new System.Drawing.Point(555, 472);
+            this.set_appointment_button.Location = new System.Drawing.Point(734, 217);
             this.set_appointment_button.Name = "set_appointment_button";
             this.set_appointment_button.Size = new System.Drawing.Size(182, 28);
             this.set_appointment_button.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.set_appointment_button.TabIndex = 70;
             this.set_appointment_button.TabStop = false;
+            this.set_appointment_button.Click += new System.EventHandler(this.adopt_label_Click);
             // 
             // goback_button
             // 
@@ -454,11 +457,12 @@ namespace DBapplication
             this.adopt_label.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(118)))), ((int)(((byte)(129)))));
             this.adopt_label.Font = new System.Drawing.Font("Abhaya Libre SemiBold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.adopt_label.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(246)))), ((int)(((byte)(239)))));
-            this.adopt_label.Location = new System.Drawing.Point(566, 474);
+            this.adopt_label.Location = new System.Drawing.Point(745, 219);
             this.adopt_label.Name = "adopt_label";
             this.adopt_label.Size = new System.Drawing.Size(161, 25);
             this.adopt_label.TabIndex = 73;
             this.adopt_label.Text = "Set Appointment";
+            this.adopt_label.Click += new System.EventHandler(this.adopt_label_Click);
             // 
             // goback_label
             // 
@@ -508,25 +512,45 @@ namespace DBapplication
             this.streetnum_label.TabIndex = 64;
             this.streetnum_label.Text = "Street Number:  ";
             // 
-            // comboBox1
+            // day_list
             // 
-            this.comboBox1.Font = new System.Drawing.Font("Abhaya Libre Medium", 13F);
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(375, 472);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(157, 28);
-            this.comboBox1.TabIndex = 76;
+            this.day_list.Font = new System.Drawing.Font("Abhaya Libre Medium", 13F);
+            this.day_list.FormattingEnabled = true;
+            this.day_list.Location = new System.Drawing.Point(774, 178);
+            this.day_list.Name = "day_list";
+            this.day_list.Size = new System.Drawing.Size(157, 28);
+            this.day_list.TabIndex = 76;
             // 
             // day_label
             // 
             this.day_label.AutoSize = true;
             this.day_label.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(246)))), ((int)(((byte)(239)))));
             this.day_label.Font = new System.Drawing.Font("Abhaya Libre Medium", 15F);
-            this.day_label.Location = new System.Drawing.Point(371, 445);
+            this.day_label.Location = new System.Drawing.Point(719, 180);
             this.day_label.Name = "day_label";
             this.day_label.Size = new System.Drawing.Size(49, 24);
             this.day_label.TabIndex = 77;
             this.day_label.Text = "Day: ";
+            // 
+            // pet_label
+            // 
+            this.pet_label.AutoSize = true;
+            this.pet_label.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(246)))), ((int)(((byte)(239)))));
+            this.pet_label.Font = new System.Drawing.Font("Abhaya Libre Medium", 15F);
+            this.pet_label.Location = new System.Drawing.Point(719, 146);
+            this.pet_label.Name = "pet_label";
+            this.pet_label.Size = new System.Drawing.Size(40, 24);
+            this.pet_label.TabIndex = 79;
+            this.pet_label.Text = "Pet:";
+            // 
+            // pet_list
+            // 
+            this.pet_list.Font = new System.Drawing.Font("Abhaya Libre Medium", 13F);
+            this.pet_list.FormattingEnabled = true;
+            this.pet_list.Location = new System.Drawing.Point(774, 144);
+            this.pet_list.Name = "pet_list";
+            this.pet_list.Size = new System.Drawing.Size(157, 28);
+            this.pet_list.TabIndex = 78;
             // 
             // ViewVet
             // 
@@ -534,8 +558,10 @@ namespace DBapplication
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(205)))), ((int)(((byte)(237)))));
             this.ClientSize = new System.Drawing.Size(1008, 534);
+            this.Controls.Add(this.pet_label);
+            this.Controls.Add(this.pet_list);
             this.Controls.Add(this.day_label);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.day_list);
             this.Controls.Add(this.center_icon);
             this.Controls.Add(this.goback_label);
             this.Controls.Add(this.adopt_label);
@@ -633,7 +659,9 @@ namespace DBapplication
         private PictureBox center_icon;
         private Label buildingnum_label;
         private Label streetnum_label;
-        private ComboBox comboBox1;
+        private ComboBox day_list;
         private Label day_label;
+        private Label pet_label;
+        private ComboBox pet_list;
     }
 }

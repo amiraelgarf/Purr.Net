@@ -555,5 +555,11 @@ namespace DBapplication
             AddProductManager ap = new AddProductManager(username);
             ap.Show();
         }
+
+        private void pets_select_MouseLeave(object sender, EventArgs e)
+        {
+            pets_nav_selected.Visible=false;
+            pets_select.Visible=false;
+        }
     }
 }
