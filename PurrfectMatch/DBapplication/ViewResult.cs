@@ -11,12 +11,13 @@ using System.Windows.Forms;
 
 namespace DBapplication
 {
-    public partial class Pets : Form
+    public partial class ViewResult : Form
     {
         Controller controllerObj;
         int toggle = 0;
         int page = 0;
         List<string> types_filter_selected = new List<string>();
+        List<int> price_filter_selected = new List<int>();
         List<string> gender_filter_selected = new List<string>();
         List<int> age_filter_selected = new List<int>();
         List<int> id_list = new List<int>();
@@ -25,10 +26,13 @@ namespace DBapplication
         private Point offset;
         private const int radius = 20;
 
+        string BestFor;
+
         string username;
 
-        public Pets(string user)
+        public ViewResult(string user, string best)
         {
+            BestFor = best;
             username = user;
             InitializeComponent();
             controllerObj = new Controller();
@@ -242,7 +246,7 @@ namespace DBapplication
         private void insert_slots()
         {
             id_list.Clear();
-            int count = controllerObj.pets_number_filtered(types_filter_selected, gender_filter_selected, age_filter_selected);
+            int count = controllerObj.PetBestForNumber(BestFor);
             PictureBox[] slots = { slot1, slot2, slot3, slot4, slot5, slot6, slot7, slot8 };
             Label[] slot_labels = { slot1_label, slot2_label, slot3_label, slot4_label, slot5_label, slot6_label, slot7_label, slot8_label };
             if (count == 0)
@@ -266,14 +270,19 @@ namespace DBapplication
                     n = 8 + (8 * page);
                 }
                 string[] names = new string[count];
-                names = controllerObj.PetNamesFiltered(types_filter_selected, gender_filter_selected, age_filter_selected);
+                int[] t = controllerObj.PetBestForIDs(BestFor);
+                for (int i = 0; i < count; i++)
+                {
+                    names[i] = controllerObj.PetName(t[i]);
+                }
 
-                int[] t = controllerObj.PetIDsFiltered(types_filter_selected, gender_filter_selected, age_filter_selected);
-                for(int i=0; i<t.Length; i++)
+
+
+                for (int i = 0; i < t.Length; i++)
                 {
                     id_list.Add(t[i]);
                 }
-                
+
                 int x = 0;
                 while (x < 8)
                 {
@@ -282,7 +291,7 @@ namespace DBapplication
                     x++;
                 }
                 int y = 0;
-                if(n>8)
+                if (n > 8)
                 {
                     n = 8;
                 }
@@ -315,133 +324,7 @@ namespace DBapplication
             insert_slots();
         }
 
-        private void age_list_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            age_filter_selected.Clear();
-            int y = 0;
-            int f1 = 0, f2 = 0, f3 = 0, f4 = 0, f5 = 0, f6 = 0, f7 = 0, f8 = 0;
-            for (int i = 0; i < age_list.Items.Count; i++)
-            {
-                
-                if (age_list.GetItemChecked(i))
-                {
-                    /*0-2 Months
-                    2-4 Months
-                    4-8 Months
-                    8-12 Months
-                    1-2 Years
-                    2-4 Years
-                    4-8 Years
-                    8-16 Years
-                    16+ Years*/
-                    if((age_list.Items[i].ToString() == "0-2 Months") && y==0)
-                    {
-                        age_filter_selected.Add(0);
-                        y++;
-                    }
-                    if (age_list.Items[i].ToString() == "0-2 Months"){
-                        age_filter_selected.Add(2);
-                        f1 = 1;
-                    }
-                    if (age_list.Items[i].ToString() == "2-4 Months")
-                    {
-                        if(f1 == 0)
-                        {
-                            age_filter_selected.Add(2);
-                        }
-                        age_filter_selected.Add(4);
-                        f2 = 1;
-                    }
-                    if (age_list.Items[i].ToString() == "4-8 Months")
-                    {
-                        if (f2 == 0)
-                        {
-                            age_filter_selected.Add(4);
-                        }
-                        age_filter_selected.Add(8);
-                        f3 = 1;
-                    }
-                    if (age_list.Items[i].ToString() == "8-12 Months")
-                    {
-                        if (f3 == 0)
-                        {
-                            age_filter_selected.Add(8);
-                        }
-                        age_filter_selected.Add(12);
-                        f4 = 1;
-                    }
-                    if (age_list.Items[i].ToString() == "1-2 Years")
-                    {
-                        if (f4 == 0)
-                        {
-                            age_filter_selected.Add(12);
-                        }
-                        age_filter_selected.Add(24);
-                        f5 = 1;
-                    }
-                    if (age_list.Items[i].ToString() == "2-4 Years")
-                    {
-                        if (f5 == 0)
-                        {
-                            age_filter_selected.Add(24);
-                        }
-                        age_filter_selected.Add(48);
-                        f6 = 1;
-                    }
-                    if (age_list.Items[i].ToString() == "4-8 Years")
-                    {
-                        if (f6 == 0)
-                        {
-                            age_filter_selected.Add(48);
-                        }
-                        age_filter_selected.Add(96);
-                        f7 = 1;
-                    }
-                    if (age_list.Items[i].ToString() == "8-16 Years")
-                    {
-                        if (f7 == 0)
-                        {
-                            age_filter_selected.Add(96);
-                        }
-                        age_filter_selected.Add(96*2);
-                        f8 = 1;
-                    }
-                    if (age_list.Items[i].ToString() == "16+ Years")
-                    {
-                        age_filter_selected.Add(9999);
-                    }
-
-
-                }
-            }
-            insert_slots();
-        }
-
-        private void gender_list_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            gender_filter_selected.Clear();
-            for (int i = 0; i < gender_list.Items.Count; i++)
-            {
-                if (gender_list.GetItemChecked(i))
-                {
-                    gender_filter_selected.Add(gender_list.Items[i].ToString());
-                }
-            }
-            insert_slots();
-        }
-
-        private void types_list_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            types_filter_selected.Clear();
-            for (int i = 0; i < types_list.Items.Count; i++)
-            {
-                if (types_list.GetItemChecked(i))
-                {
-                    types_filter_selected.Add(types_list.Items[i].ToString());
-                }
-            }
-            insert_slots();
-        }
+     
 
         private void search_text_TextChanged(object sender, EventArgs e)
         {
@@ -509,7 +392,7 @@ namespace DBapplication
 
         private void slot1_label_Click(object sender, EventArgs e)
         {
-            ViewPet p = new ViewPet(username, id_list[0 + page * 8]);
+            ViewPet p = new ViewPet(username, id_list[0] + page * 8);
             this.Hide();
             p.ShowDialog();
             this.Close();
@@ -517,7 +400,7 @@ namespace DBapplication
 
         private void slot2_label_Click(object sender, EventArgs e)
         {
-            ViewPet p = new ViewPet(username, id_list[1 + page * 8]);
+            ViewPet p = new ViewPet(username, id_list[1]+page*8);
             this.Hide();
             p.ShowDialog();
             this.Close();
@@ -525,7 +408,7 @@ namespace DBapplication
 
         private void slot3_label_Click(object sender, EventArgs e)
         {
-            ViewPet p = new ViewPet(username, id_list[2 + page * 8]);
+            ViewPet p = new ViewPet(username, id_list[2] + page * 8);
             this.Hide();
             p.ShowDialog();
             this.Close();
@@ -533,7 +416,7 @@ namespace DBapplication
 
         private void slot4_label_Click(object sender, EventArgs e)
         {
-            ViewPet p = new ViewPet(username, id_list[3 + page * 8]);
+            ViewPet p = new ViewPet(username, id_list[3] + page * 8);
             this.Hide();
             p.ShowDialog();
             this.Close();
@@ -541,7 +424,7 @@ namespace DBapplication
 
         private void slot5_label_Click(object sender, EventArgs e)
         {
-            ViewPet p = new ViewPet(username, id_list[4 + page * 8]);
+            ViewPet p = new ViewPet(username, id_list[4] + page * 8);
             this.Hide();
             p.ShowDialog();
             this.Close();
@@ -549,7 +432,7 @@ namespace DBapplication
 
         private void slot6_label_Click(object sender, EventArgs e)
         {
-            ViewPet p = new ViewPet(username, id_list[5 + page * 8]);
+            ViewPet p = new ViewPet(username, id_list[5] + page * 8);
             this.Hide();
             p.ShowDialog();
             this.Close();
@@ -557,7 +440,7 @@ namespace DBapplication
 
         private void slot7_label_Click(object sender, EventArgs e)
         {
-            ViewPet p = new ViewPet(username, id_list[6 + page * 8]);
+            ViewPet p = new ViewPet(username, id_list[6] + page * 8);
             this.Hide();
             p.ShowDialog();
             this.Close();
@@ -565,7 +448,7 @@ namespace DBapplication
 
         private void slot8_label_Click(object sender, EventArgs e)
         {
-            ViewPet p = new ViewPet(username, id_list[7 + page * 8]);
+            ViewPet p = new ViewPet(username, id_list[7] + page * 8);
             this.Hide();
             p.ShowDialog();
             this.Close();
@@ -607,38 +490,43 @@ namespace DBapplication
 
         private void center_icon_Click(object sender, EventArgs e)
         {
-            Centers c = new Centers(username);
+            /*Centers c = new Centers(username);
             this.Hide();
             c.ShowDialog();
-            this.Close();
+            this.Close();*/
         }
+     
 
-        private void appointments_select_Click(object sender, EventArgs e)
-        {
-            Vets v = new Vets(username);
-            this.Hide();
-            v.ShowDialog();
-            this.Close();
-        }
+            public void FilterPetsByBestFor(string bestFor)
+            {
+                List<string> types_filter = new List<string>();
+                List<string> gender_filter = new List<string>();
+                List<int> age_filter = new List<int>();
 
-        private void profile_select_Click(object sender, EventArgs e)
-        {
-            Profile v = new Profile(username);
-            this.Hide();
-            v.ShowDialog();
-            this.Close();
+                // Apply the filter for BestFor string
+                types_filter.Add(bestFor); // Assuming BestFor refers to types
 
-        }
+            // You might want to adjust the filtering criteria according to your structure
 
-        public void FilterPetsByBestFor(string bestFor)
-        {
-            List<string> bestfor_filter = new List<string>();
-            bestfor_filter.Add(bestFor); 
-
-            insert_slots();
-        }
+                List<int> temp_filter = new List<int>();
+                
 
 
+            // Clear existing filters
+            types_filter_selected.Clear();
+                gender_filter_selected.Clear();
+                age_filter_selected.Clear();
+
+                // Set the newly created filters
+                types_filter_selected.AddRange(types_filter);
+                gender_filter_selected.AddRange(gender_filter);
+                age_filter_selected.AddRange(age_filter);
+
+                // Call the insert_slots method to update the display with the filtered pets
+                insert_slots();
+            }
+
+        
 
     }
 }

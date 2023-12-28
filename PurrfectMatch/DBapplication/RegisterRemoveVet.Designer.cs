@@ -52,8 +52,6 @@
             this.button2 = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.button3 = new System.Windows.Forms.Button();
-            this.Age = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
             this.Back = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -88,7 +86,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(59, 294);
+            this.label5.Location = new System.Drawing.Point(59, 257);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(52, 16);
             this.label5.TabIndex = 4;
@@ -97,7 +95,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(59, 330);
+            this.label6.Location = new System.Drawing.Point(59, 293);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(66, 16);
             this.label6.TabIndex = 5;
@@ -106,7 +104,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(59, 376);
+            this.label7.Location = new System.Drawing.Point(59, 339);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(99, 16);
             this.label7.TabIndex = 6;
@@ -115,7 +113,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(59, 416);
+            this.label8.Location = new System.Drawing.Point(59, 379);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(64, 16);
             this.label8.TabIndex = 7;
@@ -124,7 +122,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(59, 466);
+            this.label9.Location = new System.Drawing.Point(59, 429);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(70, 16);
             this.label9.TabIndex = 8;
@@ -133,7 +131,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(59, 510);
+            this.label10.Location = new System.Drawing.Point(59, 473);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(67, 16);
             this.label10.TabIndex = 9;
@@ -162,35 +160,35 @@
             // 
             // Gender
             // 
-            this.Gender.Location = new System.Drawing.Point(218, 294);
+            this.Gender.Location = new System.Drawing.Point(218, 257);
             this.Gender.Name = "Gender";
             this.Gender.Size = new System.Drawing.Size(278, 22);
             this.Gender.TabIndex = 14;
             // 
             // Speciality
             // 
-            this.Speciality.Location = new System.Drawing.Point(218, 330);
+            this.Speciality.Location = new System.Drawing.Point(218, 293);
             this.Speciality.Name = "Speciality";
             this.Speciality.Size = new System.Drawing.Size(278, 22);
             this.Speciality.TabIndex = 15;
             // 
             // Schedule
             // 
-            this.Schedule.Location = new System.Drawing.Point(218, 410);
+            this.Schedule.Location = new System.Drawing.Point(218, 373);
             this.Schedule.Name = "Schedule";
             this.Schedule.Size = new System.Drawing.Size(278, 22);
             this.Schedule.TabIndex = 16;
             // 
             // username
             // 
-            this.username.Location = new System.Drawing.Point(218, 460);
+            this.username.Location = new System.Drawing.Point(218, 423);
             this.username.Name = "username";
             this.username.Size = new System.Drawing.Size(278, 22);
             this.username.TabIndex = 17;
             // 
             // password
             // 
-            this.password.Location = new System.Drawing.Point(218, 507);
+            this.password.Location = new System.Drawing.Point(218, 470);
             this.password.Name = "password";
             this.password.Size = new System.Drawing.Size(278, 22);
             this.password.TabIndex = 18;
@@ -198,14 +196,14 @@
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(218, 373);
+            this.comboBox1.Location = new System.Drawing.Point(218, 336);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(276, 24);
             this.comboBox1.TabIndex = 19;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(212, 588);
+            this.button1.Location = new System.Drawing.Point(277, 540);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(189, 36);
             this.button1.TabIndex = 20;
@@ -220,6 +218,7 @@
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(256, 24);
             this.comboBox2.TabIndex = 21;
+            this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
             // 
             // label11
             // 
@@ -260,22 +259,6 @@
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
-            // Age
-            // 
-            this.Age.Location = new System.Drawing.Point(218, 257);
-            this.Age.Name = "Age";
-            this.Age.Size = new System.Drawing.Size(278, 22);
-            this.Age.TabIndex = 13;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(59, 257);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(32, 16);
-            this.label4.TabIndex = 3;
-            this.label4.Text = "Age";
-            // 
             // Back
             // 
             this.Back.Location = new System.Drawing.Point(34, 24);
@@ -304,7 +287,6 @@
             this.Controls.Add(this.Schedule);
             this.Controls.Add(this.Speciality);
             this.Controls.Add(this.Gender);
-            this.Controls.Add(this.Age);
             this.Controls.Add(this.DOB);
             this.Controls.Add(this.lName);
             this.Controls.Add(this.fName);
@@ -314,7 +296,6 @@
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -353,8 +334,6 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.TextBox Age;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button Back;
     }
 }

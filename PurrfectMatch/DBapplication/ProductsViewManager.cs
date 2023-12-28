@@ -11,14 +11,13 @@ using System.Windows.Forms;
 
 namespace DBapplication
 {
-    public partial class Pets : Form
+    public partial class ProductsViewManager : Form
     {
         Controller controllerObj;
         int toggle = 0;
         int page = 0;
         List<string> types_filter_selected = new List<string>();
-        List<string> gender_filter_selected = new List<string>();
-        List<int> age_filter_selected = new List<int>();
+        List<int> price_filter_selected = new List<int>();
         List<int> id_list = new List<int>();
 
         private bool isDragging;
@@ -27,12 +26,13 @@ namespace DBapplication
 
         string username;
 
-        public Pets(string user)
+        public ProductsViewManager(string user)
         {
             username = user;
             InitializeComponent();
             controllerObj = new Controller();
             types_list.Items.AddRange(controllerObj.TypeNames());
+            price_filter_selected.Add(0);
             reset_filter();
             insert_slots();
         }
@@ -89,25 +89,18 @@ namespace DBapplication
             {
                 types_list.SetItemChecked(i, false);
             }
-            for (int i = 0; i < gender_list.Items.Count; i++)
+            for (int i = 0; i < price_list.Items.Count; i++)
             {
-                gender_list.SetItemChecked(i, false);
-            }
-            for (int i = 0; i < age_list.Items.Count; i++)
-            {
-                age_list.SetItemChecked(i, false);
+                price_list.SetItemChecked(i, false);
             }
             types_filter_selected.Clear();
-            gender_filter_selected.Clear();
-            age_filter_selected.Clear();
+            price_filter_selected.Clear();
             id_list.Clear();
             insert_slots();
             types_list.Visible = false;
-            gender_list.Visible = false;
-            age_list.Visible = false;
+            price_list.Visible = false;
             types_filter.Visible = true;
-            age_filter.Visible = true;
-            gender_filter.Visible = true;
+            price_filter.Visible = true;
 
         }
 
@@ -115,8 +108,7 @@ namespace DBapplication
         {
             if (toggle == 0)
             {
-                gender_filter.Visible = false;
-                age_filter.Visible = false;
+                price_filter.Visible = false;
                 types_list.Visible = true;
                 toggle = 1;
             }
@@ -130,23 +122,17 @@ namespace DBapplication
 
         private void reset_filter()
         {
-            age_filter.Location = new System.Drawing.Point(43, 266);
-            gender_filter.Location = new System.Drawing.Point(43, 231);
-            types_filter.Location = new System.Drawing.Point(43, 196);
             types_list.Visible = false;
-            gender_list.Visible = false;
-            age_list.Visible = false;
+            price_list.Visible = false;
             types_filter.Visible = true;
-            gender_filter.Visible = true;
-            age_filter.Visible = true;
+            price_filter.Visible = true;
         }
 
         private void gender_filter_Click(object sender, EventArgs e)
         {
             if (toggle == 0)
             {
-                age_filter.Visible = false;
-                gender_list.Visible = true;
+                price_filter.Visible = false;
                 toggle = 1;
             }
             else
@@ -160,7 +146,7 @@ namespace DBapplication
         {
             if (toggle == 0)
             {
-                age_list.Visible = true;
+                price_list.Visible = true;
                 toggle = 1;
             }
             else
@@ -170,16 +156,7 @@ namespace DBapplication
             }
         }
 
-        private void mypet_MouseHover(object sender, EventArgs e)
-        {
-            mypet.BorderStyle = BorderStyle.FixedSingle;
-        }
-
-        private void mypet_MouseLeave(object sender, EventArgs e)
-        {
-            mypet.BorderStyle = BorderStyle.None;
-        }
-
+        
         private void products_nav_MouseHover(object sender, EventArgs e)
         {
             products_nav_selected.Visible = true;
@@ -202,18 +179,6 @@ namespace DBapplication
         {
             appointments_nav_selected.Visible = true;
             appointments_select.Visible = true;
-        }
-
-        private void quiz_select_MouseLeave(object sender, EventArgs e)
-        {
-            quiz_nav_selected.Visible = false;
-            quiz_select.Visible = false;
-        }
-
-        private void quiz_nav_MouseHover(object sender, EventArgs e)
-        {
-            quiz_nav_selected.Visible = true;
-            quiz_select.Visible = true;
         }
 
         private void profile_nav_MouseHover(object sender, EventArgs e)
@@ -242,7 +207,7 @@ namespace DBapplication
         private void insert_slots()
         {
             id_list.Clear();
-            int count = controllerObj.pets_number_filtered(types_filter_selected, gender_filter_selected, age_filter_selected);
+            int count = controllerObj.ProductsNumberFiltered(types_filter_selected, price_filter_selected);
             PictureBox[] slots = { slot1, slot2, slot3, slot4, slot5, slot6, slot7, slot8 };
             Label[] slot_labels = { slot1_label, slot2_label, slot3_label, slot4_label, slot5_label, slot6_label, slot7_label, slot8_label };
             if (count == 0)
@@ -266,9 +231,14 @@ namespace DBapplication
                     n = 8 + (8 * page);
                 }
                 string[] names = new string[count];
-                names = controllerObj.PetNamesFiltered(types_filter_selected, gender_filter_selected, age_filter_selected);
+                int[] t = controllerObj.ProductIDsFiltered(types_filter_selected, price_filter_selected);
+                for(int i = 0; i < count; i++)
+                {
+                    names[i] = controllerObj.ProductName(t[i]);
+                }
 
-                int[] t = controllerObj.PetIDsFiltered(types_filter_selected, gender_filter_selected, age_filter_selected);
+
+                
                 for(int i=0; i<t.Length; i++)
                 {
                     id_list.Add(t[i]);
@@ -317,114 +287,77 @@ namespace DBapplication
 
         private void age_list_SelectedIndexChanged(object sender, EventArgs e)
         {
-            age_filter_selected.Clear();
+            price_filter_selected.Clear();
             int y = 0;
-            int f1 = 0, f2 = 0, f3 = 0, f4 = 0, f5 = 0, f6 = 0, f7 = 0, f8 = 0;
-            for (int i = 0; i < age_list.Items.Count; i++)
+            int f1 = 0, f2 = 0, f3 = 0, f4 = 0, f5 = 0;
+            for (int i = 0; i < price_list.Items.Count; i++)
             {
                 
-                if (age_list.GetItemChecked(i))
+                if (price_list.GetItemChecked(i))
                 {
-                    /*0-2 Months
-                    2-4 Months
-                    4-8 Months
-                    8-12 Months
-                    1-2 Years
-                    2-4 Years
-                    4-8 Years
-                    8-16 Years
-                    16+ Years*/
-                    if((age_list.Items[i].ToString() == "0-2 Months") && y==0)
+                    /*Less Than $1
+                    $1 - $5
+                    $5 - $10
+                    $10 - $20
+                    $20 - $50
+                    $50 - $100
+                    $100+*/
+                    if ((price_list.Items[i].ToString() == "Less Than $1") && y==0)
                     {
-                        age_filter_selected.Add(0);
+                        price_filter_selected.Add(1);
                         y++;
                     }
-                    if (age_list.Items[i].ToString() == "0-2 Months"){
-                        age_filter_selected.Add(2);
+                    if (price_list.Items[i].ToString() == "$1 - $5")
+                    {
+                        price_filter_selected.Add(5);
                         f1 = 1;
                     }
-                    if (age_list.Items[i].ToString() == "2-4 Months")
+                    if (price_list.Items[i].ToString() == "$5 - $10")
                     {
                         if(f1 == 0)
                         {
-                            age_filter_selected.Add(2);
+                            price_filter_selected.Add(5);
                         }
-                        age_filter_selected.Add(4);
+                        price_filter_selected.Add(10);
                         f2 = 1;
                     }
-                    if (age_list.Items[i].ToString() == "4-8 Months")
+                    if (price_list.Items[i].ToString() == "$10 - $20")
                     {
                         if (f2 == 0)
                         {
-                            age_filter_selected.Add(4);
+                            price_filter_selected.Add(10);
                         }
-                        age_filter_selected.Add(8);
+                        price_filter_selected.Add(20);
                         f3 = 1;
                     }
-                    if (age_list.Items[i].ToString() == "8-12 Months")
+                    if (price_list.Items[i].ToString() == "$20 - $50")
                     {
                         if (f3 == 0)
                         {
-                            age_filter_selected.Add(8);
+                            price_filter_selected.Add(20);
                         }
-                        age_filter_selected.Add(12);
+                        price_filter_selected.Add(50);
                         f4 = 1;
                     }
-                    if (age_list.Items[i].ToString() == "1-2 Years")
+                    if (price_list.Items[i].ToString() == "$50 - $100")
                     {
                         if (f4 == 0)
                         {
-                            age_filter_selected.Add(12);
+                            price_filter_selected.Add(50);
                         }
-                        age_filter_selected.Add(24);
+                        price_filter_selected.Add(100);
                         f5 = 1;
                     }
-                    if (age_list.Items[i].ToString() == "2-4 Years")
+                    if (price_list.Items[i].ToString() == "$100+")
                     {
                         if (f5 == 0)
                         {
-                            age_filter_selected.Add(24);
+                            price_filter_selected.Add(100);
                         }
-                        age_filter_selected.Add(48);
-                        f6 = 1;
-                    }
-                    if (age_list.Items[i].ToString() == "4-8 Years")
-                    {
-                        if (f6 == 0)
-                        {
-                            age_filter_selected.Add(48);
-                        }
-                        age_filter_selected.Add(96);
-                        f7 = 1;
-                    }
-                    if (age_list.Items[i].ToString() == "8-16 Years")
-                    {
-                        if (f7 == 0)
-                        {
-                            age_filter_selected.Add(96);
-                        }
-                        age_filter_selected.Add(96*2);
-                        f8 = 1;
-                    }
-                    if (age_list.Items[i].ToString() == "16+ Years")
-                    {
-                        age_filter_selected.Add(9999);
+                        price_filter_selected.Add(999999);
                     }
 
 
-                }
-            }
-            insert_slots();
-        }
-
-        private void gender_list_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            gender_filter_selected.Clear();
-            for (int i = 0; i < gender_list.Items.Count; i++)
-            {
-                if (gender_list.GetItemChecked(i))
-                {
-                    gender_filter_selected.Add(gender_list.Items[i].ToString());
                 }
             }
             insert_slots();
@@ -447,7 +380,7 @@ namespace DBapplication
         {
             id_list.Clear();
             string name = search_text.Text;
-            int count = controllerObj.PetNumberSearch(name);
+            int count = controllerObj.ProductNumberSearch(name);
             PictureBox[] slots = { slot1, slot2, slot3, slot4, slot5, slot6, slot7, slot8 };
             Label[] slot_labels = { slot1_label, slot2_label, slot3_label, slot4_label, slot5_label, slot6_label, slot7_label, slot8_label };
             if (count == 0)
@@ -471,9 +404,13 @@ namespace DBapplication
                     n = 8 + (8 * page);
                 }
                 string[] names = new string[count];
-                names = controllerObj.PetNameSearch(name);
+                int[] t = controllerObj.ProductIDsSearch(name);
 
-                int[] t = controllerObj.PetIDsSearch(name);
+                for (int i = 0; i < count; i++)
+                {
+                    names[i] = controllerObj.ProductName(t[i]);
+                }
+
                 for (int i = 0; i < t.Length; i++)
                 {
                     id_list.Add(t[i]);
@@ -509,7 +446,7 @@ namespace DBapplication
 
         private void slot1_label_Click(object sender, EventArgs e)
         {
-            ViewPet p = new ViewPet(username, id_list[0 + page * 8]);
+            ViewAndEditProductManager p = new ViewAndEditProductManager(username, id_list[0 + (8 * page)]);
             this.Hide();
             p.ShowDialog();
             this.Close();
@@ -517,7 +454,7 @@ namespace DBapplication
 
         private void slot2_label_Click(object sender, EventArgs e)
         {
-            ViewPet p = new ViewPet(username, id_list[1 + page * 8]);
+            ViewAndEditProductManager p = new ViewAndEditProductManager(username, id_list[1+ (8 * page)]);
             this.Hide();
             p.ShowDialog();
             this.Close();
@@ -525,7 +462,7 @@ namespace DBapplication
 
         private void slot3_label_Click(object sender, EventArgs e)
         {
-            ViewPet p = new ViewPet(username, id_list[2 + page * 8]);
+            ViewAndEditProductManager p = new ViewAndEditProductManager(username, id_list[2 + (8 * page)]);
             this.Hide();
             p.ShowDialog();
             this.Close();
@@ -533,7 +470,7 @@ namespace DBapplication
 
         private void slot4_label_Click(object sender, EventArgs e)
         {
-            ViewPet p = new ViewPet(username, id_list[3 + page * 8]);
+            ViewAndEditProductManager p = new ViewAndEditProductManager(username, id_list[3 + (8 * page)]);
             this.Hide();
             p.ShowDialog();
             this.Close();
@@ -541,7 +478,7 @@ namespace DBapplication
 
         private void slot5_label_Click(object sender, EventArgs e)
         {
-            ViewPet p = new ViewPet(username, id_list[4 + page * 8]);
+            ViewAndEditProductManager p = new ViewAndEditProductManager(username, id_list[4 + (8 * page)]);
             this.Hide();
             p.ShowDialog();
             this.Close();
@@ -549,7 +486,7 @@ namespace DBapplication
 
         private void slot6_label_Click(object sender, EventArgs e)
         {
-            ViewPet p = new ViewPet(username, id_list[5 + page * 8]);
+            ViewAndEditProductManager p = new ViewAndEditProductManager(username, id_list[5 + (8 * page)]);
             this.Hide();
             p.ShowDialog();
             this.Close();
@@ -557,7 +494,7 @@ namespace DBapplication
 
         private void slot7_label_Click(object sender, EventArgs e)
         {
-            ViewPet p = new ViewPet(username, id_list[6 + page * 8]);
+            ViewAndEditProductManager p = new ViewAndEditProductManager(username, id_list[6 + (8 * page)]);
             this.Hide();
             p.ShowDialog();
             this.Close();
@@ -565,7 +502,7 @@ namespace DBapplication
 
         private void slot8_label_Click(object sender, EventArgs e)
         {
-            ViewPet p = new ViewPet(username, id_list[7 + page * 8]);
+            ViewAndEditProductManager p = new ViewAndEditProductManager(username, id_list[7 + (8 * page)]);
             this.Hide();
             p.ShowDialog();
             this.Close();
@@ -587,58 +524,36 @@ namespace DBapplication
             this.Close();
         }
 
-        private void products_select_Click(object sender, EventArgs e)
+        private void pets_nav_selected_MouseLeave(object sender, EventArgs e)
         {
-            Products p = new Products(username);
+            pets_nav_selected.Visible = false;
+            pets_select.Visible = false;
+        }
+
+        private void pets_nav_MouseHover(object sender, EventArgs e)
+        {
+            pets_nav_selected.Visible = true;
+            pets_select.Visible = true;
+        }
+
+        private void pets_select_Click(object sender, EventArgs e)
+        {
+            Pets p = new Pets(username);
             this.Hide();
             p.ShowDialog();
             this.Close();
         }
 
-        private void center_icon_MouseHover(object sender, EventArgs e)
+        private void add_label_Click_1(object sender, EventArgs e)
         {
-            center_icon.BorderStyle = BorderStyle.FixedSingle;
+            AddProductManager ap = new AddProductManager(username);
+            ap.Show();
         }
 
-        private void center_icon_MouseLeave(object sender, EventArgs e)
+        private void add_button_Click_1(object sender, EventArgs e)
         {
-            center_icon.BorderStyle = BorderStyle.None;
+            AddProductManager ap = new AddProductManager(username);
+            ap.Show();
         }
-
-        private void center_icon_Click(object sender, EventArgs e)
-        {
-            Centers c = new Centers(username);
-            this.Hide();
-            c.ShowDialog();
-            this.Close();
-        }
-
-        private void appointments_select_Click(object sender, EventArgs e)
-        {
-            Vets v = new Vets(username);
-            this.Hide();
-            v.ShowDialog();
-            this.Close();
-        }
-
-        private void profile_select_Click(object sender, EventArgs e)
-        {
-            Profile v = new Profile(username);
-            this.Hide();
-            v.ShowDialog();
-            this.Close();
-
-        }
-
-        public void FilterPetsByBestFor(string bestFor)
-        {
-            List<string> bestfor_filter = new List<string>();
-            bestfor_filter.Add(bestFor); 
-
-            insert_slots();
-        }
-
-
-
     }
 }

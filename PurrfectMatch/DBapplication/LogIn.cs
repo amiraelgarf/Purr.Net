@@ -44,6 +44,11 @@ namespace DBapplication
             else if(AccountType=="Vet"|| AccountType == "vet")
             {
                 //load Vet form
+                Vet a = new Vet(username.Text);
+                this.Hide();
+                a.ShowDialog();
+                this.Close();
+
             }
             else if(AccountType=="Manager"|| AccountType == "manager")
             {
@@ -56,6 +61,14 @@ namespace DBapplication
                 a.ShowDialog();
                 this.Close();
             }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            StartForm a = new StartForm();
+            this.Hide();
+            a.ShowDialog();
+            this.Close();
         }
     }
 }

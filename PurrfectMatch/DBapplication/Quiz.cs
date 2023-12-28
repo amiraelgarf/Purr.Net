@@ -15,11 +15,15 @@ namespace DBapplication
     {
         Controller controllerObj;
         int custID;
+        Pets mypett;
+        string Username;
         public Quiz(string username)
         {
             InitializeComponent();
             controllerObj = new Controller();
+            Username = username;
             custID = controllerObj.GetCustomerID(username);
+            mypett = new Pets(username);
         }
 
 
@@ -27,7 +31,13 @@ namespace DBapplication
 
         private void nextquizbutton_Click(object sender, EventArgs e)
         {
-
+            string a =controllerObj. returnPersonality(custID);
+            MessageBox.Show("You personality is " + a + " and your Purrfect Match isss");
+            ViewResult p = new ViewResult(Username, a);
+            p.FilterPetsByBestFor(a);
+            this.Hide();
+            p.ShowDialog();
+            this.Close();
 
         }
 
@@ -180,5 +190,11 @@ namespace DBapplication
             controllerObj = new Controller();
             DataTable dt = controllerObj.insertveryhigh(custID, "Tactics");
         }
+
+        private void Quiz_Load(object sender, EventArgs e)
+        {
+
+        }
     }
+
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DBapplication;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
@@ -15,7 +16,13 @@ namespace DBapplication
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Customer("m7md03"));
+
+            //Application.Run(new PetsViewManager("bob_johnson"));
+
+
+            //Application.Run(new AdoptionRequests("bob_johnson"));
+            //Application.Run(new Customer("m7md03"));
+            Application.Run(new StartForm());
         }
     }
 }

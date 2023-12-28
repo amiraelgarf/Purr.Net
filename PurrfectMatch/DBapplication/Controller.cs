@@ -9,6 +9,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 using System.Collections;
 using System.Drawing;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace DBapplication
 {
@@ -20,12 +21,13 @@ namespace DBapplication
             dbMan = new DBManager();
         }
 
-      
+
         public void TerminateConnection()
         {
             dbMan.CloseConnection();
         }
 
+        ///AmiraBEGIN
         public string AuthenticateUser(string username, string password)
         {
             try
@@ -51,6 +53,435 @@ namespace DBapplication
                 return null;
             }
         }
+
+        //public DataTable SelectAllCenters()
+        //{
+        //    string query = "SELECT * FROM Center;";
+        //    return dbMan.ExecuteReader(query);
+        //}
+
+        //public DataTable SelectAllManager()
+        //{
+        //    string query = " SELECT u.UserID, u.FirstName FROM [User] u, Authentication a, Manager m WHERE a.Type= 'Manager' AND m.Username = a.Username  AND u.UserID = m.ManagerID  ;";
+        //    return dbMan.ExecuteReader(query);
+        //}
+
+        
+        public DataTable SelectAllManager()
+        {
+            try
+            {
+                string storedProcedureName = "GetAllManagers";
+                return dbMan.ExecuteStoredProcedureDataTable(storedProcedureName, new Dictionary<string, object>());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error retrieving all vets: {ex.Message}");
+                return null;
+            }
+        }
+
+        public DataTable SelectAllCenters()
+        {
+            try
+            {
+                string storedProcedureName = "GetAllCenters";
+                return dbMan.ExecuteStoredProcedureDataTable(storedProcedureName, new Dictionary<string, object>());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error retrieving all centers: {ex.Message}");
+                return null;
+            }
+        }
+
+        //public DataTable SelectAllVets()
+        //{
+        //    string query = " SELECT u.UserID, u.FirstName FROM [User] u, Authentication a, Vet v WHERE a.Type= 'Vet' AND v.Username = a.Username  AND u.UserID = v.VetID  ;";
+        //    return dbMan.ExecuteReader(query);
+        //}
+
+
+        public DataTable SelectAllVets()
+        {
+            try
+            {
+                string storedProcedureName = "GetAllVets";
+                return dbMan.ExecuteStoredProcedureDataTable(storedProcedureName, new Dictionary<string, object>());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error retrieving all vets: {ex.Message}");
+                return null;
+            }
+        }
+
+        public int InsertCenter(string CenterName, int BuldingNumber, int streetNumber, string city, string FQA)
+        {
+            string query = "INSERT INTO Center (CenterName, BuildingNum, StreetNum ,City ,FAQ)" +
+                            "Values ('" + CenterName + "'," + BuldingNumber + "," + streetNumber + ",'" + city + "','" + FQA + "');";
+            return dbMan.ExecuteNonQuery(query);
+        }
+
+
+
+
+        public int DeleteCenter(int CenterID)
+        {
+            try
+            {
+                string storedProcedureName = "DeleteCenterProcedure";
+
+                // Use parameters
+                var parameters = new Dictionary<string, object>
+        {
+            { "@CenterID", CenterID }
+        };
+
+                // Execute procedure
+                int result = dbMan.ExecuteStoredProcedureNOReturn(storedProcedureName, parameters);
+                return result;
+
+
+            }
+            catch (Exception ex)
+            {
+                // Handle exceptions 
+                MessageBox.Show("Error deleting center. Please try again later.");
+                return 0;
+            }
+        }
+
+        //public int DeleteManager(int managerID, string username)
+        //{
+        //    try
+        //    {
+        //        string storedProcedureName = "DeleteManagerProcedure";
+
+        //        var parameters = new Dictionary<string, object>
+        //{
+        //    { "@ManagerID", managerID },
+        //    { "@Username", username }
+        //};
+
+        //        // Execute 
+        //        dbMan.ExecuteStoredProcedureNOReturn(storedProcedureName, parameters);
+
+
+        //        return 1; 
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show("Error deleting manager. Please try again later.");
+
+        //        return 0; 
+        //    }
+        //}
+
+
+        //public int DeleteManager(int managerID, string username)
+        //{
+        //    string query = "DELETE FROM [User]"
+        //        + " WHERE UserID = " + managerID + ";";
+        //    int e = dbMan.ExecuteNonQuery(query);
+
+        //    query = "DELETE FROM Authentication"
+        //        + " WHERE Username = '" + username + "';";
+        //    return dbMan.ExecuteNonQuery(query);
+        //}
+
+        public int DeleteManager(int managerID, string username)
+        {
+            try
+            {
+                string storedProcedureName = "DeleteManager";
+
+                // Use parameters
+                var parameters = new Dictionary<string, object>
+        {
+            { "@ManagerID", managerID },
+            { "@Username", username }
+        };
+
+                // Execute procedure
+                int result = dbMan.ExecuteStoredProcedureNOReturn(storedProcedureName, parameters);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error deleting manager. Please try again later.");
+                return 0;
+            }
+        }
+
+        //public int DeleteVet(int VetID, string username)
+        //{
+        //    string query = "DELETE FROM [User]"
+        //        + " WHERE UserID = " + VetID + ";";
+        //    int e = dbMan.ExecuteNonQuery(query);
+
+        //    query = "DELETE FROM Authentication"
+        //        + " WHERE Username = '" + username + "';";
+        //    return dbMan.ExecuteNonQuery(query);
+        //}
+
+        public int DeleteVet(int VetID, string username)
+        {
+            try
+            {
+                string storedProcedureName = "DeleteVet";
+
+                // Use parameters
+                var parameters = new Dictionary<string, object>
+        {
+            { "@VetID", VetID },
+            { "@Username", username }
+        };
+
+                // Execute procedure
+                int result = dbMan.ExecuteStoredProcedureNOReturn(storedProcedureName, parameters);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error deleting vet. Please try again later.");
+                return 0;
+            }
+        }
+
+
+        public int InsertAuthen(string username, string password, string type)
+        {
+            string query = "INSERT INTO Authentication (Username, Password, Type)" +
+                            "Values ('" + username + "','" + password + "','" + type + "');";
+            return dbMan.ExecuteNonQuery(query);
+        }
+
+
+        public int InsertUser(int id, string fName, string lName, string DOF, string gender)
+        {
+            string query = "INSERT INTO [User] (UserID, FirstName, LastName, DateOfBirth, Gender)" +
+                            "Values (" + id + ",'" + fName + "','" + lName + "','" + DOF + "','" + gender + "');";
+            return dbMan.ExecuteNonQuery(query);
+        }
+        public int GenerateID()
+        {
+            string query = "SELECT MAX(UserID) FROM [User];";
+
+            int id = Convert.ToInt32(dbMan.ExecuteScalar(query));
+            return (id + 1);
+        }
+
+
+        public string GetManagerUsername(int ID)
+        {
+            string query = "SELECT Username FROM Manager "
+                + "WHERE ManagerID= " + ID + ";";
+
+            string username = Convert.ToString(dbMan.ExecuteScalar(query));
+            return username;
+        }
+
+        public string GetVetUsername(int ID)
+        {
+            string query = "SELECT Username FROM Vet "
+                + "WHERE VetID= " + ID + ";";
+
+            string username = Convert.ToString(dbMan.ExecuteScalar(query));
+            return username;
+        }
+
+        public int InsertManager(int ID, int centerID, string Username)
+        {
+            string query = "INSERT INTO Manager (ManagerID, CenterID, Username)" +
+                            "Values (" + ID + "," + centerID + ",'" + Username + "');";
+            return dbMan.ExecuteNonQuery(query);
+        }
+
+        public int InsertCustromer(int ID, string Username)
+        {
+            string query = "INSERT INTO Customer (CustomerID, Username)" +
+                            "Values (" + ID + ",'" + Username + "');";
+            return dbMan.ExecuteNonQuery(query);
+        }
+
+        public int InsertVet(int vetID, int centerID, string speciality, string schedule, string username)
+        {
+
+            string query = $"INSERT INTO Vet (VetID, BuildingNum, StreetNum, City, Speciality, Schedule, CenterID, Username) " +
+                           $"SELECT {vetID}, BuildingNum, StreetNum, City, '{speciality}', '{schedule}', {centerID}, '{username}' " +
+                           $"FROM Center WHERE CenterID = {centerID};";
+
+            return dbMan.ExecuteNonQuery(query);
+        }
+
+        //public DataTable AverageAppointmentsPerMonth()
+        //{
+        //    string query = "SELECT v.VetID, v.FirstName, v.LastName, MONTH(a.[Date]) AS Month, COUNT(*) AS AppointmentsCount " +
+        //                   "FROM Vet v " +
+        //                   "JOIN Appointment a ON v.VetID = a.VetID " +
+        //                   "GROUP BY v.VetID, v.FirstName, v.LastName, MONTH(a.[Date]) " +
+        //                   "ORDER BY v.VetID, MONTH(a.[Date]);";
+
+        //    return dbMan.ExecuteReader(query);
+        //}
+
+
+
+
+
+        public DataTable GetAverageAppointmentsPerMonth()
+        {
+            try
+            {
+                string storedProcedureName = "GetAverageAppointmentsPerMonth";
+
+                return dbMan.ExecuteStoredProcedureDataTable(storedProcedureName, new Dictionary<string, object>());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error retrieving average appointments per month: {ex.Message}");
+                return null;
+            }
+        }
+
+        public int ChangePassword(string username, string password)
+        {
+            string query = "UPDATE Authentication SET Password = '" + password + "' WHERE Username = '" + username + "';";
+            return dbMan.ExecuteNonQuery(query);
+        }
+
+        public DataTable GetTotalSalesPerCenter()
+        {
+            try
+            {
+                string storedProcedureName = "GetTotalSalesPerCenter";
+                return dbMan.ExecuteStoredProcedureDataTable(storedProcedureName, new Dictionary<string, object>());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error retrieving total sales per center: {ex.Message}");
+                return null;
+            }
+        }
+
+
+
+        public List<string> GetLeastSellingItemsLastMonth(int numItems)
+        {
+            string query = "SELECT ProductID, SUM(Quantity) AS TotalQuantity FROM Purchase " +
+                "WHERE PurchaseDate >= DATEADD(month, -1, GETDATE()) " +
+                "GROUP BY ProductID";
+            DataTable lastMonthData = dbMan.ExecuteReader(query);
+
+            var leastSellingItems = FindLeastSellingItems(lastMonthData, numItems);
+
+            return leastSellingItems;
+        }
+
+
+        private List<string> FindLeastSellingItems(DataTable data, int numItems)
+        {
+            var leastSellingItems = data.AsEnumerable()
+                .OrderBy(row => row.Field<int>("TotalQuantity"))
+                .Take(numItems)
+                .Select(row => GetProductNameById(row.Field<int>("ProductID")))
+                .ToList();
+
+            return leastSellingItems;
+        }
+
+        private string GetProductNameById(int productId)
+        {
+            
+            string query = $"SELECT [Name] FROM Product WHERE ProductID = {productId}";
+            DataTable productData = dbMan.ExecuteReader(query);
+            return productData?.Rows[0]?.Field<string>("Name");
+        }
+
+        public string GetBestSellingItemLastMonth()
+        {
+            string query = "SELECT ProductID, SUM(Quantity) AS TotalQuantity FROM Purchase " +
+                "WHERE PurchaseDate >= DATEADD(month, -1, GETDATE()) " +
+                "GROUP BY ProductID";
+            DataTable lastMonthData = dbMan.ExecuteReader(query);
+
+            string bestSellingItem = FindBestSellingItem(lastMonthData);
+
+            return bestSellingItem;
+        }
+        private string FindBestSellingItem(DataTable data)
+        {
+            string bestSellingItem = data.AsEnumerable()
+                .OrderByDescending(row => row.Field<int>("TotalQuantity"))
+                .Select(row => GetProductNameById(row.Field<int>("ProductID")))
+                .FirstOrDefault();
+
+            return bestSellingItem;
+        }
+
+        public int GetProductQuantity(string productName)
+        {
+            // Fetch product quantity from the Purchase table
+            DataTable productData = dbMan.ExecuteReader($"SELECT SUM(Quantity) AS TotalQuantity FROM Purchase " +
+                                                            $"WHERE ProductID IN (SELECT ProductID FROM Product WHERE [Name] = '{productName}') " +
+                                                            $"AND PurchaseDate >= DATEADD(month, -1, GETDATE()) " +
+                                                            $"GROUP BY ProductID");
+
+            return productData?.Rows[0]?.Field<int>("TotalQuantity") ?? 0;
+        }
+
+        public DataTable SelectAllAdoptionRequests(string username)
+        {
+            string query = " SELECT Pet.PetID, Pet.Name" +
+            " FROM Pet " +
+            "JOIN Ownership ON Pet.PetID = Ownership.PetID " +
+            "JOIN Manager ON Pet.CenterID = Manager.CenterID " +
+            "WHERE Manager.Username = '" + username + "' AND Ownership.Accept = 'NO';";
+            return dbMan.ExecuteReader(query);
+        }
+
+        public DataTable GetCustomerInfoForpetadoption(int petID)
+        {
+            string query = "SELECT DISTINCT u.FirstName, u.LastName " +
+                   "FROM [User] u " +
+                   "JOIN Ownership ON u.UserID = Ownership.CustomerID " +
+                   "JOIN Pet ON " + petID + " = Pet.PetID;";
+            return dbMan.ExecuteReader(query);
+
+        }
+
+        public int AcceptAdoptionRequests(int userID, int petID)
+        {
+            string query = "UPDATE Ownership SET Accept = 'YES' WHERE CustomerID = " + userID + " AND PetID = " + petID + ";";
+            dbMan.ExecuteNonQuery(query);
+
+            query = "UPDATE Pet SET CenterID = NULL WHERE PetID = " + petID + ";";
+            return dbMan.ExecuteNonQuery(query);
+        }
+
+        public int DeclineAdoptionRequests(int userID, int petID)
+        {
+            string query = "DELETE FROM Ownership WHERE CustomerID = " + userID + " AND PetID = " + petID + ";";
+
+            return dbMan.ExecuteNonQuery(query);
+        }
+
+        public int GetCustomerIDForpetadoption(int petID)
+        {
+            string query = "SELECT u.UserID " +
+                   "FROM [User] u " +
+                   "JOIN Ownership ON u.UserID = Ownership.CustomerID " +
+                   "JOIN Pet ON " + petID + " = Pet.PetID;";
+            return Convert.ToInt32(dbMan.ExecuteScalar(query));
+        }
+
+
+
+        ///AmiraEnd
+
+
+
 
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -901,6 +1332,7 @@ namespace DBapplication
             return dbMan.ExecuteNonQuery(q);
         }
 
+
         public int DeleteUser(int id)
         {
             string q = "DELETE FROM [User] WHERE UserID = " + id + ";";
@@ -947,6 +1379,27 @@ namespace DBapplication
         }
 
 
+
+        public int[] PetBestForIDs(string x)
+        {
+            string q = "SELECT PetID FROM Pet WHERE BestFor = '" + x + "';";
+
+
+            DataTable test = dbMan.ExecuteReader(q);
+
+            int[] intArr = test.AsEnumerable().Select(row => row.Field<int>("PetID")).ToArray();
+            return intArr;
+        }
+
+        public int PetBestForNumber(string x)
+        {
+            string q = "SELECT Count(*) FROM Pet WHERE BestFor = '" + x + "';";
+
+
+            int y = Convert.ToInt16(dbMan.ExecuteScalar(q));
+            return y;
+        }
+
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         //TAWFIK DONE///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -954,12 +1407,12 @@ namespace DBapplication
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-        public DataTable SelectSchedule( int vetID)
+        public DataTable SelectSchedule(int vetID)
         {
             string query = "SELECT A.[Date], A.[Time], P.Name, U.FirstName " +
                 "FROM [dbo].[Appointment] A " +
-                "INNER JOIN [dbo].[Pet] P ON A.PetID = P.PetID " + 
-                "INNER JOIN [dbo].[User] U ON A.CustomerID = U.UserID "+
+                "INNER JOIN [dbo].[Pet] P ON A.PetID = P.PetID " +
+                "INNER JOIN [dbo].[User] U ON A.CustomerID = U.UserID " +
                 "WHERE A.VetID =" + vetID + ";";
 
             return dbMan.ExecuteReader(query);
@@ -995,13 +1448,13 @@ namespace DBapplication
             return dbMan.ExecuteReader(query);
         }
 
-        public DataTable insertmedium(int customerID, string pers)
-        {
-            string query = "UPDATE Customer " +
-                        "SET " + pers + " = 50 " +
-                        "WHERE CustomerID = " + customerID + ";";
-            return dbMan.ExecuteReader(query);
-        }
+      public DataTable insertmedium(int customerID, string pers)
+{
+    string query = "UPDATE Customer " +
+                "SET " + pers + "= 50 " +
+                "WHERE CustomerID = " + customerID + ";";
+    return dbMan.ExecuteReader(query);
+}
 
         public DataTable inserthigh(int customerID, string pers)
         {
@@ -1030,8 +1483,6 @@ namespace DBapplication
                            "GROUP BY TypeName;";
 
             DataTable result = dbMan.ExecuteReader(query);
-
-            // Convert the DataTable into a dictionary for easier access
             Dictionary<string, double> adoptionPercentages = new Dictionary<string, double>();
             foreach (DataRow row in result.Rows)
             {
@@ -1117,6 +1568,41 @@ namespace DBapplication
             return dbMan.ExecuteNonQuery(query);
         }
 
+
+
+        public int InsertProduct(string Name, string Description, int Stock, DateTime ProductionDate, DateTime ExpirationDate, decimal Price, string Center, string Type)
+        {
+            int typeID = GetTypeID(Type);
+            int centerID = GetCenterID(Center);
+
+            string query = "INSERT INTO Product (Name, Description, Stock, ProductionDate, ExpirationDate, Cost, CenterID, ForTypeID) " +
+                           "VALUES ('" + Name + "', '" + Description + "', " + Stock + ", '" + ProductionDate.ToString("yyyy-MM-dd") + "', '" +
+                           ExpirationDate.ToString("yyyy-MM-dd") + "', " + Price.ToString("0.00") + ", " + centerID + ", " + typeID + ")";
+
+            return dbMan.ExecuteNonQuery(query);
+        }
+
+        public int UpdateProduct(int ProductID, string Name, string Description, int Stock, decimal Cost, int CenterID, int ForTypeID)
+        {
+
+            string query = "UPDATE Product " +
+                           "SET Name = '" + Name + "', Description = '" + Description + "', Stock = " + Stock + ", Cost = " + Cost +
+                           ", CenterID = " + CenterID + ", ForTypeID = " + ForTypeID +
+                           " WHERE ProductID = " + ProductID;
+
+            return dbMan.ExecuteNonQuery(query);
+        }
+
+
+
+        public int DeleteProduct(int ProductID)
+        {
+            string query = "DELETE FROM Product WHERE ProductID = " + ProductID;
+            return dbMan.ExecuteNonQuery(query);
+        }
+
+
+
         public int InsertType(string TypeName)
         {
             string query = "INSERT INTO Type (TypeName) " +
@@ -1140,224 +1626,162 @@ namespace DBapplication
 
         }
 
-        
+
+
+
+
+
+        public int getcustomerenergy(int custid)
+        {
+            string query = "SELECT Energy FROM Customer "
+                    + "WHERE CustomerID= " + custid + ";";
+
+           return Convert.ToInt32(dbMan.ExecuteScalar(query));
+        }
+
+        public int getcustomermind(int custid)
+        {
+            string query = "SELECT Mind FROM Customer "
+                    + "WHERE CustomerID= " + custid + ";";
+
+            return Convert.ToInt32(dbMan.ExecuteScalar(query));
+        }
+
+        public int getcustomernature(int custid)
+        {
+            string query = "SELECT Nature FROM Customer "
+                     + "WHERE CustomerID= " + custid + ";";
+
+            return Convert.ToInt32(dbMan.ExecuteScalar(query));
+        }
+
+        public int getcustomeridentity(int custid)
+ {
+     string query = "SELECT Identityy FROM Customer "
+             + "WHERE CustomerID= " + custid + ";";
+
+     return Convert.ToInt32(dbMan.ExecuteScalar(query));
+ }
+
+        public string returnPersonality(int custid)
+        {
+            int e = getcustomerenergy(custid);
+            int m = getcustomermind(custid);
+            int n = getcustomernature(custid);
+            int i = getcustomeridentity(custid);
+            if (e> 50 && n > 50 && m > 50 && i > 50) //1
+            {
+                return "ENFP";
+            }
+            else if (e> 50 && m> 50 && n > 50 && i <= 50) //2
+            {
+                return "ENFJ";
+             }
+            else if (e> 50 && m> 50 && n <= 50 && i> 50) //3
+            {
+                return "ENTP";
+            }
+            else if (e > 50 && m > 50 && n <= 50 && i <= 50) //4
+            {
+                return "ENTJ";
+            }
+            else if (e > 50 && m <= 50 && n > 50 && i > 50) // 5
+            {
+                return "ESFP";
+            }
+            else if (e > 50 && m <= 50 && n > 50 && i <= 50) //6
+            {
+                return "ESFJ";
+            }
+            else if (e > 50 && m <= 50 && n <= 50 && i > 50) //7
+            {
+                return "ESTP";
+            }
+            else if (e > 50 && m <= 50 && n <= 50 && i <= 50) //8
+            {
+                return "ESTJ";
+            }
+            else if (e <= 50 && n > 50 && m > 50 && i > 50) //9
+            {
+                return "INFP";
+            }
+            else if (e <= 50 && m > 50 && n > 50 && i <= 50) //10
+            {
+                return "INFJ";
+            }
+            else if (e <= 50 && m > 50 && n <= 50 && i > 50) //11
+            {
+                return "INTP";
+            }
+            else if (e <= 50 && m > 50 && n <= 50 && i <= 50) //12
+            {
+                return "INTJ";
+            }
+            else if (e <= 50 && m <= 50 && n > 50 && i > 50) // 13
+            {
+                return "ISFP";
+            }
+            else if (e <= 50 && m <= 50 && n > 50 && i <= 50) //14
+            {
+                return "ISFJ";
+            }
+            else if (e <= 50 && m <= 50 && n <= 50 && i > 50) //15
+            {
+                return "ISTP";
+            }
+            else if (e <= 50 && m <= 50 && n <= 50 && i <= 50) //16
+            {
+                return "ISTJ";
+            }
+            else
+            {
+                return "INFJ";
+            }
+        }
+
+        public int getyourpurrfectmatch( string pers)
+        {
+            string query = "SELECT PetID FROM Pet WHERE BestFor =" + pers + ";";
+            return dbMan.ExecuteNonQuery(query);
+        }
+
 
        
 
-        public DataTable SelectAllCenters()
+        public int FliterPetByBestFor(string x)
+{
+    string q = "SELECT Count(*) FROM Pet WHERE BestFor LIKE '" + x + "%' AND CenterID IS NOT NULL;";
+
+    int y = Convert.ToInt16(dbMan.ExecuteScalar(q));
+    return y;
+}
+
+
+        public DataTable SelectAvailableDates(int vetID)
         {
-            string query = "SELECT * FROM Center;";
+            string query = "SELECT Datee FROM VetSchedule WHERE VetID= " + vetID +  ";";
             return dbMan.ExecuteReader(query);
         }
 
-        public DataTable SelectAllManager()
+        public int DeleteAvailableDate(int VetID, string datee)
         {
-            string query = " SELECT u.UserID, u.FirstName FROM [User] u, Authentication a, Manager m WHERE a.Type= 'Manager' AND m.Username = a.Username  AND u.UserID = m.ManagerID  ;";
-            return dbMan.ExecuteReader(query);
+            string query = "DELETE FROM [VetSchedule]"
+                + " WHERE VetID = " + VetID + "AND Datee = '"+datee+"';";
+          return dbMan.ExecuteNonQuery(query);
+
         }
 
-        
-
-
-
-        public DataTable SelectAllVets()
+        public int InsertAvailableDate(int vetid, string date)
         {
-            string query = " SELECT u.UserID, u.FirstName FROM [User] u, Authentication a, Vet v WHERE a.Type= 'Vet' AND v.Username = a.Username  AND u.UserID = v.VetID  ;";
-            return dbMan.ExecuteReader(query);
-        }
-        public int InsertCenter(string CenterName, int BuldingNumber, int streetNumber,string city, string FQA)
-        {
-            string query = "INSERT INTO Center (CenterName, BuildingNum, StreetNum ,City ,FAQ)" +
-                            "Values ('" + CenterName + "'," + BuldingNumber + ","+ streetNumber +",'" + city + "','" + FQA + "');";
-            return dbMan.ExecuteNonQuery(query);
-        }
-
-        
-
-
-        public int DeleteCenter(int CenterID)
-        {
-            try
-            {
-                string storedProcedureName = "DeleteCenterProcedure";
-
-                // Use parameters
-                var parameters = new Dictionary<string, object>
-        {
-            { "@CenterID", CenterID }
-        };
-
-                // Execute procedure
-                int result = dbMan.ExecuteStoredProcedureNOReturn(storedProcedureName, parameters);
-                return result;
-
-
-            }
-            catch (Exception ex)
-            {
-                // Handle exceptions 
-                MessageBox.Show("Error deleting center. Please try again later.");
-                return 0;
-            }
-        }
-
-        //public int DeleteManager(int managerID, string username)
-        //{
-        //    try
-        //    {
-        //        string storedProcedureName = "DeleteManagerProcedure";
-
-        //        var parameters = new Dictionary<string, object>
-        //{
-        //    { "@ManagerID", managerID },
-        //    { "@Username", username }
-        //};
-
-        //        // Execute 
-        //        dbMan.ExecuteStoredProcedureNOReturn(storedProcedureName, parameters);
-
-
-        //        return 1; 
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        MessageBox.Show("Error deleting manager. Please try again later.");
-
-        //        return 0; 
-        //    }
-        //}
-
-
-        public int DeleteManager(int managerID, string username)
-        {
-            string query = "DELETE FROM [User]"
-                + " WHERE UserID = " + managerID + ";";
-            int e = dbMan.ExecuteNonQuery(query);
-
-            query = "DELETE FROM Authentication"
-                + " WHERE Username = '" + username + "';";
-            return dbMan.ExecuteNonQuery(query);
-        }
-
-        public int DeleteVet(int VetID, string username)
-        {
-            string query = "DELETE FROM [User]"
-                + " WHERE UserID = " + VetID + ";";
-            int e = dbMan.ExecuteNonQuery(query);
-
-            query = "DELETE FROM Authentication"
-                + " WHERE Username = '" + username + "';";
-            return dbMan.ExecuteNonQuery(query);
-        }
-
-
-
-        public int InsertAuthen(string username, string password, string type)
-        {
-            string query = "INSERT INTO Authentication (Username, Password, Type)" +
-                            "Values ('" + username + "','" + password + "','" + type + "');";
-            return dbMan.ExecuteNonQuery(query);
-        }
-
-
-        public int InsertUser(int id, string fName, string lName, string DOF, string gender)
-        {
-            string query = "INSERT INTO [User] (UserID, FirstName, LastName, DateOfBirth, Gender)" +
-                            "Values ("+id+",'" + fName + "','" + lName+ "','" + DOF + "','"+gender+"');";
-            return dbMan.ExecuteNonQuery(query);
-        }
-        public int GenerateID()
-        {
-            string query = "SELECT MAX(UserID) FROM [User];";
-
-            int id = Convert.ToInt32(dbMan.ExecuteScalar(query));
-            return (id + 1);
-        }
-
-
-        public string GetManagerUsername(int ID)
-        {
-            string query = "SELECT Username FROM Manager "
-                +"WHERE ManagerID= "+ ID +";";
-
-            string username = Convert.ToString(dbMan.ExecuteScalar(query));
-            return username;
-        }
-
-        public string GetVetUsername(int ID)
-        {
-            string query = "SELECT Username FROM Vet "
-                + "WHERE VetID= " + ID + ";";
-
-            string username = Convert.ToString(dbMan.ExecuteScalar(query));
-            return username;
-        }
-
-        public int InsertManager(int ID, int centerID, string Username)
-        {
-            string query = "INSERT INTO Manager (ManagerID, CenterID, Username)" +
-                            "Values (" + ID + "," + centerID + ",'" + Username + "');";
-            return dbMan.ExecuteNonQuery(query);
-        }
-
-        public int InsertVet(int vetID, int centerID, string speciality, string schedule,string username)
-        {
-            
-            string query = $"INSERT INTO Vet (VetID, BuildingNum, StreetNum, City, Speciality, Schedule, CenterID, Username) " +
-                           $"SELECT {vetID}, BuildingNum, StreetNum, City, '{speciality}', '{schedule}', {centerID}, '{username}' " +
-                           $"FROM Center WHERE CenterID = {centerID};";
-
-            return dbMan.ExecuteNonQuery(query);
-        }
-
-        //public DataTable AverageAppointmentsPerMonth()
-        //{
-        //    string query = "SELECT v.VetID, v.FirstName, v.LastName, MONTH(a.[Date]) AS Month, COUNT(*) AS AppointmentsCount " +
-        //                   "FROM Vet v " +
-        //                   "JOIN Appointment a ON v.VetID = a.VetID " +
-        //                   "GROUP BY v.VetID, v.FirstName, v.LastName, MONTH(a.[Date]) " +
-        //                   "ORDER BY v.VetID, MONTH(a.[Date]);";
-
-        //    return dbMan.ExecuteReader(query);
-        //}
-
-
-        public DataTable TotalSalesPerCenter()
-        {
-            string query = "SELECT c.CenterID, c.CenterName, SUM(o.TotalAmount) AS TotalSales " +
-                           "FROM Center c " +
-                           "LEFT JOIN Ownership o ON c.CenterID = o.CenterID " +
-                           "GROUP BY c.CenterID, c.CenterName " +
-                           "ORDER BY c.CenterID;";
-
-            return dbMan.ExecuteReader(query);
-        }
-
-
-        public DataTable GetAverageAppointmentsPerMonth()
-        {
-            try
-            {
-                string storedProcedureName = "GetAverageAppointmentsPerMonth";
-
-                return dbMan.ExecuteStoredProcedureDataTable(storedProcedureName, new Dictionary<string, object>());
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error retrieving average appointments per month: {ex.Message}");
-                return null;
-            }
-        }
-
-        public int ChangePassword(string username, string password)
-        {
-            string query = "UPDATE Authentication SET Password = '" + password + "' WHERE Username = '" + username + "';";
+            string query = "INSERT INTO [VetSchedule] (VetID, Datee)" +
+                            "Values (" + vetid + ",'" + date + "');";
             return dbMan.ExecuteNonQuery(query);
         }
 
 
 
     }
+    
 
 
 
