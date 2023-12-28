@@ -130,14 +130,12 @@
     <Compile Include="PetsViewManager.Designer.cs">
       <DependentUpon>PetsViewManager.cs</DependentUpon>
     </Compile>
-
     <Compile Include="ProductsViewManager.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ProductsViewManager.Designer.cs">
       <DependentUpon>ProductsViewManager.cs</DependentUpon>
-      </Compile>
-
+    </Compile>
     <Compile Include="Quiz.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -155,7 +153,6 @@
     </Compile>
     <Compile Include="Vet.Designer.cs">
       <DependentUpon>Vet.cs</DependentUpon>
-
     </Compile>
     <Compile Include="Vets.cs">
       <SubType>Form</SubType>
@@ -257,11 +254,12 @@
     <EmbeddedResource Include="MyPetsList.resx">
       <DependentUpon>MyPetsList.cs</DependentUpon>
     </EmbeddedResource>
-
+    <EmbeddedResource Include="PetsViewManager.resx">
+      <DependentUpon>PetsViewManager.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ProductsViewManager.resx">
       <DependentUpon>ProductsViewManager.cs</DependentUpon>
     </EmbeddedResource>
-
     <EmbeddedResource Include="SignUp.resx">
       <DependentUpon>SignUp.cs</DependentUpon>
     </EmbeddedResource>

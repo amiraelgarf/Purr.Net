@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.pet_combo = new System.Windows.Forms.ComboBox();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
@@ -45,15 +44,6 @@
             this.label1.Size = new System.Drawing.Size(65, 16);
             this.label1.TabIndex = 0;
             this.label1.Text = "Requests";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(67, 110);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(44, 16);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "label2";
             // 
             // pet_combo
             // 
@@ -102,7 +92,6 @@
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.pet_combo);
-            this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "AdoptionRequests";
             this.Text = "AdoptionRequests";
@@ -115,7 +104,6 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox pet_combo;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;

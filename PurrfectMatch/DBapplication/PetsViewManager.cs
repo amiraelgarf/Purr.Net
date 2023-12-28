@@ -349,5 +349,11 @@ namespace DBapplication
             AddPetManager ap = new AddPetManager(username);
             ap.Show();
         }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+            AdoptionRequests A= new AdoptionRequests(username);
+            A.Show();
+        }
     }
 }

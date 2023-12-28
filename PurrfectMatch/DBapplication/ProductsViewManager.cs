@@ -555,5 +555,11 @@ namespace DBapplication
             AddProductManager ap = new AddProductManager(username);
             ap.Show();
         }
+
+        private void viewStats_Click(object sender, EventArgs e)
+        {
+            ManagerStatistics m = new ManagerStatistics(username);
+            m.Show();
+        }
     }
 }

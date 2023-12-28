@@ -72,6 +72,8 @@ namespace DBapplication
             this.filter = new System.Windows.Forms.PictureBox();
             this.nola = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.add_button)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.close)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.previous)).BeginInit();
@@ -95,6 +97,7 @@ namespace DBapplication
             ((System.ComponentModel.ISupportInitialize)(this.filter)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nola)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
             // PurrfectMatch
@@ -628,12 +631,40 @@ namespace DBapplication
             this.pictureBox1.TabIndex = 41;
             this.pictureBox1.TabStop = false;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(118)))), ((int)(((byte)(129)))));
+            this.label1.Font = new System.Drawing.Font("Abhaya Libre", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(246)))), ((int)(((byte)(239)))));
+            this.label1.Location = new System.Drawing.Point(74, 355);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(126, 20);
+            this.label1.TabIndex = 77;
+            this.label1.Text = "Manage requests";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(246)))), ((int)(((byte)(239)))));
+            this.pictureBox2.Image = global::DBapplication.Properties.Resources.button;
+            this.pictureBox2.Location = new System.Drawing.Point(39, 348);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(4);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(198, 34);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox2.TabIndex = 76;
+            this.pictureBox2.TabStop = false;
+            // 
             // PetsViewManager
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(205)))), ((int)(((byte)(237)))));
             this.ClientSize = new System.Drawing.Size(1344, 657);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.add_label);
             this.Controls.Add(this.add_button);
             this.Controls.Add(this.close);
@@ -703,6 +734,7 @@ namespace DBapplication
             ((System.ComponentModel.ISupportInitialize)(this.filter)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nola)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -751,5 +783,7 @@ namespace DBapplication
         private PictureBox close;
         private Label add_label;
         private PictureBox add_button;
+        private Label label1;
+        private PictureBox pictureBox2;
     }
 }

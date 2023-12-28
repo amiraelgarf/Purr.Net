@@ -77,6 +77,8 @@ namespace DBapplication
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.add_label = new System.Windows.Forms.Label();
             this.add_button = new System.Windows.Forms.PictureBox();
+            this.viewStats = new System.Windows.Forms.Label();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.close)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.previous)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.next)).BeginInit();
@@ -100,6 +102,7 @@ namespace DBapplication
             ((System.ComponentModel.ISupportInitialize)(this.nola)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.add_button)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
             // PurrfectMatch
@@ -701,12 +704,40 @@ namespace DBapplication
             this.add_button.TabStop = false;
             this.add_button.Click += new System.EventHandler(this.add_button_Click_1);
             // 
+            // viewStats
+            // 
+            this.viewStats.AutoSize = true;
+            this.viewStats.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(118)))), ((int)(((byte)(129)))));
+            this.viewStats.Font = new System.Drawing.Font("Abhaya Libre", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.viewStats.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(246)))), ((int)(((byte)(239)))));
+            this.viewStats.Location = new System.Drawing.Point(87, 532);
+            this.viewStats.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.viewStats.Name = "viewStats";
+            this.viewStats.Size = new System.Drawing.Size(109, 20);
+            this.viewStats.TabIndex = 79;
+            this.viewStats.Text = "View Statistics";
+            this.viewStats.Click += new System.EventHandler(this.viewStats_Click);
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(246)))), ((int)(((byte)(239)))));
+            this.pictureBox2.Image = global::DBapplication.Properties.Resources.button;
+            this.pictureBox2.Location = new System.Drawing.Point(37, 524);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(4);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(198, 34);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox2.TabIndex = 78;
+            this.pictureBox2.TabStop = false;
+            // 
             // ProductsViewManager
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(205)))), ((int)(((byte)(237)))));
             this.ClientSize = new System.Drawing.Size(1344, 657);
+            this.Controls.Add(this.viewStats);
+            this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.add_label);
             this.Controls.Add(this.add_button);
             this.Controls.Add(this.close);
@@ -783,6 +814,7 @@ namespace DBapplication
             ((System.ComponentModel.ISupportInitialize)(this.nola)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.add_button)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -837,5 +869,7 @@ namespace DBapplication
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private Label add_label;
         private PictureBox add_button;
+        private Label viewStats;
+        private PictureBox pictureBox2;
     }
 }
