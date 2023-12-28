@@ -57,7 +57,7 @@ namespace DBapplication
             int centerID = controllerObj.GetCenterID(center_textbox.Text);
             if (centerID == -1)
             {
-                MessageBox.Show("Center not found, please enter an existing center");
+                MessageBox.Show("This is not your center, input your center");
                 return;
             }
 

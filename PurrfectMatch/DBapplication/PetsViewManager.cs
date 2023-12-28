@@ -355,5 +355,32 @@ namespace DBapplication
             AdoptionRequests A= new AdoptionRequests(username);
             A.Show();
         }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+            AdoptedPets ap = new AdoptedPets();
+            ap.Show();
+        }
+
+        private void pictureBox3_Click(object sender, EventArgs e)
+        {
+            AdoptedPets ap = new AdoptedPets();
+            ap.Show();
+        }
+
+        private void appointments_nav_selected_Click(object sender, EventArgs e)
+        {
+            ChangePassowrd c = new ChangePassowrd(username);
+            c.Show();
+
+        }
+
+        private void profile_nav_selected_Click(object sender, EventArgs e)
+        {
+            StartForm a = new StartForm();
+            this.Hide();
+            a.ShowDialog();
+            this.Close();
+        }
     }
 }

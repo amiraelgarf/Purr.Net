@@ -561,5 +561,13 @@ namespace DBapplication
             ManagerStatistics m = new ManagerStatistics(username);
             m.Show();
         }
+
+        private void profile_nav_selected_Click(object sender, EventArgs e)
+        {
+            StartForm a = new StartForm();
+            this.Hide();
+            a.ShowDialog();
+            this.Close();
+        }
     }
 }
