@@ -1246,6 +1246,41 @@ namespace DBapplication
             return dbMan.ExecuteNonQuery(query);
         }
 
+
+
+        public int InsertProduct(string Name, string Description, int Stock, DateTime ProductionDate, DateTime ExpirationDate, decimal Price, string Center, string Type)
+        {
+            int typeID = GetTypeID(Type);
+            int centerID = GetCenterID(Center);
+
+            string query = "INSERT INTO Product (Name, Description, Stock, ProductionDate, ExpirationDate, Cost, CenterID, ForTypeID) " +
+                           "VALUES ('" + Name + "', '" + Description + "', " + Stock + ", '" + ProductionDate.ToString("yyyy-MM-dd") + "', '" +
+                           ExpirationDate.ToString("yyyy-MM-dd") + "', " + Price.ToString("0.00") + ", " + centerID + ", " + typeID + ")";
+
+            return dbMan.ExecuteNonQuery(query);
+        }
+
+        public int UpdateProduct(int ProductID, string Name, string Description, int Stock, decimal Cost, int CenterID, int ForTypeID)
+        {
+
+            string query = "UPDATE Product " +
+                           "SET Name = '" + Name + "', Description = '" + Description + "', Stock = " + Stock + ", Cost = " + Cost +
+                           ", CenterID = " + CenterID + ", ForTypeID = " + ForTypeID +
+                           " WHERE ProductID = " + ProductID;
+
+            return dbMan.ExecuteNonQuery(query);
+        }
+
+
+
+        public int DeleteProduct(int ProductID)
+        {
+            string query = "DELETE FROM Product WHERE ProductID = " + ProductID;
+            return dbMan.ExecuteNonQuery(query);
+        }
+
+
+
         public int InsertType(string TypeName)
         {
             string query = "INSERT INTO Type (TypeName) " +
@@ -1274,7 +1309,6 @@ namespace DBapplication
 
 
 
-
         public int getcustomerenergy(int custid)
         {
             string query = "SELECT Energy FROM Customer "
@@ -1294,18 +1328,18 @@ namespace DBapplication
         public int getcustomernature(int custid)
         {
             string query = "SELECT Nature FROM Customer "
-                    + "WHERE CustomerID= " + custid + ";";
+                     + "WHERE CustomerID= " + custid + ";";
 
             return Convert.ToInt32(dbMan.ExecuteScalar(query));
         }
 
         public int getcustomeridentity(int custid)
-        {
-            string query = "SELECT Identityy FROM Customer "
-                    + "WHERE CustomerID= " + custid + ";";
+ {
+     string query = "SELECT Identityy FROM Customer "
+             + "WHERE CustomerID= " + custid + ";";
 
-            return Convert.ToInt32(dbMan.ExecuteScalar(query));
-        }
+     return Convert.ToInt32(dbMan.ExecuteScalar(query));
+ }
 
         public string returnPersonality(int custid)
         {
@@ -1389,13 +1423,16 @@ namespace DBapplication
             return dbMan.ExecuteNonQuery(query);
         }
 
-        public int FliterPetByBestFor(string x)
-        {
-            string q = "SELECT Count(*) FROM Pet WHERE BestFor LIKE '" + x + "%' AND CenterID IS NOT NULL;";
 
-            int y = Convert.ToInt16(dbMan.ExecuteScalar(q));
-            return y;
-        }
+       
+
+        public int FliterPetByBestFor(string x)
+{
+    string q = "SELECT Count(*) FROM Pet WHERE BestFor LIKE '" + x + "%' AND CenterID IS NOT NULL;";
+
+    int y = Convert.ToInt16(dbMan.ExecuteScalar(q));
+    return y;
+}
 
 
         public DataTable SelectAvailableDates(int vetID)
