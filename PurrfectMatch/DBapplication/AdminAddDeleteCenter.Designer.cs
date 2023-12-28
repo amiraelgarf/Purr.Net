@@ -43,6 +43,9 @@
             this.label6 = new System.Windows.Forms.Label();
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.Back = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -138,9 +141,9 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(576, 166);
+            this.button2.Location = new System.Drawing.Point(666, 127);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(182, 30);
+            this.button2.Size = new System.Drawing.Size(111, 26);
             this.button2.TabIndex = 11;
             this.button2.Text = "Delete Center";
             this.button2.UseVisualStyleBackColor = true;
@@ -172,11 +175,33 @@
             this.Back.UseVisualStyleBackColor = true;
             this.Back.Click += new System.EventHandler(this.Back_Click);
             // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(623, 397);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(126, 26);
+            this.button3.TabIndex = 15;
+            this.button3.Text = "View total sales";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(460, 170);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowHeadersWidth = 51;
+            this.dataGridView1.RowTemplate.Height = 24;
+            this.dataGridView1.Size = new System.Drawing.Size(299, 208);
+            this.dataGridView1.TabIndex = 16;
+            // 
             // AdminAddDeleteCenter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.button3);
             this.Controls.Add(this.Back);
             this.Controls.Add(this.textBox5);
             this.Controls.Add(this.label6);
@@ -194,6 +219,7 @@
             this.Controls.Add(this.label1);
             this.Name = "AdminAddDeleteCenter";
             this.Text = "AdminAddDeleteCenter";
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -216,5 +242,7 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox textBox5;
         private System.Windows.Forms.Button Back;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.DataGridView dataGridView1;
     }
 }

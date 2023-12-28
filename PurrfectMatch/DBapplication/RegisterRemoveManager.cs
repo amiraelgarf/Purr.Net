@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace DBapplication
 {
@@ -39,6 +40,10 @@ namespace DBapplication
             {
                 MessageBox.Show("Please, insert all values");
             }
+            else if (Gender.Text != "F" && Gender.Text != "M")
+            {
+                MessageBox.Show("Please, insert gender as F for female and M for Male");
+            }
             else
             {
 
@@ -47,18 +52,27 @@ namespace DBapplication
                     //int r = controllerObj.InsertCenter(fName.Text, Convert.ToInt32(lName.Text), Convert.ToInt32(DOF.Text), Age.Text, Gender.Text);
                     
                     int r=controllerObj.InsertAuthen(username.Text, password.Text, "Manager");
-                    int userID = controllerObj.GenerateID();
-                    int u = controllerObj.InsertUser(userID, fName.Text, lName.Text, DOF.Text, Gender.Text);
-
-                    int m = controllerObj.InsertManager(userID, Convert.ToInt32(comboBox1.SelectedValue), username.Text);
-                    if (r == 0 || u==0 || m==0)
+                    if (r == 0)
                     {
-                        MessageBox.Show("Please, insert values correctly");
+                        MessageBox.Show("Please, insert a unique username");
+
                     }
                     else
                     {
-                        MessageBox.Show("Manager inserted successfully");
+                        int userID = controllerObj.GenerateID();
+                        int u = controllerObj.InsertUser(userID, fName.Text, lName.Text, DOF.Text, Gender.Text);
+
+                        int m = controllerObj.InsertManager(userID, Convert.ToInt32(comboBox1.SelectedValue), username.Text);
+                        if (u == 0 || m == 0)
+                        {
+                            MessageBox.Show("Please, insert values correctly");
+                        }
+                        else
+                        {
+                            MessageBox.Show("Manager inserted successfully");
+                        }
                     }
+                    
 
 
                 }

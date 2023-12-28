@@ -83,5 +83,12 @@ namespace DBapplication
             a.ShowDialog();
             this.Close();
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            DataTable dt = controllerObj.GetTotalSalesPerCenter();
+            dataGridView1.DataSource = dt;
+            dataGridView1.Refresh();
+        }
     }
 }
