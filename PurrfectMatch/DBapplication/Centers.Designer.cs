@@ -2,7 +2,7 @@
 
 namespace DBapplication
 {
-    partial class Vets
+    partial class Centers
     {
         /// <summary>
         /// Required designer variable.
@@ -37,11 +37,9 @@ namespace DBapplication
             this.appointments_nav = new System.Windows.Forms.Label();
             this.profile_nav = new System.Windows.Forms.Label();
             this.pets_nav_selected = new System.Windows.Forms.Label();
-            this.speciality_filter = new System.Windows.Forms.Label();
-            this.center_filter = new System.Windows.Forms.Label();
+            this.city_filter = new System.Windows.Forms.Label();
             this.search_text = new System.Windows.Forms.TextBox();
-            this.center_list = new System.Windows.Forms.CheckedListBox();
-            this.speciality_list = new System.Windows.Forms.CheckedListBox();
+            this.city_list = new System.Windows.Forms.CheckedListBox();
             this.appointments_nav_selected = new System.Windows.Forms.Label();
             this.products_nav_selected = new System.Windows.Forms.Label();
             this.profile_nav_selected = new System.Windows.Forms.Label();
@@ -78,7 +76,6 @@ namespace DBapplication
             this.filter = new System.Windows.Forms.PictureBox();
             this.nola = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.center_icon = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.close)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.previous)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.next)).BeginInit();
@@ -103,7 +100,6 @@ namespace DBapplication
             ((System.ComponentModel.ISupportInitialize)(this.filter)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nola)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.center_icon)).BeginInit();
             this.SuspendLayout();
             // 
             // PurrfectMatch
@@ -193,29 +189,17 @@ namespace DBapplication
             this.pets_nav_selected.Click += new System.EventHandler(this.pets_select_Click);
             this.pets_nav_selected.MouseLeave += new System.EventHandler(this.pets_select_MouseLeave);
             // 
-            // speciality_filter
+            // city_filter
             // 
-            this.speciality_filter.AutoSize = true;
-            this.speciality_filter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(246)))), ((int)(((byte)(239)))));
-            this.speciality_filter.Font = new System.Drawing.Font("Abhaya Libre SemiBold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.speciality_filter.Location = new System.Drawing.Point(43, 196);
-            this.speciality_filter.Name = "speciality_filter";
-            this.speciality_filter.Size = new System.Drawing.Size(98, 25);
-            this.speciality_filter.TabIndex = 24;
-            this.speciality_filter.Text = "Speciality";
-            this.speciality_filter.Click += new System.EventHandler(this.speciality_filter_Click);
-            // 
-            // center_filter
-            // 
-            this.center_filter.AutoSize = true;
-            this.center_filter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(246)))), ((int)(((byte)(239)))));
-            this.center_filter.Font = new System.Drawing.Font("Abhaya Libre SemiBold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.center_filter.Location = new System.Drawing.Point(43, 231);
-            this.center_filter.Name = "center_filter";
-            this.center_filter.Size = new System.Drawing.Size(72, 25);
-            this.center_filter.TabIndex = 25;
-            this.center_filter.Text = "Center";
-            this.center_filter.Click += new System.EventHandler(this.center_filter_Click);
+            this.city_filter.AutoSize = true;
+            this.city_filter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(246)))), ((int)(((byte)(239)))));
+            this.city_filter.Font = new System.Drawing.Font("Abhaya Libre SemiBold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.city_filter.Location = new System.Drawing.Point(43, 196);
+            this.city_filter.Name = "city_filter";
+            this.city_filter.Size = new System.Drawing.Size(48, 25);
+            this.city_filter.TabIndex = 24;
+            this.city_filter.Text = "City";
+            this.city_filter.Click += new System.EventHandler(this.city_filter_Click);
             // 
             // search_text
             // 
@@ -231,40 +215,22 @@ namespace DBapplication
             this.search_text.Click += new System.EventHandler(this.search_text_Click);
             this.search_text.TextChanged += new System.EventHandler(this.search_text_TextChanged);
             // 
-            // center_list
+            // city_list
             // 
-            this.center_list.AllowDrop = true;
-            this.center_list.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(246)))), ((int)(((byte)(239)))));
-            this.center_list.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.center_list.CheckOnClick = true;
-            this.center_list.Font = new System.Drawing.Font("Abhaya Libre", 14F);
-            this.center_list.ForeColor = System.Drawing.Color.Black;
-            this.center_list.FormattingEnabled = true;
-            this.center_list.Location = new System.Drawing.Point(48, 259);
-            this.center_list.Name = "center_list";
-            this.center_list.Size = new System.Drawing.Size(168, 250);
-            this.center_list.Sorted = true;
-            this.center_list.TabIndex = 30;
-            this.center_list.Tag = "";
-            this.center_list.Visible = false;
-            this.center_list.SelectedIndexChanged += new System.EventHandler(this.gender_list_SelectedIndexChanged);
-            // 
-            // speciality_list
-            // 
-            this.speciality_list.AllowDrop = true;
-            this.speciality_list.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(246)))), ((int)(((byte)(239)))));
-            this.speciality_list.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.speciality_list.CheckOnClick = true;
-            this.speciality_list.Font = new System.Drawing.Font("Abhaya Libre", 14F);
-            this.speciality_list.ForeColor = System.Drawing.Color.Black;
-            this.speciality_list.FormattingEnabled = true;
-            this.speciality_list.Location = new System.Drawing.Point(48, 224);
-            this.speciality_list.Name = "speciality_list";
-            this.speciality_list.Size = new System.Drawing.Size(168, 225);
-            this.speciality_list.Sorted = true;
-            this.speciality_list.TabIndex = 23;
-            this.speciality_list.Tag = "";
-            this.speciality_list.SelectedIndexChanged += new System.EventHandler(this.types_list_SelectedIndexChanged);
+            this.city_list.AllowDrop = true;
+            this.city_list.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(246)))), ((int)(((byte)(239)))));
+            this.city_list.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.city_list.CheckOnClick = true;
+            this.city_list.Font = new System.Drawing.Font("Abhaya Libre", 14F);
+            this.city_list.ForeColor = System.Drawing.Color.Black;
+            this.city_list.FormattingEnabled = true;
+            this.city_list.Location = new System.Drawing.Point(48, 224);
+            this.city_list.Name = "city_list";
+            this.city_list.Size = new System.Drawing.Size(168, 225);
+            this.city_list.Sorted = true;
+            this.city_list.TabIndex = 23;
+            this.city_list.Tag = "";
+            this.city_list.SelectedIndexChanged += new System.EventHandler(this.types_list_SelectedIndexChanged);
             // 
             // appointments_nav_selected
             // 
@@ -277,6 +243,9 @@ namespace DBapplication
             this.appointments_nav_selected.Size = new System.Drawing.Size(137, 25);
             this.appointments_nav_selected.TabIndex = 38;
             this.appointments_nav_selected.Text = "Appointments";
+            this.appointments_nav_selected.Visible = false;
+            this.appointments_nav_selected.Click += new System.EventHandler(this.appointments_nav_selected_Click);
+            this.appointments_nav_selected.MouseLeave += new System.EventHandler(this.appointments_select_MouseLeave_1);
             // 
             // products_nav_selected
             // 
@@ -305,7 +274,7 @@ namespace DBapplication
             this.profile_nav_selected.TabIndex = 39;
             this.profile_nav_selected.Text = "Profile";
             this.profile_nav_selected.Visible = false;
-            this.profile_nav_selected.Click += new System.EventHandler(this.profile_nav_selected_Click);
+            this.profile_nav_selected.Click += new System.EventHandler(this.profile_select_Click);
             this.profile_nav_selected.MouseLeave += new System.EventHandler(this.profile_nav_selected_MouseLeave);
             // 
             // quiz_nav_selected
@@ -324,97 +293,97 @@ namespace DBapplication
             // 
             // slot1_label
             // 
-            this.slot1_label.Font = new System.Drawing.Font("Abhaya Libre SemiBold", 20F, System.Drawing.FontStyle.Bold);
+            this.slot1_label.Font = new System.Drawing.Font("Abhaya Libre SemiBold", 16F, System.Drawing.FontStyle.Bold);
             this.slot1_label.Location = new System.Drawing.Point(271, 287);
             this.slot1_label.Name = "slot1_label";
-            this.slot1_label.Size = new System.Drawing.Size(140, 32);
+            this.slot1_label.Size = new System.Drawing.Size(140, 58);
             this.slot1_label.TabIndex = 50;
             this.slot1_label.Text = "label1";
-            this.slot1_label.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.slot1_label.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.slot1_label.Visible = false;
             this.slot1_label.Click += new System.EventHandler(this.slot1_label_Click);
             // 
             // slot2_label
             // 
-            this.slot2_label.Font = new System.Drawing.Font("Abhaya Libre SemiBold", 20F, System.Drawing.FontStyle.Bold);
+            this.slot2_label.Font = new System.Drawing.Font("Abhaya Libre SemiBold", 16F, System.Drawing.FontStyle.Bold);
             this.slot2_label.Location = new System.Drawing.Point(452, 287);
             this.slot2_label.Name = "slot2_label";
-            this.slot2_label.Size = new System.Drawing.Size(142, 32);
+            this.slot2_label.Size = new System.Drawing.Size(142, 58);
             this.slot2_label.TabIndex = 51;
             this.slot2_label.Text = "label2";
-            this.slot2_label.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.slot2_label.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.slot2_label.Visible = false;
             this.slot2_label.Click += new System.EventHandler(this.slot2_label_Click);
             // 
             // slot3_label
             // 
-            this.slot3_label.Font = new System.Drawing.Font("Abhaya Libre SemiBold", 20F, System.Drawing.FontStyle.Bold);
+            this.slot3_label.Font = new System.Drawing.Font("Abhaya Libre SemiBold", 16F, System.Drawing.FontStyle.Bold);
             this.slot3_label.Location = new System.Drawing.Point(633, 287);
             this.slot3_label.Name = "slot3_label";
-            this.slot3_label.Size = new System.Drawing.Size(143, 32);
+            this.slot3_label.Size = new System.Drawing.Size(143, 58);
             this.slot3_label.TabIndex = 52;
             this.slot3_label.Text = "label3";
-            this.slot3_label.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.slot3_label.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.slot3_label.Visible = false;
             this.slot3_label.Click += new System.EventHandler(this.slot3_label_Click);
             // 
             // slot4_label
             // 
-            this.slot4_label.Font = new System.Drawing.Font("Abhaya Libre SemiBold", 20F, System.Drawing.FontStyle.Bold);
+            this.slot4_label.Font = new System.Drawing.Font("Abhaya Libre SemiBold", 16F, System.Drawing.FontStyle.Bold);
             this.slot4_label.Location = new System.Drawing.Point(816, 287);
             this.slot4_label.Name = "slot4_label";
-            this.slot4_label.Size = new System.Drawing.Size(142, 32);
+            this.slot4_label.Size = new System.Drawing.Size(142, 58);
             this.slot4_label.TabIndex = 53;
             this.slot4_label.Text = "label4";
-            this.slot4_label.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.slot4_label.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.slot4_label.Visible = false;
             this.slot4_label.Click += new System.EventHandler(this.slot4_label_Click);
             // 
             // slot8_label
             // 
-            this.slot8_label.Font = new System.Drawing.Font("Abhaya Libre SemiBold", 20F, System.Drawing.FontStyle.Bold);
-            this.slot8_label.Location = new System.Drawing.Point(816, 484);
+            this.slot8_label.Font = new System.Drawing.Font("Abhaya Libre SemiBold", 16F, System.Drawing.FontStyle.Bold);
+            this.slot8_label.Location = new System.Drawing.Point(816, 481);
             this.slot8_label.Name = "slot8_label";
-            this.slot8_label.Size = new System.Drawing.Size(142, 32);
+            this.slot8_label.Size = new System.Drawing.Size(142, 58);
             this.slot8_label.TabIndex = 57;
             this.slot8_label.Text = "label5";
-            this.slot8_label.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.slot8_label.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.slot8_label.Visible = false;
             this.slot8_label.Click += new System.EventHandler(this.slot8_label_Click);
             // 
             // slot7_label
             // 
-            this.slot7_label.Font = new System.Drawing.Font("Abhaya Libre SemiBold", 20F, System.Drawing.FontStyle.Bold);
-            this.slot7_label.Location = new System.Drawing.Point(633, 484);
+            this.slot7_label.Font = new System.Drawing.Font("Abhaya Libre SemiBold", 16F, System.Drawing.FontStyle.Bold);
+            this.slot7_label.Location = new System.Drawing.Point(633, 481);
             this.slot7_label.Name = "slot7_label";
-            this.slot7_label.Size = new System.Drawing.Size(143, 32);
+            this.slot7_label.Size = new System.Drawing.Size(143, 58);
             this.slot7_label.TabIndex = 56;
             this.slot7_label.Text = "label6";
-            this.slot7_label.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.slot7_label.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.slot7_label.Visible = false;
             this.slot7_label.Click += new System.EventHandler(this.slot7_label_Click);
             // 
             // slot6_label
             // 
-            this.slot6_label.Font = new System.Drawing.Font("Abhaya Libre SemiBold", 20F, System.Drawing.FontStyle.Bold);
-            this.slot6_label.Location = new System.Drawing.Point(452, 484);
+            this.slot6_label.Font = new System.Drawing.Font("Abhaya Libre SemiBold", 16F, System.Drawing.FontStyle.Bold);
+            this.slot6_label.Location = new System.Drawing.Point(452, 481);
             this.slot6_label.Name = "slot6_label";
-            this.slot6_label.Size = new System.Drawing.Size(141, 32);
+            this.slot6_label.Size = new System.Drawing.Size(141, 58);
             this.slot6_label.TabIndex = 55;
             this.slot6_label.Text = "label7";
-            this.slot6_label.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.slot6_label.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.slot6_label.Visible = false;
             this.slot6_label.Click += new System.EventHandler(this.slot6_label_Click);
             // 
             // slot5_label
             // 
-            this.slot5_label.Font = new System.Drawing.Font("Abhaya Libre SemiBold", 20F, System.Drawing.FontStyle.Bold);
-            this.slot5_label.Location = new System.Drawing.Point(271, 484);
+            this.slot5_label.Font = new System.Drawing.Font("Abhaya Libre SemiBold", 16F, System.Drawing.FontStyle.Bold);
+            this.slot5_label.Location = new System.Drawing.Point(271, 481);
             this.slot5_label.Name = "slot5_label";
-            this.slot5_label.Size = new System.Drawing.Size(143, 32);
+            this.slot5_label.Size = new System.Drawing.Size(143, 58);
             this.slot5_label.TabIndex = 54;
             this.slot5_label.Text = "label8";
-            this.slot5_label.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.slot5_label.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.slot5_label.Visible = false;
             this.slot5_label.Click += new System.EventHandler(this.slot5_label_Click);
             // 
@@ -543,6 +512,9 @@ namespace DBapplication
             this.appointments_select.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.appointments_select.TabIndex = 33;
             this.appointments_select.TabStop = false;
+            this.appointments_select.Visible = false;
+            this.appointments_select.Click += new System.EventHandler(this.appointments_nav_selected_Click);
+            this.appointments_select.MouseLeave += new System.EventHandler(this.appointments_select_MouseLeave_1);
             // 
             // products_select
             // 
@@ -582,7 +554,7 @@ namespace DBapplication
             this.profile_select.TabIndex = 32;
             this.profile_select.TabStop = false;
             this.profile_select.Visible = false;
-            this.profile_select.Click += new System.EventHandler(this.profile_nav_selected_Click);
+            this.profile_select.Click += new System.EventHandler(this.profile_select_Click);
             this.profile_select.MouseLeave += new System.EventHandler(this.profile_nav_selected_MouseLeave);
             // 
             // searchbar
@@ -683,26 +655,12 @@ namespace DBapplication
             this.pictureBox1.TabIndex = 41;
             this.pictureBox1.TabStop = false;
             // 
-            // center_icon
-            // 
-            this.center_icon.Image = global::DBapplication.Properties.Resources.Mediamodifier_Design_Template;
-            this.center_icon.Location = new System.Drawing.Point(810, 57);
-            this.center_icon.Name = "center_icon";
-            this.center_icon.Size = new System.Drawing.Size(50, 50);
-            this.center_icon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.center_icon.TabIndex = 76;
-            this.center_icon.TabStop = false;
-            this.center_icon.Click += new System.EventHandler(this.center_icon_Click);
-            this.center_icon.MouseLeave += new System.EventHandler(this.center_icon_MouseLeave);
-            this.center_icon.MouseHover += new System.EventHandler(this.center_icon_MouseHover);
-            // 
-            // Vets
+            // Centers
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(205)))), ((int)(((byte)(237)))));
             this.ClientSize = new System.Drawing.Size(1008, 534);
-            this.Controls.Add(this.center_icon);
             this.Controls.Add(this.close);
             this.Controls.Add(this.slot8_label);
             this.Controls.Add(this.slot7_label);
@@ -733,8 +691,7 @@ namespace DBapplication
             this.Controls.Add(this.search_text);
             this.Controls.Add(this.searchbar);
             this.Controls.Add(this.searchicon);
-            this.Controls.Add(this.center_filter);
-            this.Controls.Add(this.speciality_filter);
+            this.Controls.Add(this.city_filter);
             this.Controls.Add(this.mypet);
             this.Controls.Add(this.pets_nav_selected);
             this.Controls.Add(this.pets_select);
@@ -746,13 +703,12 @@ namespace DBapplication
             this.Controls.Add(this.NavBar);
             this.Controls.Add(this.PurrfectMatch);
             this.Controls.Add(this.hamtamro);
-            this.Controls.Add(this.center_list);
-            this.Controls.Add(this.speciality_list);
+            this.Controls.Add(this.city_list);
             this.Controls.Add(this.filter);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "Vets";
+            this.Name = "Centers";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Vets";
+            this.Text = "Centers";
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.DraggableForm_MouseDown);
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.DraggableForm_MouseMove);
             this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.DraggableForm_MouseUp);
@@ -780,7 +736,6 @@ namespace DBapplication
             ((System.ComponentModel.ISupportInitialize)(this.filter)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nola)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.center_icon)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -800,13 +755,11 @@ namespace DBapplication
         private System.Windows.Forms.Label pets_nav_selected;
         private System.Windows.Forms.PictureBox mypet;
         private System.Windows.Forms.PictureBox filter;
-        private System.Windows.Forms.Label speciality_filter;
-        private System.Windows.Forms.Label center_filter;
+        private System.Windows.Forms.Label city_filter;
         private System.Windows.Forms.TextBox search_text;
         private System.Windows.Forms.PictureBox searchicon;
         private System.Windows.Forms.PictureBox searchbar;
-        private System.Windows.Forms.CheckedListBox center_list;
-        private System.Windows.Forms.CheckedListBox speciality_list;
+        private System.Windows.Forms.CheckedListBox city_list;
         private System.Windows.Forms.Label appointments_nav_selected;
         private System.Windows.Forms.PictureBox appointments_select;
         private System.Windows.Forms.Label products_nav_selected;
@@ -836,6 +789,5 @@ namespace DBapplication
         private System.Windows.Forms.Label slot6_label;
         private System.Windows.Forms.Label slot5_label;
         private PictureBox close;
-        private PictureBox center_icon;
     }
 }

@@ -17,7 +17,7 @@ namespace DBapplication
         int toggle = 0;
         int page = 0;
         List<string> speciality_filter_selected = new List<string>();
-        List<string> center_filter_selected = new List<string>();
+        List<int> center_filter_selected = new List<int>();
         List<int> rating_filter_selected = new List<int>();
         List<int> id_list = new List<int>();
 
@@ -33,6 +33,7 @@ namespace DBapplication
             InitializeComponent();
             controllerObj = new Controller();
             speciality_list.Items.AddRange(controllerObj.SpecialitiesNames());
+            center_list.Items.AddRange(controllerObj.CenterNames());
             reset_filter();
             insert_slots();
         }
@@ -93,10 +94,6 @@ namespace DBapplication
             {
                 center_list.SetItemChecked(i, false);
             }
-            for (int i = 0; i < age_list.Items.Count; i++)
-            {
-                age_list.SetItemChecked(i, false);
-            }
             speciality_filter_selected.Clear();
             center_filter_selected.Clear();
             rating_filter_selected.Clear();
@@ -104,19 +101,16 @@ namespace DBapplication
             insert_slots();
             speciality_list.Visible = false;
             center_list.Visible = false;
-            age_list.Visible = false;
             speciality_filter.Visible = true;
-            rating_filter.Visible = true;
             center_filter.Visible = true;
 
         }
 
-        private void types_filter_Click(object sender, EventArgs e)
+        private void speciality_filter_Click(object sender, EventArgs e)
         {
             if (toggle == 0)
             {
                 center_filter.Visible = false;
-                rating_filter.Visible = false;
                 speciality_list.Visible = true;
                 toggle = 1;
             }
@@ -130,22 +124,18 @@ namespace DBapplication
 
         private void reset_filter()
         {
-            rating_filter.Location = new System.Drawing.Point(43, 266);
             center_filter.Location = new System.Drawing.Point(43, 231);
             speciality_filter.Location = new System.Drawing.Point(43, 196);
             speciality_list.Visible = false;
             center_list.Visible = false;
-            age_list.Visible = false;
             speciality_filter.Visible = true;
             center_filter.Visible = true;
-            rating_filter.Visible = true;
         }
 
-        private void gender_filter_Click(object sender, EventArgs e)
+        private void center_filter_Click(object sender, EventArgs e)
         {
             if (toggle == 0)
             {
-                rating_filter.Visible = false;
                 center_list.Visible = true;
                 toggle = 1;
             }
@@ -156,11 +146,10 @@ namespace DBapplication
             }
         }
 
-        private void age_filter_Click(object sender, EventArgs e)
+        private void rating_filter_Click(object sender, EventArgs e)
         {
             if (toggle == 0)
             {
-                age_list.Visible = true;
                 toggle = 1;
             }
             else
@@ -228,12 +217,6 @@ namespace DBapplication
             profile_select.Visible = false;
         }
 
-        private void Pets_Click(object sender, EventArgs e)
-        {
-            reset_filter();
-            search_text.DeselectAll();
-        }
-
         private void filter_Click(object sender, EventArgs e)
         {
             search_text.DeselectAll();
@@ -242,7 +225,7 @@ namespace DBapplication
         private void insert_slots()
         {
             id_list.Clear();
-            int count = controllerObj.pets_number_filtered(speciality_filter_selected, center_filter_selected, rating_filter_selected);
+            int count = controllerObj.VetNumberFiltered(speciality_filter_selected, center_filter_selected);
             PictureBox[] slots = { slot1, slot2, slot3, slot4, slot5, slot6, slot7, slot8 };
             Label[] slot_labels = { slot1_label, slot2_label, slot3_label, slot4_label, slot5_label, slot6_label, slot7_label, slot8_label };
             if (count == 0)
@@ -266,9 +249,13 @@ namespace DBapplication
                     n = 8 + (8 * page);
                 }
                 string[] names = new string[count];
-                names = controllerObj.PetNamesFiltered(speciality_filter_selected, center_filter_selected, rating_filter_selected);
+                int[] t = controllerObj.VetIDsFiltered(speciality_filter_selected, center_filter_selected);
 
-                int[] t = controllerObj.PetIDsFiltered(speciality_filter_selected, center_filter_selected, rating_filter_selected);
+                for(int i=0; i<count; i++)
+                {
+                    names[i] = controllerObj.VetLastName(t[i]);
+                }
+
                 for(int i=0; i<t.Length; i++)
                 {
                     id_list.Add(t[i]);
@@ -288,9 +275,9 @@ namespace DBapplication
                 }
                 for (int i = 0; i < n; i++)
                 {
-                    slot_labels[y].Text = names[i + (8 * page)];
+                    slot_labels[y].Text = ("Dr. " + names[i + (8 * page)]);
                     slot_labels[y].Visible = true;
-                    slots[y].Image = global::DBapplication.Properties.Resources.Nola;
+                    slots[y].Image = global::DBapplication.Properties.Resources.Dr;
                     slots[y].Visible = true;
                     y++;
                 }
@@ -315,47 +302,7 @@ namespace DBapplication
             insert_slots();
         }
 
-        private void age_list_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            rating_filter_selected.Clear();
-            int y = 0;
-            int f1 = 0, f2 = 0, f3 = 0, f4 = 0, f5 = 0, f6 = 0, f7 = 0, f8 = 0;
-            for (int i = 0; i < age_list.Items.Count; i++)
-            {
-                
-                if (age_list.GetItemChecked(i))
-                {
-                    /*★
-                    ★★
-                    ★★★
-                    ★★★★
-                    ★★★★★*/
-                    if ((age_list.Items[i].ToString() == "★"))
-                    {
-                        rating_filter_selected.Add(1);
-                    }
-                    if (age_list.Items[i].ToString() == "★★")
-                    {
-                        rating_filter_selected.Add(2);
-                    }
-                    if (age_list.Items[i].ToString() == "★★★")
-                    {
-                        rating_filter_selected.Add(3);
-                    }
-                    if (age_list.Items[i].ToString() == "★★★★")
-                    {                        
-                        rating_filter_selected.Add(4);
-                    }
-                    if (age_list.Items[i].ToString() == "★★★★★")
-                    {
-                        rating_filter_selected.Add(5);
-                    }
 
-
-                }
-            }
-            insert_slots();
-        }
 
         private void gender_list_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -364,7 +311,7 @@ namespace DBapplication
             {
                 if (center_list.GetItemChecked(i))
                 {
-                    center_filter_selected.Add(center_list.Items[i].ToString());
+                    center_filter_selected.Add(controllerObj.GetCenterID(center_list.Items[i].ToString()));
                 }
             }
             insert_slots();
@@ -387,7 +334,7 @@ namespace DBapplication
         {
             id_list.Clear();
             string name = search_text.Text;
-            int count = controllerObj.PetNumberSearch(name);
+            int count = controllerObj.VetNumberSearch(name);
             PictureBox[] slots = { slot1, slot2, slot3, slot4, slot5, slot6, slot7, slot8 };
             Label[] slot_labels = { slot1_label, slot2_label, slot3_label, slot4_label, slot5_label, slot6_label, slot7_label, slot8_label };
             if (count == 0)
@@ -411,9 +358,13 @@ namespace DBapplication
                     n = 8 + (8 * page);
                 }
                 string[] names = new string[count];
-                names = controllerObj.PetNameSearch(name);
+                int[] t = controllerObj.VetIDsSearch(name);
 
-                int[] t = controllerObj.PetIDsSearch(name);
+                for (int i = 0; i < count; i++)
+                {
+                    names[i] = controllerObj.VetLastName(t[i]);
+                }
+
                 for (int i = 0; i < t.Length; i++)
                 {
                     id_list.Add(t[i]);
@@ -433,9 +384,9 @@ namespace DBapplication
                 }
                 for (int i = 0; i < n; i++)
                 {
-                    slot_labels[y].Text = names[i + (8 * page)];
+                    slot_labels[y].Text =("Dr. " + names[i + (8 * page)]);
                     slot_labels[y].Visible = true;
-                    slots[y].Image = global::DBapplication.Properties.Resources.Nola;
+                    slots[y].Image = global::DBapplication.Properties.Resources.Dr;
                     slots[y].Visible = true;
                     y++;
                 }
@@ -449,7 +400,7 @@ namespace DBapplication
 
         private void slot1_label_Click(object sender, EventArgs e)
         {
-            ViewPet p = new ViewPet(username, id_list[0] + page * 8);
+            ViewVet p = new ViewVet(username, id_list[0] + page * 8);
             this.Hide();
             p.ShowDialog();
             this.Close();
@@ -457,7 +408,7 @@ namespace DBapplication
 
         private void slot2_label_Click(object sender, EventArgs e)
         {
-            ViewPet p = new ViewPet(username, id_list[1]+page*8);
+            ViewVet p = new ViewVet(username, id_list[1]+page*8);
             this.Hide();
             p.ShowDialog();
             this.Close();
@@ -465,7 +416,7 @@ namespace DBapplication
 
         private void slot3_label_Click(object sender, EventArgs e)
         {
-            ViewPet p = new ViewPet(username, id_list[2] + page * 8);
+            ViewVet p = new ViewVet(username, id_list[2] + page * 8);
             this.Hide();
             p.ShowDialog();
             this.Close();
@@ -473,7 +424,7 @@ namespace DBapplication
 
         private void slot4_label_Click(object sender, EventArgs e)
         {
-            ViewPet p = new ViewPet(username, id_list[3] + page * 8);
+            ViewVet p = new ViewVet(username, id_list[3] + page * 8);
             this.Hide();
             p.ShowDialog();
             this.Close();
@@ -481,7 +432,7 @@ namespace DBapplication
 
         private void slot5_label_Click(object sender, EventArgs e)
         {
-            ViewPet p = new ViewPet(username, id_list[4] + page * 8);
+            ViewVet p = new ViewVet(username, id_list[4] + page * 8);
             this.Hide();
             p.ShowDialog();
             this.Close();
@@ -489,7 +440,7 @@ namespace DBapplication
 
         private void slot6_label_Click(object sender, EventArgs e)
         {
-            ViewPet p = new ViewPet(username, id_list[5] + page * 8);
+            ViewVet p = new ViewVet(username, id_list[5] + page * 8);
             this.Hide();
             p.ShowDialog();
             this.Close();
@@ -497,7 +448,7 @@ namespace DBapplication
 
         private void slot7_label_Click(object sender, EventArgs e)
         {
-            ViewPet p = new ViewPet(username, id_list[6] + page * 8);
+            ViewVet p = new ViewVet(username, id_list[6] + page * 8);
             this.Hide();
             p.ShowDialog();
             this.Close();
@@ -505,7 +456,7 @@ namespace DBapplication
 
         private void slot8_label_Click(object sender, EventArgs e)
         {
-            ViewPet p = new ViewPet(username, id_list[7] + page * 8);
+            ViewVet p = new ViewVet(username, id_list[7] + page * 8);
             this.Hide();
             p.ShowDialog();
             this.Close();
@@ -557,6 +508,32 @@ namespace DBapplication
         {
             pets_nav_selected.Visible = false;
             pets_select.Visible = false;
+        }
+
+        private void center_icon_MouseHover(object sender, EventArgs e)
+        {
+            center_icon.BorderStyle = BorderStyle.FixedSingle;
+        }
+
+        private void center_icon_MouseLeave(object sender, EventArgs e)
+        {
+            center_icon.BorderStyle = BorderStyle.None;
+        }
+
+        private void center_icon_Click(object sender, EventArgs e)
+        {
+            Centers c = new Centers(username);
+            this.Hide();
+            c.ShowDialog();
+            this.Close();
+        }
+
+        private void profile_nav_selected_Click(object sender, EventArgs e)
+        {
+            Profile c = new Profile(username);
+            this.Hide();
+            c.ShowDialog();
+            this.Close();
         }
     }
 }

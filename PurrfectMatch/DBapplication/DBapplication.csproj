@@ -157,6 +157,12 @@
       <DependentUpon>Vet.cs</DependentUpon>
 
     </Compile>
+    <Compile Include="Centers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Centers.Designer.cs">
+      <DependentUpon>Centers.cs</DependentUpon>
+    </Compile>
     <Compile Include="Vets.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -212,11 +218,32 @@
     <Compile Include="ViewAndEditPetManager.Designer.cs">
       <DependentUpon>ViewAndEditPetManager.cs</DependentUpon>
     </Compile>
+
+    <Compile Include="ViewCenter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ViewCenter.Designer.cs">
+      <DependentUpon>ViewCenter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Profile.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Profile.Designer.cs">
+      <DependentUpon>Profile.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewVet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ViewVet.Designer.cs">
+      <DependentUpon>ViewVet.cs</DependentUpon>
+      </Compile>
+
     <Compile Include="ViewAndEditProductManager.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ViewAndEditProductManager.Designer.cs">
       <DependentUpon>ViewAndEditProductManager.cs</DependentUpon>
+
     </Compile>
     <Compile Include="ViewProduct.cs">
       <SubType>Form</SubType>
@@ -257,6 +284,10 @@
     <EmbeddedResource Include="MyPetsList.resx">
       <DependentUpon>MyPetsList.cs</DependentUpon>
     </EmbeddedResource>
+
+    <EmbeddedResource Include="Centers.resx">
+      <DependentUpon>Centers.cs</DependentUpon>
+      </EmbeddedResource>
 
     <EmbeddedResource Include="ProductsViewManager.resx">
       <DependentUpon>ProductsViewManager.cs</DependentUpon>
@@ -300,8 +331,20 @@
     <EmbeddedResource Include="MyPet.resx">
       <DependentUpon>MyPet.cs</DependentUpon>
     </EmbeddedResource>
+
+    <EmbeddedResource Include="ViewCenter.resx">
+      <DependentUpon>ViewCenter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Profile.resx">
+      <DependentUpon>Profile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ViewVet.resx">
+      <DependentUpon>ViewVet.cs</DependentUpon>
+      </EmbeddedResource>
+
     <EmbeddedResource Include="ViewAndEditProductManager.resx">
       <DependentUpon>ViewAndEditProductManager.cs</DependentUpon>
+
     </EmbeddedResource>
     <EmbeddedResource Include="ViewProduct.resx">
       <DependentUpon>ViewProduct.cs</DependentUpon>
@@ -379,6 +422,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Mediamodifier-Design-Template.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Toy Mouse.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Dr.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
