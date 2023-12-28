@@ -79,6 +79,8 @@ namespace DBapplication
             this.add_button = new System.Windows.Forms.PictureBox();
             this.viewStats = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.viewstats_button = new System.Windows.Forms.Label();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.close)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.previous)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.next)).BeginInit();
@@ -103,6 +105,7 @@ namespace DBapplication
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.add_button)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.SuspendLayout();
             // 
             // PurrfectMatch
@@ -177,7 +180,7 @@ namespace DBapplication
             this.pets_nav_selected.TabIndex = 15;
             this.pets_nav_selected.Text = "Pets";
             this.pets_nav_selected.Visible = false;
-            this.pets_nav_selected.MouseLeave += new System.EventHandler(this.pets_select_MouseLeave);
+            this.pets_nav_selected.Click += new System.EventHandler(this.pets_select_Click_1);
             // 
             // types_filter
             // 
@@ -297,7 +300,6 @@ namespace DBapplication
             this.profile_nav_selected.TabIndex = 39;
             this.profile_nav_selected.Text = "Profile";
             this.profile_nav_selected.Visible = false;
-            this.profile_nav_selected.Click += new System.EventHandler(this.profile_nav_selected_Click);
             this.profile_nav_selected.MouseLeave += new System.EventHandler(this.profile_nav_selected_MouseLeave);
             // 
             // slot1_label
@@ -581,7 +583,7 @@ namespace DBapplication
             this.pets_select.TabIndex = 10;
             this.pets_select.TabStop = false;
             this.pets_select.Visible = false;
-            this.pets_select.MouseLeave += new System.EventHandler(this.pets_select_MouseLeave);
+            this.pets_select.Click += new System.EventHandler(this.pets_select_Click_1);
             // 
             // NavBar
             // 
@@ -669,7 +671,6 @@ namespace DBapplication
             this.viewStats.Size = new System.Drawing.Size(109, 20);
             this.viewStats.TabIndex = 79;
             this.viewStats.Text = "View Statistics";
-            this.viewStats.Click += new System.EventHandler(this.viewStats_Click);
             // 
             // pictureBox2
             // 
@@ -683,12 +684,39 @@ namespace DBapplication
             this.pictureBox2.TabIndex = 78;
             this.pictureBox2.TabStop = false;
             // 
+            // viewstats_button
+            // 
+            this.viewstats_button.AutoSize = true;
+            this.viewstats_button.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(118)))), ((int)(((byte)(129)))));
+            this.viewstats_button.Font = new System.Drawing.Font("Abhaya Libre", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.viewstats_button.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(246)))), ((int)(((byte)(239)))));
+            this.viewstats_button.Location = new System.Drawing.Point(58, 507);
+            this.viewstats_button.Name = "viewstats_button";
+            this.viewstats_button.Size = new System.Drawing.Size(88, 17);
+            this.viewstats_button.TabIndex = 79;
+            this.viewstats_button.Text = "View Statistics";
+            this.viewstats_button.Click += new System.EventHandler(this.pictureBox3_Click);
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(246)))), ((int)(((byte)(239)))));
+            this.pictureBox3.Image = global::DBapplication.Properties.Resources.button;
+            this.pictureBox3.Location = new System.Drawing.Point(28, 501);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(148, 28);
+            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox3.TabIndex = 78;
+            this.pictureBox3.TabStop = false;
+            this.pictureBox3.Click += new System.EventHandler(this.pictureBox3_Click);
+            // 
             // ProductsViewManager
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(205)))), ((int)(((byte)(237)))));
-            this.ClientSize = new System.Drawing.Size(1344, 657);
+            this.ClientSize = new System.Drawing.Size(1008, 534);
+            this.Controls.Add(this.viewstats_button);
+            this.Controls.Add(this.pictureBox3);
             this.Controls.Add(this.add_label);
             this.Controls.Add(this.add_button);
             this.Controls.Add(this.close);
@@ -765,6 +793,7 @@ namespace DBapplication
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.add_button)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -821,5 +850,7 @@ namespace DBapplication
         private PictureBox add_button;
         private Label viewStats;
         private PictureBox pictureBox2;
+        private Label viewstats_button;
+        private PictureBox pictureBox3;
     }
 }

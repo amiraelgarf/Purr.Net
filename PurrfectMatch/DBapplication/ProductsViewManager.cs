@@ -555,5 +555,21 @@ namespace DBapplication
             AddProductManager ap = new AddProductManager(username);
             ap.Show();
         }
+
+        private void pets_select_Click_1(object sender, EventArgs e)
+        {
+            PetsViewManager p = new PetsViewManager(username);
+            this.Hide();
+            p.ShowDialog();
+            this.Close();
+        }
+
+        private void pictureBox3_Click(object sender, EventArgs e)
+        {
+            ManagerStatistics p = new ManagerStatistics(username);
+            this.Hide();
+            p.ShowDialog();
+            this.Close();
+        }
     }
 }

@@ -278,11 +278,12 @@
     <EmbeddedResource Include="MyPetsList.resx">
       <DependentUpon>MyPetsList.cs</DependentUpon>
     </EmbeddedResource>
-
     <EmbeddedResource Include="Centers.resx">
       <DependentUpon>Centers.cs</DependentUpon>
-      </EmbeddedResource>
-
+    </EmbeddedResource>
+    <EmbeddedResource Include="PetsViewManager.resx">
+      <DependentUpon>PetsViewManager.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ProductsViewManager.resx">
       <DependentUpon>ProductsViewManager.cs</DependentUpon>
     </EmbeddedResource>

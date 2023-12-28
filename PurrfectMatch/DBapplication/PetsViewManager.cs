@@ -382,5 +382,14 @@ namespace DBapplication
             a.ShowDialog();
             this.Close();
         }
+
+        private void products_select_Click(object sender, EventArgs e)
+        {
+            ProductsViewManager p = new ProductsViewManager(username);
+            this.Hide();
+            p.ShowDialog();
+            this.Close();
+
+        }
     }
 }
