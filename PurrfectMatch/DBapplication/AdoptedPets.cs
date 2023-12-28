@@ -23,20 +23,10 @@ namespace DBapplication
 
         private void percentage_Click(object sender, EventArgs e)
         {
-
-
-
-            // Call the function to get the adoption percentage data
             Dictionary<string, double> adoptionData = controllerObj.GetAdoptionPercentageByType();
-
-            // Clear previous data from the chart
             chart1.Series.Clear();
             chart1.Titles.Clear();
-
-            // Add a title to the chart
             chart1.Titles.Add("Adoption Percentage");
-
-            // Create a series for the pie chart
             var series = new System.Windows.Forms.DataVisualization.Charting.Series
             {
                 Name = "AdoptionPercentage",
@@ -46,14 +36,9 @@ namespace DBapplication
 
             foreach (var kvp in adoptionData)
             {
-                // Add data points to the series
                 series.Points.AddXY(kvp.Key, kvp.Value);
             }
-
-            // Add the series to the chart
             chart1.Series.Add(series);
-
-
         }
     }
 }

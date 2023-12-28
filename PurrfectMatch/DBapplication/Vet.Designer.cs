@@ -32,24 +32,27 @@
             this.viewappsched = new System.Windows.Forms.Button();
             this.viewratings = new System.Windows.Forms.Button();
             this.ViewApp_ViewRatings = new System.Windows.Forms.DataGridView();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.ViewApp_ViewRatings)).BeginInit();
             this.SuspendLayout();
             // 
             // editdaysandtime
             // 
-            this.editdaysandtime.Location = new System.Drawing.Point(226, 367);
+            this.editdaysandtime.Location = new System.Drawing.Point(178, 304);
             this.editdaysandtime.Name = "editdaysandtime";
-            this.editdaysandtime.Size = new System.Drawing.Size(347, 24);
+            this.editdaysandtime.Size = new System.Drawing.Size(183, 24);
             this.editdaysandtime.TabIndex = 0;
-            this.editdaysandtime.Text = "Edit available days and time ";
+            this.editdaysandtime.Text = "Delete available date";
             this.editdaysandtime.UseVisualStyleBackColor = true;
             this.editdaysandtime.Click += new System.EventHandler(this.editdaysandtime_Click);
             // 
             // viewappsched
             // 
-            this.viewappsched.Location = new System.Drawing.Point(431, 253);
+            this.viewappsched.Location = new System.Drawing.Point(429, 236);
             this.viewappsched.Name = "viewappsched";
-            this.viewappsched.Size = new System.Drawing.Size(347, 24);
+            this.viewappsched.Size = new System.Drawing.Size(240, 24);
             this.viewappsched.TabIndex = 1;
             this.viewappsched.Text = "View appointment scedule ";
             this.viewappsched.UseVisualStyleBackColor = true;
@@ -57,9 +60,9 @@
             // 
             // viewratings
             // 
-            this.viewratings.Location = new System.Drawing.Point(28, 253);
+            this.viewratings.Location = new System.Drawing.Point(178, 235);
             this.viewratings.Name = "viewratings";
-            this.viewratings.Size = new System.Drawing.Size(347, 25);
+            this.viewratings.Size = new System.Drawing.Size(183, 25);
             this.viewratings.TabIndex = 2;
             this.viewratings.Text = "View ratings";
             this.viewratings.UseVisualStyleBackColor = true;
@@ -74,12 +77,42 @@
             this.ViewApp_ViewRatings.RowTemplate.Height = 24;
             this.ViewApp_ViewRatings.Size = new System.Drawing.Size(560, 166);
             this.ViewApp_ViewRatings.TabIndex = 3;
+            this.ViewApp_ViewRatings.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ViewApp_ViewRatings_CellContentClick);
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(431, 304);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(240, 24);
+            this.comboBox1.TabIndex = 4;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(178, 375);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(183, 24);
+            this.button1.TabIndex = 5;
+            this.button1.Text = "Insert available date";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(431, 377);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(240, 22);
+            this.textBox1.TabIndex = 6;
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // Vet
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.ViewApp_ViewRatings);
             this.Controls.Add(this.viewratings);
             this.Controls.Add(this.viewappsched);
@@ -88,6 +121,7 @@
             this.Text = "Vet";
             ((System.ComponentModel.ISupportInitialize)(this.ViewApp_ViewRatings)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -97,5 +131,8 @@
         private System.Windows.Forms.Button viewappsched;
         private System.Windows.Forms.Button viewratings;
         private System.Windows.Forms.DataGridView ViewApp_ViewRatings;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }
