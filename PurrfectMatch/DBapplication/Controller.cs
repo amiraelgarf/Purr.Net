@@ -545,7 +545,7 @@ namespace DBapplication
 
         public string VetLastName(int id)
         {
-            string q = "SELECT LastName FROM User WHERE UserID = " + id + ";";
+            string q = "SELECT LastName FROM [User] WHERE UserID = " + id + ";";
 
             return Convert.ToString(dbMan.ExecuteScalar(q));
         }
@@ -557,6 +557,43 @@ namespace DBapplication
             return dbMan.ExecuteReader(query);
         }
 
+        public DataTable SelectCustomer(int x)
+        {
+            string query = "SELECT * FROM Customer WHERE CustomerID = " + x + ";";
+            return dbMan.ExecuteReader(query);
+        }
+
+        public DataTable SelectUser(int x)
+        {
+            string query = "SELECT * FROM [User] WHERE UserID = " + x + ";";
+            return dbMan.ExecuteReader(query);
+        }
+
+        public DataTable GetAuth(string x)
+        {
+            string query = "SELECT * FROM Authentication WHERE username = '" + x + "';";
+            return dbMan.ExecuteReader(query);
+        }
+
+        public int UpdatePassword(string user, string pass)
+        {
+            string q = "UPDATE Authentication SET Password = '" + pass + "' WHERE Username = '" + user + "';";
+            return dbMan.ExecuteNonQuery(q);
+        }
+
+        public int UpdateDateOfBirth(int user, DateTime date)
+        {
+            string q = "UPDATE [User] SET DateOfBirth = '" + date.ToString("yyyy-MM-dd") + "' WHERE UserID = " + user + ";";
+            return dbMan.ExecuteNonQuery(q);
+        }
+
+        public int UpdateName(int user, string fname, string lname)
+        {
+            string q = "UPDATE [User] SET FirstName = '" + fname + "', LastName = '" + lname + "' WHERE UserID = " + user + ";";
+            return dbMan.ExecuteNonQuery(q);
+        }
+
+
         public DataTable SelectProduct(int x)
         {
             string query = "SELECT * FROM Product WHERE ProductID = " + x + ";";
@@ -567,6 +604,12 @@ namespace DBapplication
         {
             string query = "SELECT * FROM Center WHERE CenterID = " + x + ";";
             return dbMan.ExecuteReader(query);
+        }
+
+        public int GetCenterPetsCount(int x)
+        {
+            string q = "SELECT COUNT(*) FROM Pet WHERE CenterID = " + x + ";";
+            return Convert.ToInt32(dbMan.ExecuteScalar(q));
         }
 
         public DataTable SelectVet(int x)
@@ -615,9 +658,29 @@ namespace DBapplication
             string query = "SELECT Speciality FROM Vet;";
             DataTable test = dbMan.ExecuteReader(query);
 
-            var stringArr = test.AsEnumerable().Select(row => row.Field<string>("TypeName")).ToArray();
+            var stringArr = test.AsEnumerable().Select(row => row.Field<string>("Speciality")).ToArray();
             return stringArr;
         }
+
+        public string[] CityNames()
+        {
+            string query = "SELECT City FROM Center;";
+            DataTable test = dbMan.ExecuteReader(query);
+
+            var stringArr = test.AsEnumerable().Select(row => row.Field<string>("City")).ToArray();
+            return stringArr;
+        }
+
+
+        public string[] CenterNames()
+        {
+            string query = "SELECT * FROM Center;";
+            DataTable test = dbMan.ExecuteReader(query);
+
+            var stringArr = test.AsEnumerable().Select(row => row.Field<string>("CenterName")).ToArray();
+            return stringArr;
+        }
+
 
         public string[] PetNameSearch(string x)
         {
@@ -629,6 +692,47 @@ namespace DBapplication
             var stringArr = test.AsEnumerable().Select(row => row.Field<string>("Name")).ToArray();
             return stringArr;
         }
+
+
+        public int[] VetIDsSearch(string x)
+        {
+            string q = "SELECT u.UserID FROM [User] u, Authentication a, Vet v WHERE u.LastName LIKE '" + x + "%' AND v.CenterID IS NOT NULL AND a.Type = 'Vet' AND a.username = v.username AND v.VetID = u.UserID;";
+
+            DataTable test = dbMan.ExecuteReader(q);
+
+
+            int[] intArr = test.AsEnumerable().Select(row => row.Field<int>("UserID")).ToArray();
+            return intArr;
+        }
+
+        public int[] CenterIDsSearch(string x)
+        {
+            string q = "SELECT CenterID FROM Center WHERE CenterName LIKE '" + x + "%';";
+
+            DataTable test = dbMan.ExecuteReader(q);
+
+
+            int[] intArr = test.AsEnumerable().Select(row => row.Field<int>("CenterID")).ToArray();
+            return intArr;
+        }
+
+        public int VetNumberSearch(string x)
+        {
+            string q = "SELECT COUNT(*) FROM [User] u, Authentication a, Vet v WHERE u.LastName LIKE '" + x + "%' AND v.CenterID IS NOT NULL AND a.Type = 'Vet' AND a.username = v.username AND v.VetID = u.UserID;";
+
+
+            int y = Convert.ToInt32(dbMan.ExecuteScalar(q));
+            return y;
+        }
+        public int CenterNumberSearch(string x)
+        {
+            string q = "SELECT COUNT(*) FROM Center WHERE CenterName LIKE '" + x + "%';";
+
+            int y = Convert.ToInt32(dbMan.ExecuteScalar(q));
+            return y;
+        }
+
+
         public int[] PetIDsSearch(string x)
         {
             string q = "SELECT PetID FROM Pet WHERE Name LIKE '" + x + "%' AND CenterID IS NOT NULL;";
@@ -665,6 +769,175 @@ namespace DBapplication
 
             int y = Convert.ToInt16(dbMan.ExecuteScalar(q));
             return y;
+        }
+
+        public int VetNumberFiltered(List<string> spec, List<int> center)
+        {
+            string query = "SELECT COUNT(*) FROM Vet v";
+            if (center.Count != 0)
+            {
+                query += ", Center c";
+            }
+            query += " WHERE ";
+
+            if (spec.Count != 0)
+            {
+                query += "(";
+            }
+            int x = 0;
+            while (x < spec.Count)
+            {
+
+                query += ("v.Speciality = '" + spec[x] + "'");
+                if (x < (spec.Count - 1))
+                {
+                    query += "OR ";
+                }
+                x++;
+            }
+
+            x = 0;
+            while (x < center.Count)
+            {
+                if (spec.Count != 0 && x == 0)
+                {
+                    query += ") AND (";
+                }
+                query += ("(c.CenterID = '" + center[x] + "' AND c.CenterID = v.CenterID) ");
+                if (x < (center.Count - 1))
+                {
+                    query += "OR ";
+                }
+                x++;
+            }
+
+            if (spec.Count != 0)
+            {
+                query += ")";
+            }
+
+            if (spec.Count > 0 || center.Count > 0)
+            {
+                query += " AND ";
+            }
+            query += " v.CenterID IS NOT NULL;";
+
+            int y = Convert.ToInt16(dbMan.ExecuteScalar(query));
+            return y;
+        }
+
+        public int CenterNumberFiltered(List<string> city)
+        {
+            string query = "SELECT COUNT(*) FROM Center ";
+
+
+            int x = 0;
+            while (x < city.Count)
+            {
+                if (x == 0)
+                {
+                    query += "WHERE ";
+                }
+
+                query += ("City = '" + city[x] + "'");
+                if (x < (city.Count - 1))
+                {
+                    query += "OR ";
+                }
+                x++;
+            }
+
+            query += ";";
+
+            int y = Convert.ToInt16(dbMan.ExecuteScalar(query));
+            return y;
+        }
+
+        public int[] CenterIDsFiltered(List<string> city)
+        {
+            string query = "SELECT CenterID FROM Center ";
+
+
+            int x = 0;
+            while (x < city.Count)
+            {
+                if (x == 0)
+                {
+                    query += "WHERE ";
+                }
+                query += ("City = '" + city[x] + "'");
+                if (x < (city.Count - 1))
+                {
+                    query += "OR ";
+                }
+                x++;
+            }
+
+            query += ";";
+
+            DataTable test = dbMan.ExecuteReader(query);
+
+
+            int[] intArr = test.AsEnumerable().Select(row => row.Field<int>("CenterID")).ToArray();
+            return intArr;
+        }
+
+        public int[] VetIDsFiltered(List<string> spec, List<int> center)
+        {
+            string query = "SELECT v.VetID FROM Vet v";
+            if (center.Count != 0)
+            {
+                query += ", Center c";
+            }
+            query += " WHERE ";
+
+            if (spec.Count != 0)
+            {
+                query += "(";
+            }
+            int x = 0;
+            while (x < spec.Count)
+            {
+
+                query += ("v.Speciality = '" + spec[x] + "'");
+                if (x < (spec.Count - 1))
+                {
+                    query += "OR ";
+                }
+                x++;
+            }
+
+            x = 0;
+            while (x < center.Count)
+            {
+                if (spec.Count != 0 && x == 0)
+                {
+                    query += ") AND (";
+                }
+                query += ("(c.CenterID = '" + center[x] + "' AND c.CenterID = v.CenterID) ");
+                if (x < (center.Count - 1))
+                {
+                    query += "OR ";
+                }
+                x++;
+            }
+
+            if (spec.Count != 0)
+            {
+                query += ")";
+            }
+
+            if (spec.Count > 0 || center.Count > 0)
+            {
+                query += " AND ";
+            }
+            query += " v.CenterID IS NOT NULL;";
+
+            DataTable test = dbMan.ExecuteReader(query);
+
+
+            int[] intArr = test.AsEnumerable().Select(row => row.Field<int>("VetID")).ToArray();
+            return intArr;
         }
 
 
@@ -1059,6 +1332,54 @@ namespace DBapplication
             return dbMan.ExecuteNonQuery(q);
         }
 
+
+        public int DeleteUser(int id)
+        {
+            string q = "DELETE FROM [User] WHERE UserID = " + id + ";";
+            return dbMan.ExecuteNonQuery(q);
+        }
+        public int DeleteAuth(string name)
+        {
+            string q = "DELETE FROM Authentication WHERE Username = " + name + ";";
+            return dbMan.ExecuteNonQuery(q);
+        }
+
+        public int VetAverageRating(int id)
+        {
+            string q = "SELECT AVG(Score) FROM VetRating WHERE VetID = " + id + ";";
+            int x = Convert.ToInt32(dbMan.ExecuteScalar(q));
+            return x;
+        }
+
+
+        public DataTable GetVetData(int id)
+        {
+            try
+            {
+                string storedProcedureName = "GetVetInformation";
+
+                // Use parameters
+                var parameters = new Dictionary<string, object>
+        {
+            { "@VetID", id }
+        };
+
+                // Execute procedure
+                DataTable result = dbMan.ExecuteStoredProcedureDataTable(storedProcedureName, parameters);
+                return result;
+
+
+            }
+            catch (Exception ex)
+            {
+                // Handle exceptions 
+                MessageBox.Show("Error deleting center. Please try again later.");
+                return null;
+            }
+        }
+
+
+
         public int[] PetBestForIDs(string x)
         {
             string q = "SELECT PetID FROM Pet WHERE BestFor = '" + x + "';";
@@ -1078,6 +1399,7 @@ namespace DBapplication
             int y = Convert.ToInt16(dbMan.ExecuteScalar(q));
             return y;
         }
+
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         //TAWFIK DONE///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1113,7 +1435,7 @@ namespace DBapplication
         public DataTable insertverylow(int customerID, string pers)
         {
             string query = "UPDATE Customer " +
-                        "SET " + pers + "= 15 " +
+                        "SET " + pers + " = 15 " +
                         "WHERE CustomerID = " + customerID + ";";
             return dbMan.ExecuteReader(query);
         }
@@ -1121,18 +1443,18 @@ namespace DBapplication
         public DataTable insertlow(int customerID, string pers)
         {
             string query = "UPDATE Customer " +
-                        "SET " + pers + "= 35 " +
+                        "SET " + pers + " = 35 " +
                         "WHERE CustomerID = " + customerID + ";";
             return dbMan.ExecuteReader(query);
         }
 
-        public DataTable insertmedium(int customerID, string pers)
-        {
-            string query = "UPDATE Customer " +
-                        "SET " + pers + "= 50 " +
-                        "WHERE CustomerID = " + customerID + ";";
-            return dbMan.ExecuteReader(query);
-        }
+      public DataTable insertmedium(int customerID, string pers)
+{
+    string query = "UPDATE Customer " +
+                "SET " + pers + "= 50 " +
+                "WHERE CustomerID = " + customerID + ";";
+    return dbMan.ExecuteReader(query);
+}
 
         public DataTable inserthigh(int customerID, string pers)
         {
@@ -1455,6 +1777,8 @@ namespace DBapplication
                             "Values (" + vetid + ",'" + date + "');";
             return dbMan.ExecuteNonQuery(query);
         }
+
+
 
     }
     

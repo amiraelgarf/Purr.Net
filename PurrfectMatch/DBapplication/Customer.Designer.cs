@@ -150,6 +150,7 @@ namespace DBapplication
             this.profile_nav_selected.TabIndex = 19;
             this.profile_nav_selected.Text = "Profile";
             this.profile_nav_selected.Visible = false;
+            this.profile_nav_selected.Click += new System.EventHandler(this.profile_nav_selected_Click);
             this.profile_nav_selected.MouseLeave += new System.EventHandler(this.profile_nav_selected_MouseLeave);
             // 
             // appointments_nav_selected
@@ -164,6 +165,7 @@ namespace DBapplication
             this.appointments_nav_selected.TabIndex = 18;
             this.appointments_nav_selected.Text = "Appointments";
             this.appointments_nav_selected.Visible = false;
+            this.appointments_nav_selected.Click += new System.EventHandler(this.appointments_nav_selected_Click);
             this.appointments_nav_selected.MouseLeave += new System.EventHandler(this.appointments_select_MouseLeave);
             // 
             // quiz_nav_selected
@@ -280,6 +282,7 @@ namespace DBapplication
             this.appointments_select.TabIndex = 12;
             this.appointments_select.TabStop = false;
             this.appointments_select.Visible = false;
+            this.appointments_select.Click += new System.EventHandler(this.appointments_nav_selected_Click);
             this.appointments_select.MouseLeave += new System.EventHandler(this.appointments_select_MouseLeave);
             // 
             // products_select
@@ -334,6 +337,7 @@ namespace DBapplication
             this.profile_select.TabIndex = 11;
             this.profile_select.TabStop = false;
             this.profile_select.Visible = false;
+            this.profile_select.Click += new System.EventHandler(this.profile_nav_selected_Click);
             this.profile_select.MouseLeave += new System.EventHandler(this.profile_nav_selected_MouseLeave);
             // 
             // NavBar
@@ -345,7 +349,6 @@ namespace DBapplication
             this.NavBar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.NavBar.TabIndex = 3;
             this.NavBar.TabStop = false;
-            this.NavBar.MouseHover += new System.EventHandler(this.profile_nav_MouseHover);
             // 
             // hamtamro
             // 

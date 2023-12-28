@@ -103,6 +103,16 @@ namespace DBapplication.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Dr {
+            get {
+                object obj = ResourceManager.GetObject("Dr", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Filter {
             get {
                 object obj = ResourceManager.GetObject("Filter", resourceCulture);
@@ -246,6 +256,16 @@ namespace DBapplication.Properties {
         internal static System.Drawing.Bitmap Select_S {
             get {
                 object obj = ResourceManager.GetObject("Select_S", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Toy_Mouse {
+            get {
+                object obj = ResourceManager.GetObject("Toy Mouse", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

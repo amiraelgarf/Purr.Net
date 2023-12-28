@@ -318,6 +318,7 @@ namespace DBapplication
             this.appointments_nav_selected.TabIndex = 38;
             this.appointments_nav_selected.Text = "Appointments";
             this.appointments_nav_selected.Visible = false;
+            this.appointments_nav_selected.Click += new System.EventHandler(this.appointments_select_Click);
             this.appointments_nav_selected.MouseLeave += new System.EventHandler(this.appointments_select_MouseLeave);
             // 
             // products_nav_selected
@@ -347,6 +348,7 @@ namespace DBapplication
             this.profile_nav_selected.TabIndex = 39;
             this.profile_nav_selected.Text = "Profile";
             this.profile_nav_selected.Visible = false;
+            this.profile_nav_selected.Click += new System.EventHandler(this.profile_select_Click);
             this.profile_nav_selected.MouseLeave += new System.EventHandler(this.profile_nav_selected_MouseLeave);
             // 
             // quiz_nav_selected
@@ -585,6 +587,7 @@ namespace DBapplication
             this.appointments_select.TabIndex = 33;
             this.appointments_select.TabStop = false;
             this.appointments_select.Visible = false;
+            this.appointments_select.Click += new System.EventHandler(this.appointments_select_Click);
             this.appointments_select.MouseLeave += new System.EventHandler(this.appointments_select_MouseLeave);
             // 
             // products_select
@@ -625,6 +628,7 @@ namespace DBapplication
             this.profile_select.TabIndex = 32;
             this.profile_select.TabStop = false;
             this.profile_select.Visible = false;
+            this.profile_select.Click += new System.EventHandler(this.profile_select_Click);
             this.profile_select.MouseLeave += new System.EventHandler(this.profile_nav_selected_MouseLeave);
             // 
             // searchbar

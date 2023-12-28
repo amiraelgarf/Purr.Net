@@ -509,7 +509,7 @@ namespace DBapplication
 
         private void slot1_label_Click(object sender, EventArgs e)
         {
-            ViewPet p = new ViewPet(username, id_list[0] + page * 8);
+            ViewPet p = new ViewPet(username, id_list[0 + page * 8]);
             this.Hide();
             p.ShowDialog();
             this.Close();
@@ -517,7 +517,7 @@ namespace DBapplication
 
         private void slot2_label_Click(object sender, EventArgs e)
         {
-            ViewPet p = new ViewPet(username, id_list[1]+page*8);
+            ViewPet p = new ViewPet(username, id_list[1 + page * 8]);
             this.Hide();
             p.ShowDialog();
             this.Close();
@@ -525,7 +525,7 @@ namespace DBapplication
 
         private void slot3_label_Click(object sender, EventArgs e)
         {
-            ViewPet p = new ViewPet(username, id_list[2] + page * 8);
+            ViewPet p = new ViewPet(username, id_list[2 + page * 8]);
             this.Hide();
             p.ShowDialog();
             this.Close();
@@ -533,7 +533,7 @@ namespace DBapplication
 
         private void slot4_label_Click(object sender, EventArgs e)
         {
-            ViewPet p = new ViewPet(username, id_list[3] + page * 8);
+            ViewPet p = new ViewPet(username, id_list[3 + page * 8]);
             this.Hide();
             p.ShowDialog();
             this.Close();
@@ -541,7 +541,7 @@ namespace DBapplication
 
         private void slot5_label_Click(object sender, EventArgs e)
         {
-            ViewPet p = new ViewPet(username, id_list[4] + page * 8);
+            ViewPet p = new ViewPet(username, id_list[4 + page * 8]);
             this.Hide();
             p.ShowDialog();
             this.Close();
@@ -549,7 +549,7 @@ namespace DBapplication
 
         private void slot6_label_Click(object sender, EventArgs e)
         {
-            ViewPet p = new ViewPet(username, id_list[5] + page * 8);
+            ViewPet p = new ViewPet(username, id_list[5 + page * 8]);
             this.Hide();
             p.ShowDialog();
             this.Close();
@@ -557,7 +557,7 @@ namespace DBapplication
 
         private void slot7_label_Click(object sender, EventArgs e)
         {
-            ViewPet p = new ViewPet(username, id_list[6] + page * 8);
+            ViewPet p = new ViewPet(username, id_list[6 + page * 8]);
             this.Hide();
             p.ShowDialog();
             this.Close();
@@ -565,7 +565,7 @@ namespace DBapplication
 
         private void slot8_label_Click(object sender, EventArgs e)
         {
-            ViewPet p = new ViewPet(username, id_list[7] + page * 8);
+            ViewPet p = new ViewPet(username, id_list[7 + page * 8]);
             this.Hide();
             p.ShowDialog();
             this.Close();
@@ -607,10 +607,27 @@ namespace DBapplication
 
         private void center_icon_Click(object sender, EventArgs e)
         {
-            /*Centers c = new Centers(username);
+            Centers c = new Centers(username);
             this.Hide();
             c.ShowDialog();
-            this.Close();*/
+            this.Close();
+        }
+
+        private void appointments_select_Click(object sender, EventArgs e)
+        {
+            Vets v = new Vets(username);
+            this.Hide();
+            v.ShowDialog();
+            this.Close();
+        }
+
+        private void profile_select_Click(object sender, EventArgs e)
+        {
+            Profile v = new Profile(username);
+            this.Hide();
+            v.ShowDialog();
+            this.Close();
+
         }
 
         public void FilterPetsByBestFor(string bestFor)
