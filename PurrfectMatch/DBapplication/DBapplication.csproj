@@ -39,6 +39,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -73,6 +74,18 @@
     <Compile Include="AdminAddDeleteCenter.Designer.cs">
       <DependentUpon>AdminAddDeleteCenter.cs</DependentUpon>
     </Compile>
+    <Compile Include="AdoptedPets.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdoptedPets.Designer.cs">
+      <DependentUpon>AdoptedPets.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AdoptionRequests.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdoptionRequests.Designer.cs">
+      <DependentUpon>AdoptionRequests.cs</DependentUpon>
+    </Compile>
     <Compile Include="ChangePassowrd.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -93,11 +106,23 @@
     <Compile Include="LogIn.Designer.cs">
       <DependentUpon>LogIn.cs</DependentUpon>
     </Compile>
+    <Compile Include="ManagerStatistics.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ManagerStatistics.Designer.cs">
+      <DependentUpon>ManagerStatistics.cs</DependentUpon>
+    </Compile>
     <Compile Include="MyPetsList.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="MyPetsList.Designer.cs">
       <DependentUpon>MyPetsList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewResult.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ViewResult.Designer.cs">
+      <DependentUpon>ViewResult.cs</DependentUpon>
     </Compile>
     <Compile Include="PetsViewManager.cs">
       <SubType>Form</SubType>
@@ -105,11 +130,32 @@
     <Compile Include="PetsViewManager.Designer.cs">
       <DependentUpon>PetsViewManager.cs</DependentUpon>
     </Compile>
+
     <Compile Include="ProductsViewManager.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ProductsViewManager.Designer.cs">
       <DependentUpon>ProductsViewManager.cs</DependentUpon>
+      </Compile>
+
+    <Compile Include="Quiz.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Quiz.Designer.cs">
+      <DependentUpon>Quiz.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SignUp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SignUp.Designer.cs">
+      <DependentUpon>SignUp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vet.Designer.cs">
+      <DependentUpon>Vet.cs</DependentUpon>
+
     </Compile>
     <Compile Include="Vets.cs">
       <SubType>Form</SubType>
@@ -193,6 +239,9 @@
     <EmbeddedResource Include="AdminAddDeleteCenter.resx">
       <DependentUpon>AdminAddDeleteCenter.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="AdoptionRequests.resx">
+      <DependentUpon>AdoptionRequests.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ChangePassowrd.resx">
       <DependentUpon>ChangePassowrd.cs</DependentUpon>
     </EmbeddedResource>
@@ -202,11 +251,28 @@
     <EmbeddedResource Include="LogIn.resx">
       <DependentUpon>LogIn.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ManagerStatistics.resx">
+      <DependentUpon>ManagerStatistics.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MyPetsList.resx">
       <DependentUpon>MyPetsList.cs</DependentUpon>
     </EmbeddedResource>
+
     <EmbeddedResource Include="ProductsViewManager.resx">
       <DependentUpon>ProductsViewManager.cs</DependentUpon>
+    </EmbeddedResource>
+
+    <EmbeddedResource Include="SignUp.resx">
+      <DependentUpon>SignUp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Quiz.resx">
+      <DependentUpon>Quiz.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vet.resx">
+      <DependentUpon>Vet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ViewResult.resx">
+      <DependentUpon>ViewResult.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Vets.resx">
       <DependentUpon>Vets.cs</DependentUpon>

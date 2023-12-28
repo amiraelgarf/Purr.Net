@@ -41,24 +41,37 @@ namespace DBapplication
             {
                 MessageBox.Show("Please, insert all values");
             }
+            else if (Gender.Text != "F" && Gender.Text != "M")
+            {
+                MessageBox.Show("Please, insert gender as F for female and M for Male");
+            }
             else
             {
                 
                 
                 {
                     int r = controllerObj.InsertAuthen(username.Text, password.Text, "Vet");
-                    int userID = controllerObj.GenerateID();
-                    int u = controllerObj.InsertUser(userID, fName.Text, lName.Text, DOB.Text, Gender.Text);
-
-                    int m = controllerObj.InsertVet(userID, Convert.ToInt32(comboBox1.SelectedValue), Speciality.Text, Schedule.Text , username.Text);
-                    if (r == 0 || u == 0 || m == 0)
+                    if (r == 0)
                     {
-                        MessageBox.Show("Please, insert values correctly");
+                        MessageBox.Show("Please, insert a unique username");
+
                     }
                     else
                     {
-                        MessageBox.Show("Vet inserted successfully");
+                        int userID = controllerObj.GenerateID();
+                        int u = controllerObj.InsertUser(userID, fName.Text, lName.Text, DOB.Text, Gender.Text);
+
+                        int m = controllerObj.InsertVet(userID, Convert.ToInt32(comboBox1.SelectedValue), Speciality.Text, Schedule.Text, username.Text);
+                        if (u == 0 || m == 0)
+                        {
+                            MessageBox.Show("Please, insert values correctly");
+                        }
+                        else
+                        {
+                            MessageBox.Show("Vet inserted successfully");
+                        }
                     }
+                    
                 }
                
 
@@ -94,6 +107,11 @@ namespace DBapplication
             this.Hide();
             a.ShowDialog();
             this.Close();
+        }
+
+        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
