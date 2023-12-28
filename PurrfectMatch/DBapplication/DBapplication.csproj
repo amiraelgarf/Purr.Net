@@ -74,6 +74,12 @@
     <Compile Include="AdoptedPets.Designer.cs">
       <DependentUpon>AdoptedPets.cs</DependentUpon>
     </Compile>
+    <Compile Include="AdoptionRequests.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdoptionRequests.Designer.cs">
+      <DependentUpon>AdoptionRequests.cs</DependentUpon>
+    </Compile>
     <Compile Include="ChangePassowrd.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -202,6 +208,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AdminAddDeleteCenter.resx">
       <DependentUpon>AdminAddDeleteCenter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdoptionRequests.resx">
+      <DependentUpon>AdoptionRequests.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ChangePassowrd.resx">
       <DependentUpon>ChangePassowrd.cs</DependentUpon>

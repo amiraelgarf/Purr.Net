@@ -64,6 +64,8 @@ namespace DBapplication
         //    string query = " SELECT u.UserID, u.FirstName FROM [User] u, Authentication a, Manager m WHERE a.Type= 'Manager' AND m.Username = a.Username  AND u.UserID = m.ManagerID  ;";
         //    return dbMan.ExecuteReader(query);
         //}
+
+        
         public DataTable SelectAllManager()
         {
             try
@@ -97,6 +99,7 @@ namespace DBapplication
         //    string query = " SELECT u.UserID, u.FirstName FROM [User] u, Authentication a, Vet v WHERE a.Type= 'Vet' AND v.Username = a.Username  AND u.UserID = v.VetID  ;";
         //    return dbMan.ExecuteReader(query);
         //}
+
 
         public DataTable SelectAllVets()
         {
@@ -426,6 +429,53 @@ namespace DBapplication
 
             return productData?.Rows[0]?.Field<int>("TotalQuantity") ?? 0;
         }
+
+        public DataTable SelectAllAdoptionRequests(string username)
+        {
+            string query = " SELECT Pet.PetID, Pet.Name" +
+            " FROM Pet " +
+            "JOIN Ownership ON Pet.PetID = Ownership.PetID " +
+            "JOIN Manager ON Pet.CenterID = Manager.CenterID " +
+            "WHERE Manager.Username = '" + username + "' AND Ownership.Accept = 'NO';";
+            return dbMan.ExecuteReader(query);
+        }
+
+        public DataTable GetCustomerInfoForpetadoption(int petID)
+        {
+            string query = "SELECT DISTINCT u.FirstName, u.LastName " +
+                   "FROM [User] u " +
+                   "JOIN Ownership ON u.UserID = Ownership.CustomerID " +
+                   "JOIN Pet ON " + petID + " = Pet.PetID;";
+            return dbMan.ExecuteReader(query);
+
+        }
+
+        public int AcceptAdoptionRequests(int userID, int petID)
+        {
+            string query = "UPDATE Ownership SET Accept = 'YES' WHERE CustomerID = " + userID + " AND PetID = " + petID + ";";
+            dbMan.ExecuteNonQuery(query);
+
+            query = "UPDATE Pet SET CenterID = NULL WHERE PetID = " + petID + ";";
+            return dbMan.ExecuteNonQuery(query);
+        }
+
+        public int DeclineAdoptionRequests(int userID, int petID)
+        {
+            string query = "DELETE FROM Ownership WHERE CustomerID = " + userID + " AND PetID = " + petID + ";";
+
+            return dbMan.ExecuteNonQuery(query);
+        }
+
+        public int GetCustomerIDForpetadoption(int petID)
+        {
+            string query = "SELECT u.UserID " +
+                   "FROM [User] u " +
+                   "JOIN Ownership ON u.UserID = Ownership.CustomerID " +
+                   "JOIN Pet ON " + petID + " = Pet.PetID;";
+            return Convert.ToInt32(dbMan.ExecuteScalar(query));
+        }
+
+
 
         ///AmiraEnd
 
