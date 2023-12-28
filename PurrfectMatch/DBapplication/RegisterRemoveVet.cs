@@ -58,7 +58,17 @@ namespace DBapplication
                     }
                     else
                     {
-                        int userID = controllerObj.GenerateID();
+                        int userID;
+                        int count = controllerObj.UserCount();
+                        if (count != 0)
+                        {
+                            userID = controllerObj.GenerateID();
+
+                        }
+                        else
+                        {
+                            userID = 1;
+                        }
                         int u = controllerObj.InsertUser(userID, fName.Text, lName.Text, DOB.Text, Gender.Text);
 
                         int m = controllerObj.InsertVet(userID, Convert.ToInt32(comboBox1.SelectedValue), Speciality.Text, Schedule.Text, username.Text);
