@@ -20,7 +20,7 @@ namespace DBapplication
             dbMan = new DBManager();
         }
 
-      
+
         public void TerminateConnection()
         {
             dbMan.CloseConnection();
@@ -711,6 +711,41 @@ namespace DBapplication
             return dbMan.ExecuteNonQuery(query);
         }
 
+
+
+        public int InsertProduct(string Name, string Description, int Stock, DateTime ProductionDate, DateTime ExpirationDate, decimal Price, string Center, string Type)
+        {
+            int typeID = GetTypeID(Type);
+            int centerID = GetCenterID(Center);
+
+            string query = "INSERT INTO Product (Name, Description, Stock, ProductionDate, ExpirationDate, Cost, CenterID, ForTypeID) " +
+                           "VALUES ('" + Name + "', '" + Description + "', " + Stock + ", '" + ProductionDate.ToString("yyyy-MM-dd") + "', '" +
+                           ExpirationDate.ToString("yyyy-MM-dd") + "', " + Price.ToString("0.00") + ", " + centerID + ", " + typeID + ")";
+
+            return dbMan.ExecuteNonQuery(query);
+        }
+
+        public int UpdateProduct(int ProductID, string Name, string Description, int Stock, decimal Cost, int CenterID, int ForTypeID)
+        {
+
+            string query = "UPDATE Product " +
+                           "SET Name = '" + Name + "', Description = '" + Description + "', Stock = " + Stock + ", Cost = " + Cost +
+                           ", CenterID = " + CenterID + ", ForTypeID = " + ForTypeID +
+                           " WHERE ProductID = " + ProductID;
+
+            return dbMan.ExecuteNonQuery(query);
+        }
+
+
+
+        public int DeleteProduct(int ProductID)
+        {
+            string query = "DELETE FROM Product WHERE ProductID = " + ProductID;
+            return dbMan.ExecuteNonQuery(query);
+        }
+
+
+
         public int InsertType(string TypeName)
         {
             string query = "INSERT INTO Type (TypeName) " +
@@ -734,9 +769,9 @@ namespace DBapplication
 
         }
 
-        
 
-       
+
+
 
         public DataTable SelectAllCenters()
         {
@@ -750,7 +785,7 @@ namespace DBapplication
             return dbMan.ExecuteReader(query);
         }
 
-        
+
 
 
 
@@ -759,14 +794,14 @@ namespace DBapplication
             string query = " SELECT u.UserID, u.FirstName FROM [User] u, Authentication a, Vet v WHERE a.Type= 'Vet' AND v.Username = a.Username  AND u.UserID = v.VetID  ;";
             return dbMan.ExecuteReader(query);
         }
-        public int InsertCenter(string CenterName, int BuldingNumber, int streetNumber,string city, string FQA)
+        public int InsertCenter(string CenterName, int BuldingNumber, int streetNumber, string city, string FQA)
         {
             string query = "INSERT INTO Center (CenterName, BuildingNum, StreetNum ,City ,FAQ)" +
-                            "Values ('" + CenterName + "'," + BuldingNumber + ","+ streetNumber +",'" + city + "','" + FQA + "');";
+                            "Values ('" + CenterName + "'," + BuldingNumber + "," + streetNumber + ",'" + city + "','" + FQA + "');";
             return dbMan.ExecuteNonQuery(query);
         }
 
-        
+
 
 
         public int DeleteCenter(int CenterID)
@@ -857,7 +892,7 @@ namespace DBapplication
         public int InsertUser(int id, string fName, string lName, string DOF, string gender)
         {
             string query = "INSERT INTO [User] (UserID, FirstName, LastName, DateOfBirth, Gender)" +
-                            "Values ("+id+",'" + fName + "','" + lName+ "','" + DOF + "','"+gender+"');";
+                            "Values (" + id + ",'" + fName + "','" + lName + "','" + DOF + "','" + gender + "');";
             return dbMan.ExecuteNonQuery(query);
         }
         public int GenerateID()
@@ -872,7 +907,7 @@ namespace DBapplication
         public string GetManagerUsername(int ID)
         {
             string query = "SELECT Username FROM Manager "
-                +"WHERE ManagerID= "+ ID +";";
+                + "WHERE ManagerID= " + ID + ";";
 
             string username = Convert.ToString(dbMan.ExecuteScalar(query));
             return username;
@@ -894,9 +929,9 @@ namespace DBapplication
             return dbMan.ExecuteNonQuery(query);
         }
 
-        public int InsertVet(int vetID, int centerID, string speciality, string schedule,string username)
+        public int InsertVet(int vetID, int centerID, string speciality, string schedule, string username)
         {
-            
+
             string query = $"INSERT INTO Vet (VetID, BuildingNum, StreetNum, City, Speciality, Schedule, CenterID, Username) " +
                            $"SELECT {vetID}, BuildingNum, StreetNum, City, '{speciality}', '{schedule}', {centerID}, '{username}' " +
                            $"FROM Center WHERE CenterID = {centerID};";

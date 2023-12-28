@@ -49,6 +49,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddProductManager.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddProductManager.Designer.cs">
+      <DependentUpon>AddProductManager.cs</DependentUpon>
+    </Compile>
     <Compile Include="AddPetManager.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -98,6 +104,12 @@
     </Compile>
     <Compile Include="PetsViewManager.Designer.cs">
       <DependentUpon>PetsViewManager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ProductsViewManager.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProductsViewManager.Designer.cs">
+      <DependentUpon>ProductsViewManager.cs</DependentUpon>
     </Compile>
     <Compile Include="Vets.cs">
       <SubType>Form</SubType>
@@ -154,6 +166,12 @@
     <Compile Include="ViewAndEditPetManager.Designer.cs">
       <DependentUpon>ViewAndEditPetManager.cs</DependentUpon>
     </Compile>
+    <Compile Include="ViewAndEditProductManager.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ViewAndEditProductManager.Designer.cs">
+      <DependentUpon>ViewAndEditProductManager.cs</DependentUpon>
+    </Compile>
     <Compile Include="ViewProduct.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -166,6 +184,9 @@
     <Compile Include="ViewPet.Designer.cs">
       <DependentUpon>ViewPet.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="AddProductManager.resx">
+      <DependentUpon>AddProductManager.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Admin.resx">
       <DependentUpon>Admin.cs</DependentUpon>
     </EmbeddedResource>
@@ -183,6 +204,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MyPetsList.resx">
       <DependentUpon>MyPetsList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProductsViewManager.resx">
+      <DependentUpon>ProductsViewManager.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Vets.resx">
       <DependentUpon>Vets.cs</DependentUpon>
@@ -209,6 +233,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MyPet.resx">
       <DependentUpon>MyPet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ViewAndEditProductManager.resx">
+      <DependentUpon>ViewAndEditProductManager.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ViewProduct.resx">
       <DependentUpon>ViewProduct.cs</DependentUpon>
