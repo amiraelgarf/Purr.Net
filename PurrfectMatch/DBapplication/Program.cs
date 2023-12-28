@@ -16,8 +16,9 @@ namespace DBapplication
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            Application.Run(new AdoptionRequests("bob_johnson"));
+            //Application.Run(new AdoptionRequests("bob_johnson"));
             //Application.Run(new Customer("m7md03"));
+            Application.Run(new StartForm());
 
         }
     }

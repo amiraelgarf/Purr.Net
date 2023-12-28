@@ -236,7 +236,7 @@
 
     <EmbeddedResource Include="SignUp.resx">
       <DependentUpon>SignUp.cs</DependentUpon>
-
+    </EmbeddedResource>
     <EmbeddedResource Include="Quiz.resx">
       <DependentUpon>Quiz.cs</DependentUpon>
     </EmbeddedResource>
@@ -245,7 +245,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ViewResult.resx">
       <DependentUpon>ViewResult.cs</DependentUpon>
-
     </EmbeddedResource>
     <EmbeddedResource Include="Vets.resx">
       <DependentUpon>Vets.cs</DependentUpon>

@@ -22,10 +22,12 @@ namespace DBapplication
         DataTable vet;
         int vetID;
         Controller controllerObj;
+        string UserName;
         public Vet(string username)
         {
             InitializeComponent();
             controllerObj = new Controller();
+            UserName = username;
             vetID = controllerObj.GetVetID(username);
             DataTable dt1 = controllerObj.SelectAvailableDates(vetID);
             comboBox1.DisplayMember = "Datee";
@@ -98,6 +100,20 @@ namespace DBapplication
         private void ViewApp_ViewRatings_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            StartForm a = new StartForm();
+            this.Hide();
+            a.ShowDialog();
+            this.Close();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            ChangePassowrd C = new ChangePassowrd(UserName);
+            C.ShowDialog();
         }
     }
 }

@@ -35,7 +35,9 @@ namespace DBapplication
             MessageBox.Show("You personality is " + a + " and your Purrfect Match isss");
             ViewResult p = new ViewResult(Username, a);
             p.FilterPetsByBestFor(a);
-            p.Show();
+            this.Hide();
+            p.ShowDialog();
+            this.Close();
 
         }
 

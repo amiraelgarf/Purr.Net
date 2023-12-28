@@ -38,7 +38,7 @@ namespace DBapplication
             }
             else
             {
-                int r = controllerObj.InsertAuthen(username.Text, password.Text, "Vet");
+                int r = controllerObj.InsertAuthen(username.Text, password.Text, "Customer");
                 if (r == 0)
                 {
                     MessageBox.Show("Please, insert a unique username");
@@ -57,6 +57,11 @@ namespace DBapplication
                     else
                     {
                         UsernameC = username.Text;
+                        Quiz a = new Quiz(UsernameC);
+                        this.Hide();
+                        a.ShowDialog();
+                        this.Close();
+
                     }
 
                 }

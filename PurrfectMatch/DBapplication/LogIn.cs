@@ -44,6 +44,11 @@ namespace DBapplication
             else if(AccountType=="Vet"|| AccountType == "vet")
             {
                 //load Vet form
+                Vet a = new Vet(username.Text);
+                this.Hide();
+                a.ShowDialog();
+                this.Close();
+
             }
             else if(AccountType=="Manager"|| AccountType == "manager")
             {
