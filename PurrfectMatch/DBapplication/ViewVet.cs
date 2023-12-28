@@ -219,5 +219,29 @@ namespace DBapplication
             p.ShowDialog();
             this.Close();
         }
+
+        private void appointments_nav_selected_Click(object sender, EventArgs e)
+        {
+            Vets p = new Vets(username);
+            this.Hide();
+            p.ShowDialog();
+            this.Close();
+        }
+
+        private void profile_select_Click(object sender, EventArgs e)
+        {
+            Profile p = new Profile(username);
+            this.Hide();
+            p.ShowDialog();
+            this.Close();
+        }
+
+        private void products_select_Click(object sender, EventArgs e)
+        {
+            Pets p = new Pets(username);
+            this.Hide();
+            p.ShowDialog();
+            this.Close();
+        }
     }
 }

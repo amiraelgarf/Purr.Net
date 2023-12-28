@@ -210,5 +210,13 @@ namespace DBapplication
             v.ShowDialog();
             this.Close();
         }
+
+        private void profile_nav_selected_Click(object sender, EventArgs e)
+        {
+            Profile p = new Profile(username);
+            this.Hide();   
+            p.ShowDialog();
+            this.Close();
+        }
     }
 }

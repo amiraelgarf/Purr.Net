@@ -229,10 +229,10 @@ namespace DBapplication
 
         private void center_icon_Click(object sender, EventArgs e)
         {
-            //Centers c = new Centers(username);
-            //this.Hide();
-            //c.ShowDialog();
-            //this.Close();
+            Centers c = new Centers(username);
+            this.Hide();
+            c.ShowDialog();
+            this.Close();
         }
 
         private void appointments_select_Click(object sender, EventArgs e)
@@ -242,6 +242,22 @@ namespace DBapplication
             v.ShowDialog();
             this.Close();
              
+        }
+
+        private void products_select_Click(object sender, EventArgs e)
+        {
+            Products v = new Products(username);
+            this.Hide();
+            v.ShowDialog();
+            this.Close();
+        }
+
+        private void profile_nav_selected_Click(object sender, EventArgs e)
+        {
+            Profile v = new Profile(username);
+            this.Hide();
+            v.ShowDialog();
+            this.Close();
         }
     }
 }

@@ -469,5 +469,27 @@ namespace DBapplication
             pets_nav_selected.Visible = false;
             pets_select.Visible = false;
         }
+
+        private void appointments_select_MouseLeave_1(object sender, EventArgs e)
+        {
+            appointments_nav_selected.Visible = false;
+            appointments_select.Visible = false;
+        }
+
+        private void appointments_nav_selected_Click(object sender, EventArgs e)
+        {
+            Vets p = new Vets(username);
+            this.Hide();
+            p.ShowDialog();
+            this.Close();
+        }
+
+        private void profile_select_Click(object sender, EventArgs e)
+        {
+            Profile p = new Profile(username);
+            this.Hide();
+            p.ShowDialog();
+            this.Close();
+        }
     }
 }

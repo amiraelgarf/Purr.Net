@@ -120,12 +120,48 @@ namespace DBapplication
         }
 
 
-
         public DataTable SelectPet(int x)
         {
             string query = "SELECT * FROM Pet WHERE PetID = " + x + ";";
             return dbMan.ExecuteReader(query);
         }
+
+        public DataTable SelectCustomer(int x)
+        {
+            string query = "SELECT * FROM Customer WHERE CustomerID = " + x + ";";
+            return dbMan.ExecuteReader(query);
+        }
+
+        public DataTable SelectUser(int x)
+        {
+            string query = "SELECT * FROM [User] WHERE UserID = " + x + ";";
+            return dbMan.ExecuteReader(query);
+        }
+
+        public DataTable GetAuth(string x)
+        {
+            string query = "SELECT * FROM Authentication WHERE username = '" + x + "';";
+            return dbMan.ExecuteReader(query);
+        }
+
+        public int UpdatePassword(string user, string pass)
+        {
+            string q = "UPDATE Authentication SET Password = '" + pass + "' WHERE Username = '" + user + "';";
+            return dbMan.ExecuteNonQuery(q);
+        }
+
+        public int UpdateDateOfBirth(int user, DateTime date)
+        {
+            string q = "UPDATE [User] SET DateOfBirth = '" + date.ToString("yyyy-MM-dd") + "' WHERE UserID = " + user + ";";
+            return dbMan.ExecuteNonQuery(q);
+        }
+
+        public int UpdateName(int user, string fname, string lname)
+        {
+            string q = "UPDATE [User] SET FirstName = '" + fname + "', LastName = '" + lname + "' WHERE UserID = " + user + ";";
+            return dbMan.ExecuteNonQuery(q);
+        }
+
 
         public DataTable SelectProduct(int x)
         {
@@ -864,6 +900,18 @@ namespace DBapplication
             string q = "UPDATE Pet SET Name = '" + name + "' WHERE PetID = " + id + ";";
             return dbMan.ExecuteNonQuery(q);
         }
+
+        public int DeleteUser(int id)
+        {
+            string q = "DELETE FROM [User] WHERE UserID = " + id + ";";
+            return dbMan.ExecuteNonQuery(q);
+        }
+        public int DeleteAuth(string name)
+        {
+            string q = "DELETE FROM Authentication WHERE Username = " + name + ";";
+            return dbMan.ExecuteNonQuery(q);
+        }
+
         public int VetAverageRating(int id)
         {
             string q = "SELECT AVG(Score) FROM VetRating WHERE VetID = " + id + ";";

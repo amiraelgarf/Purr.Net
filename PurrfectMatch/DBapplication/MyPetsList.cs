@@ -312,5 +312,39 @@ namespace DBapplication
             v.ShowDialog();
             this.Close();
         }
+
+        private void center_icon_MouseHover(object sender, EventArgs e)
+        {
+            center_icon.BorderStyle = BorderStyle.FixedSingle;
+        }
+
+        private void center_icon_MouseLeave(object sender, EventArgs e)
+        {
+            center_icon.BorderStyle = BorderStyle.None;
+        }
+
+        private void center_icon_Click(object sender, EventArgs e)
+        {
+            Centers v = new Centers(username);
+            this.Hide();
+            v.ShowDialog();
+            this.Close();
+        }
+
+        private void profile_nav_selected_Click(object sender, EventArgs e)
+        {
+            Profile v = new Profile(username);
+            this.Hide();
+            v.ShowDialog();
+            this.Close();
+        }
+
+        private void products_select_Click(object sender, EventArgs e)
+        {
+            Products v = new Products(username);
+            this.Hide();
+            v.ShowDialog();
+            this.Close();
+        }
     }
 }

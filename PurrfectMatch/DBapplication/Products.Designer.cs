@@ -299,7 +299,6 @@ namespace DBapplication
             this.products_nav_selected.Size = new System.Drawing.Size(90, 25);
             this.products_nav_selected.TabIndex = 36;
             this.products_nav_selected.Text = "Products";
-            this.products_nav_selected.MouseLeave += new System.EventHandler(this.products_select_MouseLeave);
             // 
             // profile_nav_selected
             // 
@@ -313,6 +312,7 @@ namespace DBapplication
             this.profile_nav_selected.TabIndex = 39;
             this.profile_nav_selected.Text = "Profile";
             this.profile_nav_selected.Visible = false;
+            this.profile_nav_selected.Click += new System.EventHandler(this.profile_select_Click);
             this.profile_nav_selected.MouseLeave += new System.EventHandler(this.profile_nav_selected_MouseLeave);
             // 
             // quiz_nav_selected
@@ -577,7 +577,6 @@ namespace DBapplication
             this.products_select.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.products_select.TabIndex = 35;
             this.products_select.TabStop = false;
-            this.products_select.MouseLeave += new System.EventHandler(this.products_select_MouseLeave);
             // 
             // quiz_select
             // 
@@ -603,6 +602,7 @@ namespace DBapplication
             this.profile_select.TabIndex = 32;
             this.profile_select.TabStop = false;
             this.profile_select.Visible = false;
+            this.profile_select.Click += new System.EventHandler(this.profile_select_Click);
             this.profile_select.MouseLeave += new System.EventHandler(this.profile_nav_selected_MouseLeave);
             // 
             // searchbar
